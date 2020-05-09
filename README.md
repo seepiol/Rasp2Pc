@@ -1,6 +1,13 @@
 # RASP2PC
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
+## Compatibility
+I've tested it on Manjaro Linux.
+Feel free to test it on your machine and open an issue to let me know if it works.
+
+Should work on most linux distributions.
+Functioning on windows is unlikely
+
 ## How it Works
 The project is divided in the PC component (that acts as a socket server) and the RASP component (is made for raspberry but can be used on other devices).
 
@@ -20,7 +27,8 @@ The most complex part is on the pc. The RASP component send just an index to the
 - [x] Basic "RASP" component (client)
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add logging
-- [ ] Comment the code
+- [x] Comment the code
+- [ ] Add reqirements.txt
 - [ ] GUI for RASP component (PyQt5)
 - [ ] Possibility to modify the shortcuts from pc
 - [ ] Android component

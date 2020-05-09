@@ -22,8 +22,9 @@ import socket
 
 if __name__ == "__main__":
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:
-        raspsocket.connect(("", 10000))   
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
+        # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)
+        raspsocket.connect(("<insert pc address here>", 10000))    # Connect to the PC 
 
         while True:
             print("""
@@ -39,10 +40,10 @@ s3) Cut
 s4) Paste
             """)
             choice = input("What to do? :")
-            while choice not in ["a1","a2","a3","a4","a5","a6", "s1","s2","s3","s4"]:
+            while choice not in ["a1","a2","a3","a4","a5","a6", "s1","s2","s3","s4"]:    # Input validation
                 choice = input("what to do? :")
 
-            raspsocket.sendall(choice.encode())
-            response = raspsocket.recv(1024).decode("ascii")
-            print(response)
+            raspsocket.sendall(choice.encode())    # Send the index
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
 

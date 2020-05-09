@@ -22,52 +22,90 @@ import socket
 import subprocess
 from pynput.keyboard import Key, Controller
 
-keyboard = Controller()
+keyboard = Controller()    # Create a virtual keyboard
 
-HOST = ""
-PORT = 10000
+HOST = ""    # Address 
+PORT = 10000    # Port
 
 
 def app1():
+    '''
+    Shutdown the PC 
+    '''
     #subprocess.Popen("sudo shutdown", shell=True)
-    return "unable to shutdown. it require root privileges"
+    return "unable to shutdown. it require root privileges"    # The shutdown requires root. It's easier delete this function instead find a way to make it without root
 
 def app2():
+    '''
+    Restart the PC
+    '''
     subprocess.Popen("reboot", shell=True)
     return ""
     
 def app3():
+    '''
+    Execute Firefox web Browser
+    '''
     subprocess.Popen("firefox", shell=True)
     return ""
     
 def app4():
+    '''
+    Open a terminal window
+    '''
     subprocess.Popen("konsole", shell=True)
     return ""
 
 def app5():
+    '''
+    Lock the current user session
+    '''
     subprocess.Popen("loginctl lock-session", shell=True)
     return ""
 
 def app6():
+    '''
+    Run VSCodium
+    '''
     subprocess.Popen("vscodium", shell=True)
     return ""
 
 def short1():
+    '''
+    Ctrl+Z
+    Undo shortcut
+    Usable everywhere
+    '''
     with keyboard.pressed(Key.ctrl):
         keyboard.press("z")
         keyboard.release("z")
 
 def short2():
+    '''
+    Ctrl+c
+    Copy
+    Usable everywhere
+    '''
     with keyboard.pressed(Key.ctrl):
         keyboard.press("c")
         keyboard.release("c")
 
 def short3():
+    '''
+    Ctrl+x
+    Cut
+    Usable everywhere
+    '''
     with keyboard.pressed(Key.ctrl):
         keyboard.press("x")
         keyboard.release("x")
 
 def short4():
+    '''
+    Ctrl+v
+    Paste
+    Usable everywhere
+    '''
     with keyboard.pressed(Key.ctrl):
         keyboard.press("v")
         keyboard.release("v")
@@ -85,7 +123,9 @@ if __name__ == "__main__":
                 conn, client_address = sock.accept()    #Accepting connection from {address}
                 
                 while True:
-                    data = conn.recv(16).decode("ascii")
+                    data = conn.recv(16).decode("ascii")     # Recive and decode what-to-do index
+
+                    # Execute the index corresponding program or shortcut
                     if data=="a1":
                         app1()
                     elif data=="a2":
@@ -107,7 +147,9 @@ if __name__ == "__main__":
                     elif data=="s4":
                         short4()
                     esit = "ok"
+
                     conn.sendall(esit.encode())
 
-    except e:
+    except Exception as e:
+        print(e)
         sock.close()
