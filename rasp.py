@@ -19,31 +19,238 @@
 '''
 
 import socket
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
 
-if __name__ == "__main__":
+PC_HOST = ""    # INSERT HERE PC IP
+PC_PORT = 10000    # INSERT HERE PC PORT
 
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(451, 241)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.RASP2PC_label = QtWidgets.QLabel(self.centralwidget)
+        self.RASP2PC_label.setGeometry(QtCore.QRect(10, 10, 111, 21))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.RASP2PC_label.setFont(font)
+        self.RASP2PC_label.setObjectName("RASP2PC_label")
+
+        self.RASPcomponent_label = QtWidgets.QLabel(self.centralwidget)
+        self.RASPcomponent_label.setGeometry(QtCore.QRect(10, 40, 121, 18))
+        self.RASPcomponent_label.setObjectName("RASPcomponent_label")
+
+        self.connected_to_label = QtWidgets.QLabel(self.centralwidget)
+        self.connected_to_label.setGeometry(QtCore.QRect(10, 70, 101, 18))
+        self.connected_to_label.setObjectName("connected_to_label")
+
+        self.pc_info_label = QtWidgets.QLabel(self.centralwidget)
+        self.pc_info_label.setGeometry(QtCore.QRect(100, 70, 71, 18))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setItalic(True)
+        font.setWeight(75)
+        self.pc_info_label.setFont(font)
+        self.pc_info_label.setObjectName("pc_info_label")
+
+        self.app_frame = QtWidgets.QFrame(self.centralwidget)
+        self.app_frame.setGeometry(QtCore.QRect(10, 100, 211, 131))
+        self.app_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.app_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.app_frame.setObjectName("app_frame")
+
+        self.app2_button = QtWidgets.QPushButton(self.app_frame)
+        self.app2_button.setGeometry(QtCore.QRect(110, 10, 90, 37))
+        self.app2_button.setText("")
+        self.app2_button.setObjectName("app2_button")
+
+        self.app1_button = QtWidgets.QPushButton(self.app_frame)
+        self.app1_button.setGeometry(QtCore.QRect(10, 10, 90, 37))
+        self.app1_button.setText("")
+        self.app1_button.setObjectName("app1_button")
+
+        self.app3_button = QtWidgets.QPushButton(self.app_frame)
+        self.app3_button.setGeometry(QtCore.QRect(10, 50, 90, 37))
+        self.app3_button.setText("")
+        self.app3_button.setObjectName("app3_button")
+
+        self.app4_button = QtWidgets.QPushButton(self.app_frame)
+        self.app4_button.setGeometry(QtCore.QRect(110, 50, 90, 37))
+        self.app4_button.setText("")
+        self.app4_button.setObjectName("app4_button")
+
+        self.app5_button = QtWidgets.QPushButton(self.app_frame)
+        self.app5_button.setGeometry(QtCore.QRect(10, 90, 90, 37))
+        self.app5_button.setText("")
+        self.app5_button.setObjectName("app5_button")
+
+        self.app6_button = QtWidgets.QPushButton(self.app_frame)
+        self.app6_button.setGeometry(QtCore.QRect(110, 90, 90, 37))
+        self.app6_button.setText("")
+        self.app6_button.setObjectName("pushButton")
+
+        self.keyboard_frame = QtWidgets.QFrame(self.centralwidget)
+        self.keyboard_frame.setGeometry(QtCore.QRect(230, 100, 211, 131))
+        self.keyboard_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.keyboard_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.keyboard_frame.setObjectName("keyboard_frame")
+
+        self.short1_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short1_button.setGeometry(QtCore.QRect(10, 10, 90, 37))
+        self.short1_button.setText("")
+        self.short1_button.setObjectName("short1_button")
+
+        self.short2_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short2_button.setGeometry(QtCore.QRect(110, 10, 90, 37))
+        self.short2_button.setText("")
+        self.short2_button.setObjectName("short2_button")
+        
+        self.short3_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short3_button.setGeometry(QtCore.QRect(10, 50, 90, 37))
+        self.short3_button.setText("")
+        self.short3_button.setObjectName("short3_button")
+        
+        self.short4_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short4_button.setGeometry(QtCore.QRect(110, 50, 90, 37))
+        self.short4_button.setText("")
+        self.short4_button.setObjectName("short4_button")
+        
+        self.short5_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short5_button.setGeometry(QtCore.QRect(10, 90, 90, 37))
+        self.short5_button.setText("")
+        self.short5_button.setObjectName("short5_button")
+        
+        self.short6_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short6_button.setGeometry(QtCore.QRect(110, 90, 90, 37))
+        self.short6_button.setText("")
+        self.short6_button.setObjectName("short6_button")
+        
+        # Function Connections
+        # Apps
+        self.app1_button.clicked.connect(self.app1)
+        self.app2_button.clicked.connect(self.app2)
+        self.app3_button.clicked.connect(self.app3)
+        self.app4_button.clicked.connect(self.app4)
+        self.app5_button.clicked.connect(self.app5)
+        self.app6_button.clicked.connect(self.app6)
+
+        # Keyboard
+        self.short1_button.clicked.connect(self.short1)
+        self.short2_button.clicked.connect(self.short2)
+        self.short3_button.clicked.connect(self.short3)
+        self.short4_button.clicked.connect(self.short4)
+        self.short5_button.clicked.connect(self.short5)
+        self.short6_button.clicked.connect(self.short6)
+
+        MainWindow.setCentralWidget(self.centralwidget)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Rasp2Pc "))
+        self.RASP2PC_label.setText(_translate("MainWindow", "RASP2PC"))
+        self.RASPcomponent_label.setText(_translate("MainWindow", "RASP Component"))
+        self.connected_to_label.setText(_translate("MainWindow", "Connected to:"))
+        self.pc_info_label.setText(_translate("MainWindow", "host:port"))
+
+        self.app1_button.setText(_translate("MainWindow", "Shutdown"))
+        self.app2_button.setText(_translate("MainWindow", "Reboot"))
+        self.app3_button.setText(_translate("MainWindow", "Firefox"))
+        self.app4_button.setText(_translate("MainWindow", "Terminal"))
+        self.app5_button.setText(_translate("MainWindow", "Lock"))
+        self.app6_button.setText(_translate("MainWindow", "VSCode"))
+
+        self.short1_button.setText(_translate("MainWindow", "Undo"))
+        self.short2_button.setText(_translate("MainWindow", "Copy"))
+        self.short3_button.setText(_translate("MainWindow", "Cut"))
+        self.short4_button.setText(_translate("MainWindow", "Paste"))
+        self.short5_button.setText(_translate("MainWindow", "Blank"))
+        self.short6_button.setText(_translate("MainWindow", "Blank"))
+
+
+    # App launch functions
+
+    def app1(self):
+        raspsocket.sendall("a1".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+    
+    def app2(self):
+        raspsocket.sendall("a2".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def app3(self):
+        raspsocket.sendall("a3".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def app4(self):
+        raspsocket.sendall("a4".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+    
+    def app5(self):
+        raspsocket.sendall("a5".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def app6(self):
+        raspsocket.sendall("a6".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+
+    # Keyboard shortcuts functions
+
+    def short1(self):
+        raspsocket.sendall("s1".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def short2(self):
+        raspsocket.sendall("s2".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def short3(self):
+        raspsocket.sendall("s3".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def short4(self):
+        raspsocket.sendall("s4".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def short5(self):
+        raspsocket.sendall("s5".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+    def short6(self):
+        raspsocket.sendall("s6".encode())
+        response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+        print(response)    # Print the response
+
+
+if __name__ == "__main__":  
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
         # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)
-        raspsocket.connect(("<insert pc address here>", 10000))    # Connect to the PC 
+        raspsocket.connect((PC_HOST, PC_PORT))    # Connect to the PC 
+        app = QtWidgets.QApplication(sys.argv)
+        MainWindow = QtWidgets.QMainWindow()
+        ui = Ui_MainWindow()
+        ui.setupUi(MainWindow)
+        MainWindow.show()
 
-        while True:
-            print("""
-a1) Shutdown system
-a2) Reboot system
-a3) Open firefox
-a4) Open terminal
-a5) Lock the system
-a6) Open vscodium 
-s1) Ctrl-Z
-s2) Copy
-s3) Cut
-s4) Paste
-            """)
-            choice = input("What to do? :")
-            while choice not in ["a1","a2","a3","a4","a5","a6", "s1","s2","s3","s4"]:    # Input validation
-                choice = input("what to do? :")
-
-            raspsocket.sendall(choice.encode())    # Send the index
-            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
-            print(response)    # Print the response
+        sys.exit(app.exec_())
 

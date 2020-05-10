@@ -25,11 +25,13 @@ The most complex part is on the pc. The RASP component send just an index to the
 ## ToDo
 - [x] Basic "PC" component (server)
 - [x] Basic "RASP" component (client)
+- [x] Add reqirements.txt
+- [X] GUI for RASP component (PyQt5)
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add logging
-- [x] Comment the code
-- [x] Add reqirements.txt
-- [ ] GUI for RASP component (PyQt5)
+- [ ] Comment the code
+- [ ] GUI mode for choose the pc address on rasp component
+- [ ] Better way to change shortcuts, functions and button text on RASP component
 - [ ] Possibility to modify the shortcuts from pc
 - [ ] Android component
 

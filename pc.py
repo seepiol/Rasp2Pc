@@ -110,6 +110,12 @@ def short4():
         keyboard.press("v")
         keyboard.release("v")
 
+def short5():
+    pass
+
+def short6():
+    pass
+
 
 if __name__ == "__main__":
 
@@ -138,6 +144,7 @@ if __name__ == "__main__":
                         app5()
                     elif data=="a6":
                         app6()
+
                     elif data=="s1":
                         short1()
                     elif data=="s2":
@@ -146,6 +153,11 @@ if __name__ == "__main__":
                         short3()
                     elif data=="s4":
                         short4()
+                    elif data=="s5":
+                        short5()
+                    elif data=="s6":
+                        short6()
+
                     esit = "ok"
 
                     conn.sendall(esit.encode())
