@@ -20,7 +20,7 @@ The most complex part is on the pc. The RASP component send just an index to the
 - Socket - communication between pc and raspberry
 - Subprocess - execute commands on pc
 - [pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
-- [PyQt5](https://riverbankcomputing.com/software/pyqt/) (Coming soon) - GUI for rasp component
+- [PyQt5](https://riverbankcomputing.com/software/pyqt/) - GUI for rasp component
 
 ## ToDo
 - [x] Basic "PC" component (server)
@@ -30,7 +30,7 @@ The most complex part is on the pc. The RASP component send just an index to the
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add logging
 - [ ] Comment the code
-- [ ] GUI mode for choose the pc address on rasp component
+- [ ] GUI way for choose the pc address on rasp component
 - [ ] Better way to change shortcuts, functions and button text on RASP component
 - [ ] Possibility to modify the shortcuts from pc
 - [ ] Android component
