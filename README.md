@@ -28,7 +28,7 @@ The most complex part is on the pc. The RASP component send just an index to the
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add logging
 - [x] Comment the code
-- [ ] Add reqirements.txt
+- [x] Add reqirements.txt
 - [ ] GUI for RASP component (PyQt5)
 - [ ] Possibility to modify the shortcuts from pc
 - [ ] Android component
