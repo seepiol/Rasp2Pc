@@ -142,41 +142,51 @@ if __name__ == "__main__":
 
             while True:
                 conn, client_address = sock.accept()    #Accepting connection from {address}
+
+                try:
+
+                    while True:
+                        data = conn.recv(16).decode("ascii")     # Recive and decode what-to-do index
+
+                        # Execute the index corresponding program or shortcut
+                        if data=="a1":
+                            app1()
+                        elif data=="a2":
+                            app2()
+                        elif data=="a3":
+                            app3()
+                        elif data=="a4":
+                            app4()
+                        elif data=="a5":
+                            app5()
+                        elif data=="a6":
+                            app6()
+
+                        elif data=="s1":
+                            short1()
+                        elif data=="s2":
+                            short2()
+                        elif data=="s3":
+                            short3()
+                        elif data=="s4":
+                            short4()
+                        elif data=="s5":
+                            short5()
+                        elif data=="s6":
+                            short6()
+
+                        esit = "ok"
+
+                        conn.sendall(esit.encode())
                 
-                while True:
-                    data = conn.recv(16).decode("ascii")     # Recive and decode what-to-do index
+                except IOError:
+                    conn.close()
 
-                    # Execute the index corresponding program or shortcut
-                    if data=="a1":
-                        app1()
-                    elif data=="a2":
-                        app2()
-                    elif data=="a3":
-                        app3()
-                    elif data=="a4":
-                        app4()
-                    elif data=="a5":
-                        app5()
-                    elif data=="a6":
-                        app6()
-
-                    elif data=="s1":
-                        short1()
-                    elif data=="s2":
-                        short2()
-                    elif data=="s3":
-                        short3()
-                    elif data=="s4":
-                        short4()
-                    elif data=="s5":
-                        short5()
-                    elif data=="s6":
-                        short6()
-
-                    esit = "ok"
-
-                    conn.sendall(esit.encode())
+    except KeyboardInterrupt:
+        print("Closed by keyboard. Bye")
+        sock.close()
+        exit()
 
     except Exception as e:
-        print(e)
+        print("Something went wrong:", e)
         sock.close()
