@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
         self.connected_to_label.setObjectName("connected_to_label")
 
         self.pc_info_label = QtWidgets.QLabel(self.centralwidget)
-        self.pc_info_label.setGeometry(QtCore.QRect(100, 70, 150, 18))
+        self.pc_info_label.setGeometry(QtCore.QRect(110, 70, 181, 18))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
