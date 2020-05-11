@@ -30,45 +30,46 @@ PORT = 10000    # Port
 
 def app1():
     '''
-    Shutdown the PC 
-    '''
-    #subprocess.Popen("sudo shutdown", shell=True)
-    return "unable to shutdown. it require root privileges"    # The shutdown requires root. It's easier delete this function instead find a way to make it without root
-
-def app2():
-    '''
-    Restart the PC
-    '''
-    subprocess.Popen("reboot", shell=True)
-    return ""
-    
-def app3():
-    '''
-    Execute Firefox web Browser
+    Launch Firefox web Browser
     '''
     subprocess.Popen("firefox", shell=True)
     return ""
-    
-def app4():
+
+def app2():
     '''
     Open a terminal window
     '''
     subprocess.Popen("konsole", shell=True)
     return ""
 
+def app3():
+    '''
+    Launch VirtualBox
+    '''
+    subprocess.Popen("virtualbox", shell=True)
+    return ""   
+
+def app4():
+    '''
+    Launch the File Manager (dolphin)
+    '''
+    subprocess.Popen("dolphin", shell=True)
+    return ""
+
 def app5():
+    '''
+    Run VSCodium
+    '''
+    subprocess.Popen("vscodium", shell=True)
+    return ""
+
+def app6():
     '''
     Lock the current user session
     '''
     subprocess.Popen("loginctl lock-session", shell=True)
     return ""
 
-def app6():
-    '''
-    Run VSCodium
-    '''
-    subprocess.Popen("vscodium", shell=True)
-    return ""
 
 def short1():
     '''
@@ -111,10 +112,24 @@ def short4():
         keyboard.release("v")
 
 def short5():
-    pass
+    '''
+    Ctrl+D
+    Activate/disactivate the microphone
+    Usable on Google Meet
+    '''
+    with keyboard.pressed(Key.ctrl):
+        keyboard.press("d")
+        keyboard.release("d")
 
 def short6():
-    pass
+    '''
+    Ctrl+E
+    Activate/disactivate the microphone
+    Usable on Google Meet
+    '''
+    with keyboard.pressed(Key.ctrl):
+        keyboard.press("e")
+        keyboard.release("e")
 
 
 if __name__ == "__main__":

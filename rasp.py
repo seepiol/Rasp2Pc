@@ -50,7 +50,7 @@ class Ui_MainWindow(object):
         self.connected_to_label.setObjectName("connected_to_label")
 
         self.pc_info_label = QtWidgets.QLabel(self.centralwidget)
-        self.pc_info_label.setGeometry(QtCore.QRect(100, 70, 71, 18))
+        self.pc_info_label.setGeometry(QtCore.QRect(100, 70, 150, 18))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -159,21 +159,23 @@ class Ui_MainWindow(object):
         self.RASP2PC_label.setText(_translate("MainWindow", "RASP2PC"))
         self.RASPcomponent_label.setText(_translate("MainWindow", "RASP Component"))
         self.connected_to_label.setText(_translate("MainWindow", "Connected to:"))
-        self.pc_info_label.setText(_translate("MainWindow", "host:port"))
+        self.pc_info_label.setText(_translate("MainWindow", f"{PC_HOST}:{str(PC_PORT)}"))
 
-        self.app1_button.setText(_translate("MainWindow", "Shutdown"))
-        self.app2_button.setText(_translate("MainWindow", "Reboot"))
-        self.app3_button.setText(_translate("MainWindow", "Firefox"))
-        self.app4_button.setText(_translate("MainWindow", "Terminal"))
-        self.app5_button.setText(_translate("MainWindow", "Lock"))
-        self.app6_button.setText(_translate("MainWindow", "VSCode"))
+        # !!!BUTTONS TEXT HERE!!!
 
-        self.short1_button.setText(_translate("MainWindow", "Undo"))
-        self.short2_button.setText(_translate("MainWindow", "Copy"))
-        self.short3_button.setText(_translate("MainWindow", "Cut"))
-        self.short4_button.setText(_translate("MainWindow", "Paste"))
-        self.short5_button.setText(_translate("MainWindow", "Blank"))
-        self.short6_button.setText(_translate("MainWindow", "Blank"))
+        self.app1_button.setText(_translate("MainWindow", "Firefox"))    # app1
+        self.app2_button.setText(_translate("MainWindow", "Terminal"))    # app2
+        self.app3_button.setText(_translate("MainWindow", "VirtualBox"))    # app3
+        self.app4_button.setText(_translate("MainWindow", "Dolphin"))    # app4
+        self.app5_button.setText(_translate("MainWindow", "VSCode"))    # app5
+        self.app6_button.setText(_translate("MainWindow", "Lock Sys"))    # app6
+
+        self.short1_button.setText(_translate("MainWindow", "Undo"))    # short1
+        self.short2_button.setText(_translate("MainWindow", "Copy"))    # short2
+        self.short3_button.setText(_translate("MainWindow", "Cut"))    # short3
+        self.short4_button.setText(_translate("MainWindow", "Paste"))    # short4
+        self.short5_button.setText(_translate("MainWindow", "Ctrl+D"))    # short5
+        self.short6_button.setText(_translate("MainWindow", "Ctrl+E"))    # short6 
 
 
     # App launch functions
@@ -244,7 +246,7 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":  
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
-        # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)
+        # ATTENTION: You have to modify the line 25 with the PC ip address and the port (default:10000)
         raspsocket.connect((PC_HOST, PC_PORT))    # Connect to the PC 
         app = QtWidgets.QApplication(sys.argv)
         MainWindow = QtWidgets.QMainWindow()
