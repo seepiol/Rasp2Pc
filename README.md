@@ -31,6 +31,10 @@ Programs / Commands
 - File manager (Dolphin)
 - VS Codium
 - Lock the session (using loginctl)
+- Telegram Desktop
+- Libreoffice launcher
+- Thunderbird
+- Reboot system
 
 Keyboard shortcuts
 
@@ -40,6 +44,10 @@ Keyboard shortcuts
 - Paste (Ctrl+V) (Usable everywhere)
 - Turn on/off webcam on GMeet (Ctrl+D) (Usable on meet.google.com)
 - Turn on/off mic on Gmeet (Ctrl+E) (Usable on meet.google.com)
+- Blank
+- Blank
+- Blank
+- Blank
 
 An important future part of this program is the shortcuts costumization. If you want to modify it now, you have to 
 
@@ -72,7 +80,7 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 - [x] Add reqirements.txt
 - [X] GUI for RASP component (PyQt5)
 - [X] Add logging on rasp
-- [ ] Add more shortcuts
+- [X] Add more shortcuts
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add logging on pc
 - [ ] Comment the code

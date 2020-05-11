@@ -70,6 +70,34 @@ def app6():
     subprocess.Popen("loginctl lock-session", shell=True)
     return ""
 
+def app7():
+    '''
+    Launch Telegram
+    '''
+    subprocess.Popen("telegram-desktop", shell=True)
+    return ""   
+
+def app8():
+    '''
+    Launch Libreofice launcher
+    '''
+    subprocess.Popen("libreoffice", shell=True)
+    return ""
+
+def app9():
+    '''
+    Run Thunderbird
+    '''
+    subprocess.Popen("thunderbird", shell=True)
+    return ""
+
+def app10():
+    '''
+    Reboot system
+    '''
+    subprocess.Popen("reboot now", shell=True)
+    return ""
+
 
 def short1():
     '''
@@ -131,6 +159,18 @@ def short6():
         keyboard.press("e")
         keyboard.release("e")
 
+def short7():
+    pass
+
+def short8():
+    pass
+
+def short9():
+    pass
+
+def short10():
+    pass
+
 
 if __name__ == "__main__":
 
@@ -161,6 +201,14 @@ if __name__ == "__main__":
                             app5()
                         elif data=="a6":
                             app6()
+                        elif data=="a7":
+                            app7()
+                        elif data=="a8":
+                            app8()
+                        elif data=="a9":
+                            app9()
+                        elif data=="a10":
+                            app10()
 
                         elif data=="s1":
                             short1()
@@ -174,6 +222,14 @@ if __name__ == "__main__":
                             short5()
                         elif data=="s6":
                             short6()
+                        elif data=="s7":
+                            short7()
+                        elif data=="s8":
+                            short8()
+                        elif data=="s9":
+                            short9()
+                        elif data=="s10":
+                            short10()
 
                         esit = "ok"
 

@@ -34,7 +34,7 @@ logging.basicConfig(filename="rasp.log", filemode="w", format='%(asctime)s - %(l
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(451, 241)
+        MainWindow.resize(451, 338)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.RASP2PC_label = QtWidgets.QLabel(self.centralwidget)
@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
         self.RASP2PC_label.setObjectName("RASP2PC_label")
 
         self.RASPcomponent_label = QtWidgets.QLabel(self.centralwidget)
-        self.RASPcomponent_label.setGeometry(QtCore.QRect(10, 40, 121, 18))
+        self.RASPcomponent_label.setGeometry(QtCore.QRect(10, 40, 181, 18))
         self.RASPcomponent_label.setObjectName("RASPcomponent_label")
 
         self.connected_to_label = QtWidgets.QLabel(self.centralwidget)
@@ -64,8 +64,9 @@ class Ui_MainWindow(object):
         self.pc_info_label.setFont(font)
         self.pc_info_label.setObjectName("pc_info_label")
 
+        #Programs
         self.app_frame = QtWidgets.QFrame(self.centralwidget)
-        self.app_frame.setGeometry(QtCore.QRect(10, 100, 211, 141))
+        self.app_frame.setGeometry(QtCore.QRect(10, 100, 211, 221))
         self.app_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.app_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.app_frame.setObjectName("app_frame")
@@ -98,10 +99,31 @@ class Ui_MainWindow(object):
         self.app6_button = QtWidgets.QPushButton(self.app_frame)
         self.app6_button.setGeometry(QtCore.QRect(110, 90, 90, 37))
         self.app6_button.setText("")
-        self.app6_button.setObjectName("pushButton")
+        self.app6_button.setObjectName("app6_button")
 
+        self.app7_button = QtWidgets.QPushButton(self.app_frame)
+        self.app7_button.setGeometry(QtCore.QRect(10, 130, 90, 37))
+        self.app7_button.setText("")
+        self.app7_button.setObjectName("app7_button")
+
+        self.app8_button = QtWidgets.QPushButton(self.app_frame)
+        self.app8_button.setGeometry(QtCore.QRect(110, 130, 90, 37))
+        self.app8_button.setText("")
+        self.app8_button.setObjectName("app8_button")
+
+        self.app9_button = QtWidgets.QPushButton(self.app_frame)
+        self.app9_button.setGeometry(QtCore.QRect(10, 170, 90, 37))
+        self.app9_button.setText("")
+        self.app9_button.setObjectName("app9_button")
+
+        self.app10_button = QtWidgets.QPushButton(self.app_frame)
+        self.app10_button.setGeometry(QtCore.QRect(110, 170, 90, 37))
+        self.app10_button.setText("")
+        self.app10_button.setObjectName("app10_button")
+
+        #Keyboard
         self.keyboard_frame = QtWidgets.QFrame(self.centralwidget)
-        self.keyboard_frame.setGeometry(QtCore.QRect(230, 100, 211, 141))
+        self.keyboard_frame.setGeometry(QtCore.QRect(230, 100, 211, 221))
         self.keyboard_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.keyboard_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.keyboard_frame.setObjectName("keyboard_frame")
@@ -136,7 +158,25 @@ class Ui_MainWindow(object):
         self.short6_button.setText("")
         self.short6_button.setObjectName("short6_button")
 
+        self.short7_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short7_button.setGeometry(QtCore.QRect(10, 130, 90, 37))
+        self.short7_button.setText("")
+        self.short7_button.setObjectName("short7_button")
+
+        self.short8_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short8_button.setGeometry(QtCore.QRect(110, 130, 90, 37))
+        self.short8_button.setText("")
+        self.short8_button.setObjectName("short8_button")
+
+        self.short9_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short9_button.setGeometry(QtCore.QRect(10, 170, 90, 37))
+        self.short9_button.setText("")
+        self.short9_button.setObjectName("short9_button")
         
+        self.short10_button = QtWidgets.QPushButton(self.keyboard_frame)
+        self.short10_button.setGeometry(QtCore.QRect(110, 170, 90, 37))
+        self.short10_button.setText("")
+        self.short10_button.setObjectName("short10_button")
 
         # Function Connections
         # Apps
@@ -146,6 +186,10 @@ class Ui_MainWindow(object):
         self.app4_button.clicked.connect(self.app4)
         self.app5_button.clicked.connect(self.app5)
         self.app6_button.clicked.connect(self.app6)
+        self.app7_button.clicked.connect(self.app7)
+        self.app8_button.clicked.connect(self.app8)
+        self.app9_button.clicked.connect(self.app9)
+        self.app10_button.clicked.connect(self.app10)
         # Keyboard
         self.short1_button.clicked.connect(self.short1)
         self.short2_button.clicked.connect(self.short2)
@@ -153,6 +197,10 @@ class Ui_MainWindow(object):
         self.short4_button.clicked.connect(self.short4)
         self.short5_button.clicked.connect(self.short5)
         self.short6_button.clicked.connect(self.short6)
+        self.short7_button.clicked.connect(self.short7)
+        self.short8_button.clicked.connect(self.short8)
+        self.short9_button.clicked.connect(self.short9)
+        self.short10_button.clicked.connect(self.short10)
 
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -176,6 +224,11 @@ class Ui_MainWindow(object):
         self.app4_button.setText(_translate("MainWindow", "Dolphin"))    # app4
         self.app5_button.setText(_translate("MainWindow", "VSCode"))    # app5
         self.app6_button.setText(_translate("MainWindow", "Lock Sys"))    # app6
+        self.app7_button.setText(_translate("MainWindow", "Telegram"))    # app7
+        self.app8_button.setText(_translate("MainWindow", "Libreoffice"))    # app8
+        self.app9_button.setText(_translate("MainWindow", "Thunderbird"))    # app9
+        self.app10_button.setText(_translate("MainWindow", "Reboot"))    # app10
+
 
         self.short1_button.setText(_translate("MainWindow", "Undo"))    # short1
         self.short2_button.setText(_translate("MainWindow", "Copy"))    # short2
@@ -183,6 +236,10 @@ class Ui_MainWindow(object):
         self.short4_button.setText(_translate("MainWindow", "Paste"))    # short4
         self.short5_button.setText(_translate("MainWindow", "Ctrl+D"))    # short5
         self.short6_button.setText(_translate("MainWindow", "Ctrl+E"))    # short6 
+        self.short7_button.setText(_translate("MainWindow", "Blank"))    # short7
+        self.short8_button.setText(_translate("MainWindow", "Blank"))    # short8
+        self.short9_button.setText(_translate("MainWindow", "Blank"))    # short9
+        self.short10_button.setText(_translate("MainWindow", "Blank"))    # short10 
 
 
     # App launch functions
@@ -258,6 +315,58 @@ class Ui_MainWindow(object):
         try:
             logging.info("Sending a6 index")
             raspsocket.sendall("a6".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+        
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+    
+    def app7(self):
+        try:
+            logging.info("Sending a7 index")
+            raspsocket.sendall("a7".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+        
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+    
+    def app8(self):
+        try:
+            logging.info("Sending a8 index")
+            raspsocket.sendall("a8".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+        
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+    
+    def app9(self):
+        try:
+            logging.info("Sending a9 index")
+            raspsocket.sendall("a9".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+        
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+
+    def app10(self):
+        try:
+            logging.info("Sending a10 index")
+            raspsocket.sendall("a10".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -346,6 +455,59 @@ class Ui_MainWindow(object):
             logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
+
+    def short7(self):
+        try:
+            logging.info("Sending s7 index")
+            raspsocket.sendall("s7".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+
+    def short8(self):
+        try:
+            logging.info("Sending s8 index")
+            raspsocket.sendall("s8".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+
+    def short9(self):
+        try:
+            logging.info("Sending s9 index")
+            raspsocket.sendall("s9".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+            
+    def short10(self):
+        try:
+            logging.info("Sending s10 index")
+            raspsocket.sendall("s10".encode())
+            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            print(response)    # Print the response
+        
+        except BrokenPipeError:
+            print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
+            raspsocket.close()
+            exit()
+
 
 if __name__ == "__main__":
     logging.info("Rasp component started")
