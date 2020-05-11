@@ -21,9 +21,14 @@
 import socket
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+import logging
 
 PC_HOST = ""    # INSERT HERE PC IP
 PC_PORT = 10000    # INSERT HERE PC PORT
+
+# Setting up the logger
+import logging
+logging.basicConfig(filename="rasp.log", filemode="w", format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 
 class Ui_MainWindow(object):
@@ -186,67 +191,79 @@ class Ui_MainWindow(object):
 
     def app1(self):
         try:
+            logging.info("Sending a1 index")
             raspsocket.sendall("a1".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
             
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
     
     def app2(self):
         try:
+            logging.info("Sending a2 index")
             raspsocket.sendall("a2".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def app3(self):
         try:
+            logging.info("Sending a3 index")
             raspsocket.sendall("a3".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def app4(self):
         try:
+            logging.info("Sending a4 index")
             raspsocket.sendall("a4".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
     
     def app5(self):
         try:
+            logging.info("Sending a5 index")
             raspsocket.sendall("a5".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def app6(self):
         try:
+            logging.info("Sending a6 index")
             raspsocket.sendall("a6".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
@@ -254,84 +271,101 @@ class Ui_MainWindow(object):
     # Keyboard shortcuts functions
     def short1(self):
         try:
+            logging.info("Sending s1 index")
             raspsocket.sendall("s1".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def short2(self):
         try:
+            logging.info("Sending s2 index")
             raspsocket.sendall("s2".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def short3(self):
         try:
+            logging.info("Sending s3 index")
             raspsocket.sendall("s3".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def short4(self):
         try:
+            logging.info("Sending s4 index")
             raspsocket.sendall("s4".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
     def short5(self):
         try:
+            logging.info("Sending s5 index")
             raspsocket.sendall("s5".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
             
     def short6(self):
         try:
+            logging.info("Sending s6 index")
             raspsocket.sendall("s6".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
         except BrokenPipeError:
             print("Connection closed by PC. exiting")
+            logging.critical("Connection closed by PC. quitting")
             raspsocket.close()
             exit()
 
 if __name__ == "__main__":
-    try:  
+    logging.info("Rasp component started")
+    try:
+        logging.info("Creating socket...") 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
             # ATTENTION: You have to modify the line 25 with the PC ip address and the port (default:10000)
+            logging.info(f"Connecting to {PC_HOST}:{PC_PORT}...")
             raspsocket.connect((PC_HOST, PC_PORT))    # Connect to the PC 
             app = QtWidgets.QApplication(sys.argv)
             MainWindow = QtWidgets.QMainWindow()
             ui = Ui_MainWindow()
             ui.setupUi(MainWindow)
+            logging.debug("Showing the gui")
             MainWindow.show()
 
             sys.exit(app.exec_())
     
     except ConnectionRefusedError:
         print("Pc is not reachable. exiting")
+        logging.critical(f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. Quitting")
         exit()
 

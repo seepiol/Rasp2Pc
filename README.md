@@ -12,6 +12,7 @@ Functioning on windows is unlikely due to the
 The project is divided in the PC component (that acts as a socket server) and the RASP component (is made for raspberry but can be used on other devices).
 
 The most complex part is on the pc. The RASP component send just an index to the PC, which corresponds to a certain function. The PC get the index, run the command and eventually return the result or the status of the command.
+
 ![Rasp2Pc functioning](https://user-images.githubusercontent.com/60071372/81484790-cd6d1480-9248-11ea-8d92-9ec84f5cc686.png)
 
 ## Configuration
@@ -70,11 +71,13 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 - [x] Basic "RASP" component (client)
 - [x] Add reqirements.txt
 - [X] GUI for RASP component (PyQt5)
+- [X] Add logging on rasp
+- [ ] Add more shortcuts
 - [ ] Improve communication security and avoid execution by unauthorized devices
-- [ ] Add logging
+- [ ] Add logging on pc
 - [ ] Comment the code
-- [ ] GUI way for choose the pc address on rasp component
-- [ ] Better way to change shortcuts, functions and button text on RASP component
+- [ ] Add GUI way for choose the pc address on rasp component
+- [ ] Add better way to change shortcuts, functions and button text on RASP component
 - [ ] Possibility to modify the shortcuts from pc
 - [ ] Android component
 
