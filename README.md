@@ -21,6 +21,9 @@ You have to add the ip address of the PC [here](https://github.com/seepiol/Rasp2
 By default is used the port 10000, and the PC accept connection for every IP address. To change it, [write the RASP IP here](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L27)
 
 ## Default Shortcuts
+
+![rasp](https://user-images.githubusercontent.com/60071372/81578778-8fd4cc80-93ab-11ea-9407-7295569f052f.png)
+
 By default, the program has 6 shortcuts for launching programs / commands and 6 keyboard shortcuts.
 
 Programs / Commands
