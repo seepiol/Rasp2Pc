@@ -27,11 +27,16 @@ keyboard = Controller()    # Create a virtual keyboard
 HOST = ""    # Address 
 PORT = 10000    # Port
 
+# Setting up the logger
+import logging
+logging.basicConfig(filename="pc.log", filemode="w", format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
+
 
 def app1():
     '''
     Launch Firefox web Browser
     '''
+    logging.info("Launching firefox")
     subprocess.Popen("firefox", shell=True)
     return ""
 
@@ -39,6 +44,7 @@ def app2():
     '''
     Open a terminal window
     '''
+    logging.info("Launching konsole")
     subprocess.Popen("konsole", shell=True)
     return ""
 
@@ -46,6 +52,7 @@ def app3():
     '''
     Launch VirtualBox
     '''
+    logging.info("launching virtualbox")
     subprocess.Popen("virtualbox", shell=True)
     return ""   
 
@@ -53,6 +60,7 @@ def app4():
     '''
     Launch the File Manager (dolphin)
     '''
+    logging.info("launching dolphin")
     subprocess.Popen("dolphin", shell=True)
     return ""
 
@@ -60,6 +68,7 @@ def app5():
     '''
     Run VSCodium
     '''
+    logging.info("launching vscodium")
     subprocess.Popen("vscodium", shell=True)
     return ""
 
@@ -67,6 +76,7 @@ def app6():
     '''
     Lock the current user session
     '''
+    logging.info("Locking the session")
     subprocess.Popen("loginctl lock-session", shell=True)
     return ""
 
@@ -74,6 +84,7 @@ def app7():
     '''
     Launch Telegram
     '''
+    logging.info("launching telegram")
     subprocess.Popen("telegram-desktop", shell=True)
     return ""   
 
@@ -81,6 +92,7 @@ def app8():
     '''
     Launch Libreofice launcher
     '''
+    logging.info("launching libreoffice")
     subprocess.Popen("libreoffice", shell=True)
     return ""
 
@@ -88,6 +100,7 @@ def app9():
     '''
     Run Thunderbird
     '''
+    logging.info("launching thunderbird")
     subprocess.Popen("thunderbird", shell=True)
     return ""
 
@@ -95,6 +108,7 @@ def app10():
     '''
     Reboot system
     '''
+    logging.info("rebooting system")
     subprocess.Popen("reboot now", shell=True)
     return ""
 
@@ -105,6 +119,7 @@ def short1():
     Undo shortcut
     Usable everywhere
     '''
+    logging.info("Ctrl+z")
     with keyboard.pressed(Key.ctrl):
         keyboard.press("z")
         keyboard.release("z")
@@ -115,6 +130,7 @@ def short2():
     Copy
     Usable everywhere
     '''
+    logging.info("Ctrl+c")
     with keyboard.pressed(Key.ctrl):
         keyboard.press("c")
         keyboard.release("c")
@@ -125,6 +141,7 @@ def short3():
     Cut
     Usable everywhere
     '''
+    logging.info("Ctrl+x")
     with keyboard.pressed(Key.ctrl):
         keyboard.press("x")
         keyboard.release("x")
@@ -135,6 +152,7 @@ def short4():
     Paste
     Usable everywhere
     '''
+    logging.info("Ctrl+v")
     with keyboard.pressed(Key.ctrl):
         keyboard.press("v")
         keyboard.release("v")
@@ -145,6 +163,7 @@ def short5():
     Activate/disactivate the microphone
     Usable on Google Meet
     '''
+    logging.info("Ctrl+d")
     with keyboard.pressed(Key.ctrl):
         keyboard.press("d")
         keyboard.release("d")
@@ -155,39 +174,50 @@ def short6():
     Activate/disactivate the microphone
     Usable on Google Meet
     '''
+    logging.info("Ctrl+e")
     with keyboard.pressed(Key.ctrl):
         keyboard.press("e")
         keyboard.release("e")
 
 def short7():
+    logging.info("Blank")
     pass
 
 def short8():
-    pass
+    logging.info("Blank")
+    passlogging.info("Blank")
 
 def short9():
+    logging.info("Blank")
     pass
 
 def short10():
+    logging.info("Blank")
     pass
 
 
 if __name__ == "__main__":
-
+    logging.info("PC Component started")
     try:
+        logging.info("Creating socket object")
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:    #creating socket object
             sock.bind((HOST, PORT))    #binding socket on {host:port}
+            print(f"Socket binded on {HOST}:{PORT}")
+            logging.info(f"binding socket on {HOST}:{PORT}")
             
             sock.listen()    #listening for connection requests
-
+            print("Socket in listening...")
+            logging.info(f"Socket listening on {HOST}:{PORT}")
             while True:
                 conn, client_address = sock.accept()    #Accepting connection from {address}
+                print(f"Connection accepted from {client_address}")
+                logging.info(f"Connection accepted from {client_address}")
 
                 try:
 
                     while True:
                         data = conn.recv(16).decode("ascii")     # Recive and decode what-to-do index
-
+                        logging.info(f"{client_address} has requested {data}")
                         # Execute the index corresponding program or shortcut
                         if data=="a1":
                             app1()
@@ -239,10 +269,12 @@ if __name__ == "__main__":
                     conn.close()
 
     except KeyboardInterrupt:
+        logging.info("KeyboardInterrupt: quitting")
         print("Closed by keyboard. Bye")
         sock.close()
         exit()
 
     except Exception as e:
         print("Something went wrong:", e)
+        logging.info(f"Error Happened {e}. closing the socket.")
         sock.close()

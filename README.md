@@ -84,8 +84,8 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 - [X] GUI for RASP component (PyQt5)
 - [X] Add logging on rasp
 - [X] Add more shortcuts
+- [X] Add logging on pc
 - [ ] Improve communication security and avoid execution by unauthorized devices
-- [ ] Add logging on pc
 - [ ] Comment the code
 - [ ] Add GUI way for choose the pc address on rasp component
 - [ ] Add better way to change shortcuts, functions and button text on RASP component
