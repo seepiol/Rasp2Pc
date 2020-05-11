@@ -65,7 +65,7 @@ class Ui_MainWindow(object):
         self.pc_info_label.setObjectName("pc_info_label")
 
         self.app_frame = QtWidgets.QFrame(self.centralwidget)
-        self.app_frame.setGeometry(QtCore.QRect(10, 100, 211, 131))
+        self.app_frame.setGeometry(QtCore.QRect(10, 100, 211, 141))
         self.app_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.app_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.app_frame.setObjectName("app_frame")
@@ -101,7 +101,7 @@ class Ui_MainWindow(object):
         self.app6_button.setObjectName("pushButton")
 
         self.keyboard_frame = QtWidgets.QFrame(self.centralwidget)
-        self.keyboard_frame.setGeometry(QtCore.QRect(230, 100, 211, 131))
+        self.keyboard_frame.setGeometry(QtCore.QRect(230, 100, 211, 141))
         self.keyboard_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.keyboard_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.keyboard_frame.setObjectName("keyboard_frame")
