@@ -185,7 +185,7 @@ def short7():
 
 def short8():
     logging.info("Blank")
-    passlogging.info("Blank")
+    pass
 
 def short9():
     logging.info("Blank")

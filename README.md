@@ -1,12 +1,15 @@
 # RASP2PC
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
-## Compatibility
-I've tested it on Manjaro Linux.
-Feel free to test it on your machine and open an issue to let me know if it works.
+## Index
+* [How it works](#how-it-works)
+* [Configuration](#configuration)
+* [Default shortcuts](#default-shortcuts)
+* [Technologies](#technologies)
+* [Compatibility](#compatibility)
+* [To-Do list](#todo)
+* [License](#license)
 
-Should work on most linux distributions.
-Functioning on windows is unlikely due to the 
 
 ## How it Works
 The project is divided in the PC component (that acts as a socket server) and the RASP component (is made for raspberry but can be used on other devices).
@@ -16,7 +19,11 @@ The most complex part is on the pc. The RASP component send just an index to the
 ![Rasp2Pc functioning](https://user-images.githubusercontent.com/60071372/81484790-cd6d1480-9248-11ea-8d92-9ec84f5cc686.png)
 
 ## Configuration
-You have to add the ip address of the PC [here](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L25).
+You have to add the ip address of the PC on the rasp.conf configuration file.
+For example, if the ip address of the PC is 192.168.1.20, and the socket is listening to the port 10000 (as default), rasp.conf will be:
+```
+192.168.1.20, 10000
+```
 
 By default is used the port 10000, and the PC accept connection for every IP address. To change it, [write the RASP IP here](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L27)
 
@@ -77,6 +84,13 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 - [pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
 - [PyQt5](https://riverbankcomputing.com/software/pyqt/) - GUI for rasp component
 
+## Compatibility
+I've tested it on Manjaro Linux.
+Feel free to test it on your machine and open an issue to let me know if it works.
+
+Should work on most linux distributions.
+Functioning on windows is unlikely.
+
 ## ToDo
 - [x] Basic "PC" component (server)
 - [x] Basic "RASP" component (client)
@@ -85,12 +99,17 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 - [X] Add logging on rasp
 - [X] Add more shortcuts
 - [X] Add logging on pc
+- [X] Comment the code
+- [X] Implement a better way to choose the pc address on rasp (using rasp.conf file)
 - [ ] Improve communication security and avoid execution by unauthorized devices
-- [ ] Comment the code
-- [ ] Add GUI way for choose the pc address on rasp component
-- [ ] Add better way to change shortcuts, functions and button text on RASP component
-- [ ] Possibility to modify the shortcuts from pc
+- [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component
+- [ ] Windows support
+- [ ] Mac Os support (but i haven't a mac so idk)
 
+## License
+GNU General Public License v3.
+
+See [LICENSE](github.com/seepiol/rasp2pc/LICENSE) for more details .
 
 ###### Made with 🖤 during COVID-19 Quarantine

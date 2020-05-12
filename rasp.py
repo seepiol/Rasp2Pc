@@ -22,9 +22,14 @@ import socket
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 import logging
+import csv
 
-PC_HOST = ""    # INSERT HERE PC IP
-PC_PORT = 10000    # INSERT HERE PC PORT
+with open("rasp.conf", newline="") as conf_file:
+    reader = csv.reader(conf_file, delimiter=",")
+    for row in reader:
+        PC_HOST = row[0]
+        PC_PORT = int(row[1])
+        break
 
 # Setting up the logger
 import logging
