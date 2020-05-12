@@ -110,6 +110,6 @@ Functioning on windows is unlikely.
 ## License
 GNU General Public License v3.
 
-See [LICENSE](github.com/seepiol/rasp2pc/LICENSE) for more details .
+See [LICENSE](https://github.com/seepiol/Rasp2Pc/blob/master/LICENSE) for more details .
 
 ###### Made with 🖤 during COVID-19 Quarantine
