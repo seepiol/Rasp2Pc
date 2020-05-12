@@ -263,7 +263,7 @@ if __name__ == "__main__":
 
                         esit = "ok"
 
-                        conn.sendall(esit.encode())
+                        conn.send(esit.encode())
                 
                 except IOError:
                     conn.close()

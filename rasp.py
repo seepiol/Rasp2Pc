@@ -249,7 +249,7 @@ class Ui_MainWindow(object):
     def app1(self):
         try:
             logging.info("Sending a1 index")
-            raspsocket.sendall("a1".encode())
+            raspsocket.send("a1".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
             
@@ -262,7 +262,7 @@ class Ui_MainWindow(object):
     def app2(self):
         try:
             logging.info("Sending a2 index")
-            raspsocket.sendall("a2".encode())
+            raspsocket.send("a2".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -275,7 +275,7 @@ class Ui_MainWindow(object):
     def app3(self):
         try:
             logging.info("Sending a3 index")
-            raspsocket.sendall("a3".encode())
+            raspsocket.send("a3".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -288,7 +288,7 @@ class Ui_MainWindow(object):
     def app4(self):
         try:
             logging.info("Sending a4 index")
-            raspsocket.sendall("a4".encode())
+            raspsocket.send("a4".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -301,7 +301,7 @@ class Ui_MainWindow(object):
     def app5(self):
         try:
             logging.info("Sending a5 index")
-            raspsocket.sendall("a5".encode())
+            raspsocket.send("a5".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -314,7 +314,7 @@ class Ui_MainWindow(object):
     def app6(self):
         try:
             logging.info("Sending a6 index")
-            raspsocket.sendall("a6".encode())
+            raspsocket.send("a6".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -327,7 +327,7 @@ class Ui_MainWindow(object):
     def app7(self):
         try:
             logging.info("Sending a7 index")
-            raspsocket.sendall("a7".encode())
+            raspsocket.send("a7".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -340,7 +340,7 @@ class Ui_MainWindow(object):
     def app8(self):
         try:
             logging.info("Sending a8 index")
-            raspsocket.sendall("a8".encode())
+            raspsocket.send("a8".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -353,7 +353,7 @@ class Ui_MainWindow(object):
     def app9(self):
         try:
             logging.info("Sending a9 index")
-            raspsocket.sendall("a9".encode())
+            raspsocket.send("a9".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -366,7 +366,7 @@ class Ui_MainWindow(object):
     def app10(self):
         try:
             logging.info("Sending a10 index")
-            raspsocket.sendall("a10".encode())
+            raspsocket.send("a10".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -381,7 +381,7 @@ class Ui_MainWindow(object):
     def short1(self):
         try:
             logging.info("Sending s1 index")
-            raspsocket.sendall("s1".encode())
+            raspsocket.send("s1".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -394,7 +394,7 @@ class Ui_MainWindow(object):
     def short2(self):
         try:
             logging.info("Sending s2 index")
-            raspsocket.sendall("s2".encode())
+            raspsocket.send("s2".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -407,7 +407,7 @@ class Ui_MainWindow(object):
     def short3(self):
         try:
             logging.info("Sending s3 index")
-            raspsocket.sendall("s3".encode())
+            raspsocket.send("s3".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -420,7 +420,7 @@ class Ui_MainWindow(object):
     def short4(self):
         try:
             logging.info("Sending s4 index")
-            raspsocket.sendall("s4".encode())
+            raspsocket.send("s4".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -433,7 +433,7 @@ class Ui_MainWindow(object):
     def short5(self):
         try:
             logging.info("Sending s5 index")
-            raspsocket.sendall("s5".encode())
+            raspsocket.send("s5".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -446,7 +446,7 @@ class Ui_MainWindow(object):
     def short6(self):
         try:
             logging.info("Sending s6 index")
-            raspsocket.sendall("s6".encode())
+            raspsocket.send("s6".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
@@ -459,7 +459,7 @@ class Ui_MainWindow(object):
     def short7(self):
         try:
             logging.info("Sending s7 index")
-            raspsocket.sendall("s7".encode())
+            raspsocket.send("s7".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -472,7 +472,7 @@ class Ui_MainWindow(object):
     def short8(self):
         try:
             logging.info("Sending s8 index")
-            raspsocket.sendall("s8".encode())
+            raspsocket.send("s8".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -485,7 +485,7 @@ class Ui_MainWindow(object):
     def short9(self):
         try:
             logging.info("Sending s9 index")
-            raspsocket.sendall("s9".encode())
+            raspsocket.send("s9".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
 
@@ -498,7 +498,7 @@ class Ui_MainWindow(object):
     def short10(self):
         try:
             logging.info("Sending s10 index")
-            raspsocket.sendall("s10".encode())
+            raspsocket.send("s10".encode())
             response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             print(response)    # Print the response
         
