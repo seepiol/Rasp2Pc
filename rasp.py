@@ -24,23 +24,6 @@ import sys
 import logging
 import csv
 
-with open("rasp.conf", newline="") as conf_file:
-    reader = csv.reader(conf_file, delimiter=",")
-    for row in reader:
-        PC_HOST = row[0]
-        PC_PORT = int(row[1])
-        break
-
-# Setting up the logger
-import logging
-
-logging.basicConfig(
-    filename="rasp.log",
-    filemode="w",
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    level=logging.INFO,
-)
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -519,7 +502,25 @@ class Ui_MainWindow(object):
 
 
 if __name__ == "__main__":
+
+    # Loading configuration file
+    with open("rasp.conf", newline="") as conf_file:
+        reader = csv.reader(conf_file, delimiter=",")
+        for row in reader:
+            PC_HOST = row[0]
+            PC_PORT = int(row[1])
+            break
+
+    # Setting up the logger
+    logging.basicConfig(
+        filename="rasp.log",
+        filemode="w",
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        level=logging.INFO,
+    )
+
     logging.info("Rasp component started")
+
     try:
         logging.info("Creating socket...")
         with socket.socket(
@@ -539,10 +540,14 @@ if __name__ == "__main__":
 
     except ConnectionRefusedError as e:
         print("Pc is not reachable. exiting")
-        logging.critical(f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. ERROR:{e}. Quitting")
+        logging.critical(
+            f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. ERROR:{e}. Quitting"
+        )
         exit()
 
     except OSError as e:
-        print("PC not found. check the ip address and if the pc component is running. Quitting")
+        print(
+            "PC not found. check the ip address and if the pc component is running. Quitting"
+        )
         logging.critical(f"pc ({PC_HOST}:{PC_PORT}) not found. ERROR:{e}. Quitting")
         exit()

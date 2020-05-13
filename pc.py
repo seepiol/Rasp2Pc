@@ -21,22 +21,10 @@
 import socket
 import subprocess
 from pynput.keyboard import Key, Controller
-
-keyboard = Controller()  # Create a virtual keyboard
+import logging
 
 HOST = ""  # Address
 PORT = 10000  # Port
-
-# Setting up the logger
-import logging
-
-logging.basicConfig(
-    filename="pc.log",
-    filemode="w",
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    level=logging.INFO,
-)
-
 
 def app1():
     """
@@ -221,6 +209,16 @@ def short10():
 
 
 if __name__ == "__main__":
+    # Setting up the logger
+    logging.basicConfig(
+        filename="pc.log",
+        filemode="w",
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        level=logging.INFO,
+    )
+
+    keyboard = Controller()  # Create a virtual keyboard
+
     logging.info("PC Component started")
     try:
         logging.info("Creating socket object")
