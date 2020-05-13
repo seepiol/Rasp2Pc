@@ -537,7 +537,12 @@ if __name__ == "__main__":
 
             sys.exit(app.exec_())
 
-    except ConnectionRefusedError:
+    except ConnectionRefusedError as e:
         print("Pc is not reachable. exiting")
-        logging.critical(f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. Quitting")
+        logging.critical(f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. ERROR:{e}. Quitting")
+        exit()
+
+    except OSError as e:
+        print("PC not found. check the ip address and if the pc component is running. Quitting")
+        logging.critical(f"pc ({PC_HOST}:{PC_PORT}) not found. ERROR:{e}. Quitting")
         exit()
