@@ -33,31 +33,35 @@ By default is used the port 10000, and the PC accept connection for every IP add
 
 By default, the program has 6 shortcuts for launching programs / commands and 6 keyboard shortcuts.
 
-Programs / Commands
+### Programs / Commands
 
-- Firefox Web Browser
-- Terminal (Konsole)
-- Virtualbox
-- File manager (Dolphin)
-- VS Codium
-- Lock the session (using loginctl)
-- Telegram Desktop
-- Libreoffice launcher
-- Thunderbird
-- Reboot system
+| Program/Action | Subprocess Command |
+|----------------|:------------------:|
+| Mozilla Firefox Browser | `firefox` |
+| Terminal (KDE) | `konsole` |
+| Virtualbox | `virtualbox` |
+| File Manager (KDE) | `dolphin` |
+| VS Codium | `vscodium` |
+| Lock Session | `loginctl lock-session` |
+| Telegram | `telegram-desktop` |
+| Libreoffice Launcher | `libreoffice` |
+| Mozilla Thunderbird | `thunderbird` | 
+| Reboot system | `reboot` |
 
-Keyboard shortcuts
 
-- Undo (Ctrl+Z) (Usable everywhere)
-- Copy (Ctrl+C) (Usable everywhere)
-- Cut (Ctrl+X) (Usable everywhere)
-- Paste (Ctrl+V) (Usable everywhere)
-- Turn on/off webcam on GMeet (Ctrl+D) (Usable on meet.google.com)
-- Turn on/off mic on Gmeet (Ctrl+E) (Usable on meet.google.com)
-- Full Screen (F11) (Usable everywhere)
-- Blank
-- Blank
-- Blank
+
+### Keyboard shortcuts
+
+| Function | Keys | Usage |
+|----------|:----:|------:|
+| Undo | Ctrl+Z | Everywhere |
+| Copy | Ctrl+C | Everywhere |
+| Cut | Ctrl+X | Everywhere |
+| Paste | Ctrl+V | Everywhere |
+| Mic ON/OFF | Ctrl+D | Google Meet |
+| Webcam ON/OFF | Ctrl+E | Google Meet |
+| Fullscreen | F11 | Everywhere
+
 
 An important future part of this program is the shortcuts costumization. If you want to modify it now, you have to 
 
