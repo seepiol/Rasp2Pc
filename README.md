@@ -53,14 +53,17 @@ By default, the program has 6 shortcuts for launching programs / commands and 6 
 ### Keyboard shortcuts
 
 | Function | Keys | Usage |
-|----------|:----:|------:|
+|:----------|:----:|:-------:|
 | Undo | Ctrl+Z | Everywhere |
 | Copy | Ctrl+C | Everywhere |
 | Cut | Ctrl+X | Everywhere |
 | Paste | Ctrl+V | Everywhere |
 | Mic ON/OFF | Ctrl+D | Google Meet |
 | Webcam ON/OFF | Ctrl+E | Google Meet |
-| Fullscreen | F11 | Everywhere
+| Fullscreen | F11 | Everywhere |
+| Blank |- | -|
+| Blank | -| -|
+| Blank | -|- |
 
 
 An important future part of this program is the shortcuts costumization. If you want to modify it now, you have to 
