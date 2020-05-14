@@ -54,7 +54,7 @@ Keyboard shortcuts
 - Paste (Ctrl+V) (Usable everywhere)
 - Turn on/off webcam on GMeet (Ctrl+D) (Usable on meet.google.com)
 - Turn on/off mic on Gmeet (Ctrl+E) (Usable on meet.google.com)
-- Blank
+- Full Screen (F11) (Usable everywhere)
 - Blank
 - Blank
 - Blank

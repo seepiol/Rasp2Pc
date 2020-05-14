@@ -228,9 +228,9 @@ class Ui_MainWindow(object):
         self.short2_button.setText(_translate("MainWindow", "Copy"))  # short2
         self.short3_button.setText(_translate("MainWindow", "Cut"))  # short3
         self.short4_button.setText(_translate("MainWindow", "Paste"))  # short4
-        self.short5_button.setText(_translate("MainWindow", "Ctrl+D"))  # short5
-        self.short6_button.setText(_translate("MainWindow", "Ctrl+E"))  # short6
-        self.short7_button.setText(_translate("MainWindow", "Blank"))  # short7
+        self.short5_button.setText(_translate("MainWindow", "Mic"))  # short5
+        self.short6_button.setText(_translate("MainWindow", "Webcam"))  # short6
+        self.short7_button.setText(_translate("MainWindow", "Fullscreen"))  # short7
         self.short8_button.setText(_translate("MainWindow", "Blank"))  # short8
         self.short9_button.setText(_translate("MainWindow", "Blank"))  # short9
         self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10

@@ -189,7 +189,14 @@ def short6():
 
 
 def short7():
-    logging.info("Blank")
+    """
+    F11
+    Make full screen
+    Usable everywhere
+    """
+    logging.info("F11")
+    keyboard.press(Key.f11)
+    keyboard.release(Key.f11)
     pass
 
 
