@@ -2,13 +2,21 @@
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
 ## Index
-* [How it works](#how-it-works)
-* [Configuration](#configuration)
-* [Default shortcuts](#default-shortcuts)
-* [Technologies](#technologies)
-* [Compatibility](#compatibility)
-* [To-Do list](#todo)
-* [License](#license)
+- [RASP2PC](#rasp2pc)
+  - [Index](#index)
+  - [How it Works](#how-it-works)
+  - [Configuration](#configuration)
+  - [Usage](#usage)
+    - [PC Component](#pc-component)
+    - [RASP Component](#rasp-component)
+  - [Default Shortcuts](#default-shortcuts)
+    - [Programs / Commands](#programs--commands)
+    - [Keyboard shortcuts](#keyboard-shortcuts)
+  - [Technologies](#technologies)
+  - [Compatibility](#compatibility)
+  - [ToDo](#todo)
+  - [License](#license)
+          - [Made with 🖤 during COVID-19 Quarantine](#made-with-%f0%9f%96%a4-during-covid-19-quarantine)
 
 
 ## How it Works
@@ -25,7 +33,29 @@ For example, if the ip address of the PC is 192.168.1.20, and the socket is list
 192.168.1.20, 10000
 ```
 
-By default is used the port 10000, and the PC accept connection for every IP address. To change it, [write the RASP IP here](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L27)
+By default is used the port 10000, and the PC accept connection for every IP address. See [usage](#usage) to learn how to bind the server on different address/port.
+
+## Usage
+### PC Component
+```
+$ cd rasp2pc
+$ python3 pc.py
+```
+Will accept any address on port 10000.
+
+If you want to bind the server on a different address or port, you can specify that with CLI arguments
+```
+$ python3 pc.py --host 192.168.1.20 --port 20222
+```
+> ⚠️ The ports below 1024 are called "privileged". Theoretically, you can call pc.py with superuser privileges and use there ports, but this is disabled for security reasons.
+
+### RASP Component
+Just type
+```
+$ cd rasp2pc
+$ python3 rasp.py
+```
+If you want to change the pc ip address, see [Configuration](#configuration)
 
 ## Default Shortcuts
 
@@ -108,6 +138,7 @@ Functioning on windows is unlikely.
 - [X] Add logging on pc
 - [X] Comment the code
 - [X] Implement a better way to choose the pc address on rasp (using rasp.conf file)
+- [ ] Add CLI arguments on PC component (host and port)
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component

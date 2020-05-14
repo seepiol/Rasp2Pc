@@ -22,6 +22,7 @@ import socket
 import subprocess
 from pynput.keyboard import Key, Controller
 import logging
+import argparse
 
 HOST = ""  # Address
 PORT = 10000  # Port
@@ -31,7 +32,7 @@ def app1():
     Launch Firefox web Browser
     """
     logging.info("Launching firefox")
-    subprocess.Popen("firefox", shell=True)
+    subprocess.Popen("firefox", shell=False)
     return ""
 
 
@@ -40,7 +41,7 @@ def app2():
     Open a terminal window
     """
     logging.info("Launching konsole")
-    subprocess.Popen("konsole", shell=True)
+    subprocess.Popen("konsole", shell=False)
     return ""
 
 
@@ -49,7 +50,7 @@ def app3():
     Launch VirtualBox
     """
     logging.info("launching virtualbox")
-    subprocess.Popen("virtualbox", shell=True)
+    subprocess.Popen("virtualbox", shell=False)
     return ""
 
 
@@ -226,6 +227,23 @@ if __name__ == "__main__":
 
     keyboard = Controller()  # Create a virtual keyboard
 
+    parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
+
+    parser.add_argument("--host", type=str, default="", 
+    help="the addess the where socket server will be listening (default=everyone)")
+
+    parser.add_argument("--port", type=int, default=10000,
+    help="the port where the server will be listening (default=10000)")
+
+    args = parser.parse_args()
+    
+    HOST = args.host
+    PORT = args.port
+    
+    if PORT < 1024:
+        print("WARNING: You have selected a privileged port. Please choose a port above 1024")
+        logging.critical("Selected a privileged port")
+
     logging.info("PC Component started")
     try:
         logging.info("Creating socket object")
@@ -307,6 +325,10 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logging.info("KeyboardInterrupt: quitting")
         print("Closed by keyboard. Bye")
+        try:
+            conn.close()
+        except NameError:
+            pass
         sock.close()
         exit()
 
@@ -314,3 +336,4 @@ if __name__ == "__main__":
         print("Something went wrong:", e)
         logging.info(f"Error Happened {e}. closing the socket.")
         sock.close()
+        exit()
