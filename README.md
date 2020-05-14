@@ -138,7 +138,7 @@ Functioning on windows is unlikely.
 - [X] Add logging on pc
 - [X] Comment the code
 - [X] Implement a better way to choose the pc address on rasp (using rasp.conf file)
-- [ ] Add CLI arguments on PC component (host and port)
+- [X] Add CLI arguments on PC component (host and port)
 - [ ] Improve communication security and avoid execution by unauthorized devices
 - [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component
