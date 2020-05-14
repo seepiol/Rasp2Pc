@@ -2,7 +2,6 @@
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
 ## Index
-- [RASP2PC](#rasp2pc)
   - [Index](#index)
   - [How it Works](#how-it-works)
   - [Configuration](#configuration)
@@ -16,7 +15,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
   - [Compatibility](#compatibility)
   - [ToDo](#todo)
   - [License](#license)
-          - [Made with 🖤 during COVID-19 Quarantine](#made-with-%f0%9f%96%a4-during-covid-19-quarantine)
+         
 
 
 ## How it Works
@@ -42,6 +41,23 @@ $ cd rasp2pc
 $ python3 pc.py
 ```
 Will accept any address on port 10000.
+At the moment of the connection you can accept or deny the connection by typing `yes` or `no`
+
+**Yes**
+```
+('127.0.0.1', 55230) is trying to connect to this pc. 
+('127.0.0.1', 55230) seems to be a RASP component
+Do you want to accept this connection? <Y es/N o>: y
+Connection with ('127.0.0.1', 55230) accepted
+```
+
+**No**
+```
+('127.0.0.1', 55232) is trying to connect to this pc. 
+('127.0.0.1', 55232) seems to be a RASP component
+Do you want to accept this connection? <Y es/N o>: n
+Connection Denied 
+```
 
 If you want to bind the server on a different address or port, you can specify that with CLI arguments
 ```
@@ -139,7 +155,10 @@ Functioning on windows is unlikely.
 - [X] Comment the code
 - [X] Implement a better way to choose the pc address on rasp (using rasp.conf file)
 - [X] Add CLI arguments on PC component (host and port)
-- [ ] Improve communication security and avoid execution by unauthorized devices
+- [X] Add possibility to deny connection on PC and verify that is a RASP component
+- [X] Avoid execution by unauthorized devices
+- [ ] Add popups on rasp component instead of cli messages
+- [ ] Improve communication security
 - [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component
 - [ ] Windows support

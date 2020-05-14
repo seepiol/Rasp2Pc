@@ -262,8 +262,26 @@ if __name__ == "__main__":
                     conn,
                     client_address,
                 ) = sock.accept()  # Accepting connection from {address}
-                print(f"Connection accepted from {client_address}")
-                logging.info(f"Connection accepted from {client_address}")
+                
+                # Connection Control
+
+                print(f"{client_address} is trying to connect to this pc. ")
+
+                msg = conn.recv(1024).decode("ascii")
+                if msg != "rasp2pc_rasp_component":  # Verify if the client is a """legit""" rasp component
+                    print(f"{client_address} doesn't seems to be a RASP component")
+                else:
+                    print(f"{client_address} seems to be a RASP component")
+
+                accept_connection = input("Do you want to accept this connection? <Y es/N o>: ")
+                if accept_connection.lower() in ["y", "yes"]:
+                    print(f"Connection with {client_address} accepted")
+                    logging.info(f"Connection with {client_address} accepted")
+                    pass
+                else:
+                    print("Connection Denied")
+                    logging.info("Connection Denied")
+                    conn.close()
 
                 try:
 

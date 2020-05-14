@@ -247,8 +247,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -260,8 +260,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -273,8 +273,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -286,8 +286,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -299,8 +299,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -312,8 +312,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -325,8 +325,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -338,8 +338,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -351,8 +351,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -364,8 +364,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -378,8 +378,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -391,8 +391,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -401,11 +401,11 @@ class Ui_MainWindow(object):
             logging.info("Sending s3 index")
             raspsocket.send("s3".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
+            print(response)  # Print the response```
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -417,8 +417,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -430,8 +430,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -443,8 +443,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -456,8 +456,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -469,8 +469,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -482,8 +482,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -495,8 +495,8 @@ class Ui_MainWindow(object):
             print(response)  # Print the response
 
         except BrokenPipeError:
-            print("Connection closed by PC. exiting")
-            logging.critical("Connection closed by PC. quitting")
+            print("Connection closed or denied by PC.  Quitting.")
+            logging.critical("Connection closed or denied by PC.  quitting")
             raspsocket.close()
             exit()
 
@@ -529,6 +529,7 @@ if __name__ == "__main__":
             # ATTENTION: You have to modify the line 25 with the PC ip address and the port (default:10000)
             logging.info(f"Connecting to {PC_HOST}:{PC_PORT}...")
             raspsocket.connect((PC_HOST, PC_PORT))  # Connect to the PC
+            raspsocket.send("rasp2pc_rasp_component".encode())  # Declare to PC that this is a """legit""" rasp component
             app = QtWidgets.QApplication(sys.argv)
             MainWindow = QtWidgets.QMainWindow()
             ui = Ui_MainWindow()
@@ -539,7 +540,7 @@ if __name__ == "__main__":
             sys.exit(app.exec_())
 
     except ConnectionRefusedError as e:
-        print("Pc is not reachable. exiting")
+        print("Pc is not reachable. Quitting.")
         logging.critical(
             f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. ERROR:{e}. Quitting"
         )
