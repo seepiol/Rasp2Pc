@@ -20,9 +20,56 @@
 
 import socket
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox, QApplication
 import sys
 import logging
 import csv
+
+###POPUPS FOR ERROR###
+
+# BrokenPipeError Exception popup
+def connection_interrupted():
+    app = QApplication(sys.argv)
+    window = QMessageBox()
+    window.setIcon(QMessageBox.Critical)
+    window.setWindowTitle("Connection Interrupted")
+    window.setText(f"Connection has been interrupted")
+    window.setStandardButtons(QMessageBox.Ok)
+    window.exec()
+
+# Connection denied popup
+def connection_denied(socket, host):
+    app = QApplication(sys.argv)
+    window = QMessageBox()
+    window.setIcon(QMessageBox.Critical)
+    window.setWindowTitle("Connection Denied")
+    window.setText(f"Connection denied by {host}")
+    window.setStandardButtons(QMessageBox.Ok)
+    window.exec()
+    socket.close()
+    exit()
+
+def not_reachable(socket, host):
+    app = QApplication(sys.argv)
+    window = QMessageBox()
+    window.setIcon(QMessageBox.Critical)
+    window.setWindowTitle("Not reachable")
+    window.setText(f"PC {host} is not reachable")
+    window.setStandardButtons(QMessageBox.Ok)
+    window.exec()
+    socket.close()
+    exit()
+
+def not_found(socket, host):
+    app = QApplication(sys.argv)
+    window = QMessageBox()
+    window.setIcon(QMessageBox.Critical)
+    window.setWindowTitle("Not found")
+    window.setText(f"PC not found. check the ip address and if the pc component is running.")
+    window.setStandardButtons(QMessageBox.Ok)
+    window.exec()
+    socket.close()
+    exit()
 
 
 class Ui_MainWindow(object):
@@ -214,26 +261,63 @@ class Ui_MainWindow(object):
         # !!!BUTTONS TEXT HERE!!!
 
         self.app1_button.setText(_translate("MainWindow", "Firefox"))  # app1
+        self.app1_button.setToolTip("app1")
+
         self.app2_button.setText(_translate("MainWindow", "Terminal"))  # app2
+        self.app2_button.setToolTip("app2")
+
         self.app3_button.setText(_translate("MainWindow", "VirtualBox"))  # app3
+        self.app3_button.setToolTip("app3")
+
         self.app4_button.setText(_translate("MainWindow", "Dolphin"))  # app4
+        self.app4_button.setToolTip("app4")
+        
         self.app5_button.setText(_translate("MainWindow", "VSCode"))  # app5
+        self.app5_button.setToolTip("app5")
+
         self.app6_button.setText(_translate("MainWindow", "Lock Sys"))  # app6
+        self.app6_button.setToolTip("app6")
+
         self.app7_button.setText(_translate("MainWindow", "Telegram"))  # app7
+        self.app7_button.setToolTip("app7")
+
         self.app8_button.setText(_translate("MainWindow", "Libreoffice"))  # app8
+        self.app8_button.setToolTip("app8")
+
         self.app9_button.setText(_translate("MainWindow", "Thunderbird"))  # app9
+        self.app9_button.setToolTip("app9")
+
         self.app10_button.setText(_translate("MainWindow", "Reboot"))  # app10
+        self.app10_button.setToolTip("app10")
+
 
         self.short1_button.setText(_translate("MainWindow", "Undo"))  # short1
+        self.short1_button.setToolTip("Undo - Ctrl+Z")
+
         self.short2_button.setText(_translate("MainWindow", "Copy"))  # short2
+        self.short2_button.setToolTip("Copy - Ctrl+C")
+
         self.short3_button.setText(_translate("MainWindow", "Cut"))  # short3
+        self.short3_button.setToolTip("Cut - Ctrl+X")
+
         self.short4_button.setText(_translate("MainWindow", "Paste"))  # short4
+        self.short4_button.setToolTip("Paste - Ctrl+V")
+
         self.short5_button.setText(_translate("MainWindow", "Mic"))  # short5
+        self.short5_button.setToolTip("Microphone (googlemeet) - Ctrl+D")
+
         self.short6_button.setText(_translate("MainWindow", "Webcam"))  # short6
+        self.short6_button.setToolTip("Webcam (googlemeet) - Ctrl+E")
+
         self.short7_button.setText(_translate("MainWindow", "Fullscreen"))  # short7
+        self.short7_button.setToolTip("Fullscreen - F11")
+
         self.short8_button.setText(_translate("MainWindow", "Blank"))  # short8
+
         self.short9_button.setText(_translate("MainWindow", "Blank"))  # short9
+
         self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10
+
 
     # App launch functions
 
@@ -248,7 +332,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -261,7 +345,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -274,7 +358,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -287,7 +371,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -300,7 +384,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -313,7 +397,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -326,7 +410,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -339,7 +423,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -352,7 +436,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -365,7 +449,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -379,7 +463,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -392,7 +476,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -405,7 +489,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -418,7 +502,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -431,7 +515,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -444,7 +528,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -457,7 +541,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -470,7 +554,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -483,7 +567,7 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
@@ -496,13 +580,14 @@ class Ui_MainWindow(object):
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
-            logging.critical("Connection closed or denied by PC.  quitting")
+            connection_interrupted()
             raspsocket.close()
             exit()
 
 
 if __name__ == "__main__":
-
+    
+    
     # Loading configuration file
     with open("rasp.conf", newline="") as conf_file:
         reader = csv.reader(conf_file, delimiter=",")
@@ -530,6 +615,13 @@ if __name__ == "__main__":
             logging.info(f"Connecting to {PC_HOST}:{PC_PORT}...")
             raspsocket.connect((PC_HOST, PC_PORT))  # Connect to the PC
             raspsocket.send("rasp2pc_rasp_component".encode())  # Declare to PC that this is a """legit""" rasp component
+            connection = raspsocket.recv(1024).decode("ascii")
+            if connection == "ConnectionAccepted":
+                logging.info("Connection accepted")
+            else:
+                logging.critical(f"connection denied by {PC_HOST}")
+                connection_denied(raspsocket, PC_HOST)
+
             app = QtWidgets.QApplication(sys.argv)
             MainWindow = QtWidgets.QMainWindow()
             ui = Ui_MainWindow()
@@ -540,13 +632,14 @@ if __name__ == "__main__":
             sys.exit(app.exec_())
 
     except ConnectionRefusedError as e:
-        print("Pc is not reachable. Quitting.")
+        not_reachable(raspsocket, PC_HOST)
         logging.critical(
             f"Pc ({PC_HOST}:{PC_PORT}) is not reachable. ERROR:{e}. Quitting"
         )
         exit()
 
     except OSError as e:
+        not_found(raspsocket, PC_HOST)
         print(
             "PC not found. check the ip address and if the pc component is running. Quitting"
         )

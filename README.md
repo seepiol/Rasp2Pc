@@ -14,6 +14,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
   - [Technologies](#technologies)
   - [Compatibility](#compatibility)
   - [ToDo](#todo)
+  - [Known Issues](#known-issues)
   - [License](#license)
          
 
@@ -157,12 +158,19 @@ Functioning on windows is unlikely.
 - [X] Add CLI arguments on PC component (host and port)
 - [X] Add possibility to deny connection on PC and verify that is a RASP component
 - [X] Avoid execution by unauthorized devices
-- [ ] Add popups on rasp component instead of cli messages
+- [X] Add tooltips on RASP
+- [X] Add popups on rasp component instead of cli messages
+- [ ] Resolution-responsive UI on rasp component. [See here](https://www.blog.pythonlibrary.org/2015/08/18/getting-your-screen-resolution-with-python/) and [here](https://stackoverflow.com/questions/43904594/pyqt-adjusting-for-different-screen-resolution)
+- [ ] Improve exception
 - [ ] Improve communication security
 - [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component
 - [ ] Windows support
 - [ ] Mac Os support (but i haven't a mac so idk)
+
+## Known Issues
+* If the PC component is turned off (Ctrl+C) with a RASP component still connected, PC will give you `Something went wrong: [Errno 98] Address already in use`. This is a system issue. Close the RASP component and wait 1 minute more or less, and restart the PC component
+
 
 ## License
 GNU General Public License v3.

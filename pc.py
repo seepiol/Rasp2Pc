@@ -277,10 +277,12 @@ if __name__ == "__main__":
                 if accept_connection.lower() in ["y", "yes"]:
                     print(f"Connection with {client_address} accepted")
                     logging.info(f"Connection with {client_address} accepted")
+                    conn.send("ConnectionAccepted".encode())
                     pass
                 else:
                     print("Connection Denied")
                     logging.info("Connection Denied")
+                    conn.send("ConnectionDenied".encode())
                     conn.close()
 
                 try:
