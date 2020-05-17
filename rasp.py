@@ -75,39 +75,51 @@ def not_found(socket, host):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(451, 338)
+        MainWindow.resize(451, 286)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.RASP2PC_label = QtWidgets.QLabel(self.centralwidget)
-        self.RASP2PC_label.setGeometry(QtCore.QRect(10, 10, 111, 21))
-        font = QtGui.QFont()
-        font.setPointSize(18)
-        font.setBold(True)
-        font.setWeight(75)
-        self.RASP2PC_label.setFont(font)
-        self.RASP2PC_label.setObjectName("RASP2PC_label")
 
         self.RASPcomponent_label = QtWidgets.QLabel(self.centralwidget)
-        self.RASPcomponent_label.setGeometry(QtCore.QRect(10, 40, 181, 18))
+        self.RASPcomponent_label.setGeometry(QtCore.QRect(10, 10, 181, 18))
         self.RASPcomponent_label.setObjectName("RASPcomponent_label")
 
         self.connected_to_label = QtWidgets.QLabel(self.centralwidget)
-        self.connected_to_label.setGeometry(QtCore.QRect(10, 70, 101, 18))
+        self.connected_to_label.setGeometry(QtCore.QRect(10, 30, 101, 18))
         self.connected_to_label.setObjectName("connected_to_label")
 
         self.pc_info_label = QtWidgets.QLabel(self.centralwidget)
-        self.pc_info_label.setGeometry(QtCore.QRect(110, 70, 181, 18))
+        self.pc_info_label.setGeometry(QtCore.QRect(110, 30, 181, 18))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
         font.setItalic(True)
         font.setWeight(75)
         self.pc_info_label.setFont(font)
+        self.pc_info_label.setText("")
         self.pc_info_label.setObjectName("pc_info_label")
+
+        # System Actions 
+        self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
+        self.reboot_button.setGeometry(QtCore.QRect(290, 10, 41, 37))
+        self.reboot_button.setText("🔄")
+        self.reboot_button.setToolTip("Reboot the PC")
+        self.reboot_button.setObjectName("reboot_button")
+
+        self.lock_button = QtWidgets.QPushButton(self.centralwidget)
+        self.lock_button.setGeometry(QtCore.QRect(340, 10, 41, 37))
+        self.lock_button.setText("🔒")
+        self.lock_button.setToolTip("Lock the session")
+        self.lock_button.setObjectName("lock_button")
+
+        self.mute_button = QtWidgets.QPushButton(self.centralwidget)
+        self.mute_button.setGeometry(QtCore.QRect(390, 10, 41, 37))
+        self.mute_button.setText("🔇")
+        self.mute_button.setToolTip("Mute the PC audio")
+        self.mute_button.setObjectName("mute_button")
 
         # Programs
         self.app_frame = QtWidgets.QFrame(self.centralwidget)
-        self.app_frame.setGeometry(QtCore.QRect(10, 100, 211, 221))
+        self.app_frame.setGeometry(QtCore.QRect(10, 50, 211, 221))
         self.app_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.app_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.app_frame.setObjectName("app_frame")
@@ -119,7 +131,6 @@ class Ui_MainWindow(object):
 
         self.app1_button = QtWidgets.QPushButton(self.app_frame)
         self.app1_button.setGeometry(QtCore.QRect(10, 10, 90, 37))
-        self.app1_button.setText("")
         self.app1_button.setObjectName("app1_button")
 
         self.app3_button = QtWidgets.QPushButton(self.app_frame)
@@ -163,8 +174,9 @@ class Ui_MainWindow(object):
         self.app10_button.setObjectName("app10_button")
 
         # Keyboard
+
         self.keyboard_frame = QtWidgets.QFrame(self.centralwidget)
-        self.keyboard_frame.setGeometry(QtCore.QRect(230, 100, 211, 221))
+        self.keyboard_frame.setGeometry(QtCore.QRect(230, 50, 211, 221))
         self.keyboard_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.keyboard_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.keyboard_frame.setObjectName("keyboard_frame")
@@ -172,6 +184,7 @@ class Ui_MainWindow(object):
         self.short1_button = QtWidgets.QPushButton(self.keyboard_frame)
         self.short1_button.setGeometry(QtCore.QRect(10, 10, 90, 37))
         self.short1_button.setText("")
+        self.short1_button.setShortcut("")
         self.short1_button.setObjectName("short1_button")
 
         self.short2_button = QtWidgets.QPushButton(self.keyboard_frame)
@@ -220,6 +233,10 @@ class Ui_MainWindow(object):
         self.short10_button.setObjectName("short10_button")
 
         # Function Connections
+        # System Function
+        self.reboot_button.clicked.connect(self.sysf1)
+        self.lock_button.clicked.connect(self.sysf2)
+        self.mute_button.clicked.connect(self.sysf3)
         # Apps
         self.app1_button.clicked.connect(self.app1)
         self.app2_button.clicked.connect(self.app2)
@@ -251,7 +268,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Rasp2Pc "))
-        self.RASP2PC_label.setText(_translate("MainWindow", "RASP2PC"))
         self.RASPcomponent_label.setText(_translate("MainWindow", "RASP Component"))
         self.connected_to_label.setText(_translate("MainWindow", "Connected to:"))
         self.pc_info_label.setText(
@@ -275,7 +291,7 @@ class Ui_MainWindow(object):
         self.app5_button.setText(_translate("MainWindow", "VSCode"))  # app5
         self.app5_button.setToolTip("app5")
 
-        self.app6_button.setText(_translate("MainWindow", "Lock Sys"))  # app6
+        self.app6_button.setText(_translate("MainWindow", "Store"))  # app6
         self.app6_button.setToolTip("app6")
 
         self.app7_button.setText(_translate("MainWindow", "Telegram"))  # app7
@@ -287,7 +303,7 @@ class Ui_MainWindow(object):
         self.app9_button.setText(_translate("MainWindow", "Thunderbird"))  # app9
         self.app9_button.setToolTip("app9")
 
-        self.app10_button.setText(_translate("MainWindow", "Reboot"))  # app10
+        self.app10_button.setText(_translate("MainWindow", "Screen REC"))  # app10
         self.app10_button.setToolTip("app10")
 
 
@@ -575,6 +591,45 @@ class Ui_MainWindow(object):
         try:
             logging.info("Sending s10 index")
             raspsocket.send("s10".encode())
+            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
+            print(response)  # Print the response
+
+        except BrokenPipeError:
+            print("Connection closed or denied by PC.  Quitting.")
+            connection_interrupted()
+            raspsocket.close()
+            exit()
+    
+    def sysf1(self):
+        try:
+            logging.info("Sending sf1 index")
+            raspsocket.send("sf1".encode())
+            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
+            print(response)  # Print the response
+
+        except BrokenPipeError:
+            print("Connection closed or denied by PC.  Quitting.")
+            connection_interrupted()
+            raspsocket.close()
+            exit()
+    
+    def sysf2(self):
+        try:
+            logging.info("Sending sf2 index")
+            raspsocket.send("sf2".encode())
+            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
+            print(response)  # Print the response
+
+        except BrokenPipeError:
+            print("Connection closed or denied by PC.  Quitting.")
+            connection_interrupted()
+            raspsocket.close()
+            exit()
+
+    def sysf3(self):
+        try:
+            logging.info("Sending sf3 index")
+            raspsocket.send("sf3".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
