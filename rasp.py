@@ -76,6 +76,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(451, 286)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
@@ -99,21 +100,27 @@ class Ui_MainWindow(object):
         self.pc_info_label.setObjectName("pc_info_label")
 
         # System Actions 
+        self.reboot_icon = QtGui.QIcon()
+        self.reboot_icon.addPixmap(QtGui.QPixmap("reboot.png"))
         self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
         self.reboot_button.setGeometry(QtCore.QRect(290, 10, 41, 37))
-        self.reboot_button.setText("🔄")
+        self.reboot_button.setIcon(self.reboot_icon)
         self.reboot_button.setToolTip("Reboot the PC")
         self.reboot_button.setObjectName("reboot_button")
 
+        self.lock_icon = QtGui.QIcon()
+        self.lock_icon.addPixmap(QtGui.QPixmap("lock.png"))
         self.lock_button = QtWidgets.QPushButton(self.centralwidget)
         self.lock_button.setGeometry(QtCore.QRect(340, 10, 41, 37))
-        self.lock_button.setText("🔒")
+        self.lock_button.setIcon(self.lock_icon)
         self.lock_button.setToolTip("Lock the session")
         self.lock_button.setObjectName("lock_button")
 
+        self.mute_icon = QtGui.QIcon()
+        self.mute_icon.addPixmap(QtGui.QPixmap("mute.png"))
         self.mute_button = QtWidgets.QPushButton(self.centralwidget)
         self.mute_button.setGeometry(QtCore.QRect(390, 10, 41, 37))
-        self.mute_button.setText("🔇")
+        self.mute_button.setIcon(self.mute_icon)
         self.mute_button.setToolTip("Mute the PC audio")
         self.mute_button.setObjectName("mute_button")
 

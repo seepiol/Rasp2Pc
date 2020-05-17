@@ -76,7 +76,7 @@ If you want to change the pc ip address, see [Configuration](#configuration)
 
 ## Default Shortcuts
 
-![Rasp component ui](https://user-images.githubusercontent.com/60071372/82146951-e418fa00-984c-11ea-8a1d-da66f3169d89.png)
+![Rasp Ui](https://user-images.githubusercontent.com/60071372/82150926-18df7e00-985a-11ea-9746-9316ddae0272.png)
 
 By default, the program has 3 system functions shortcuts, 6 shortcuts for launching programs / commands and 6 keyboard shortcuts.
 
