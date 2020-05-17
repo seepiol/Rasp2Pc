@@ -76,9 +76,16 @@ If you want to change the pc ip address, see [Configuration](#configuration)
 
 ## Default Shortcuts
 
-![rasp](https://user-images.githubusercontent.com/60071372/81578778-8fd4cc80-93ab-11ea-9407-7295569f052f.png)
+![Rasp component ui](https://user-images.githubusercontent.com/60071372/82146951-e418fa00-984c-11ea-8a1d-da66f3169d89.png)
 
-By default, the program has 6 shortcuts for launching programs / commands and 6 keyboard shortcuts.
+By default, the program has 3 system functions shortcuts, 6 shortcuts for launching programs / commands and 6 keyboard shortcuts.
+
+### System Functions
+| Function | Command |
+|----------|:--------:|
+| Reboot PC | `reboot` |
+| Lock session | `loginctl lock-session` |
+| Mute audio | `amixer -D pulse sset Master 0%` |
 
 ### Programs / Commands
 
@@ -89,11 +96,11 @@ By default, the program has 6 shortcuts for launching programs / commands and 6 
 | Virtualbox | `virtualbox` |
 | File Manager (KDE) | `dolphin` |
 | VS Codium | `vscodium` |
-| Lock Session | `loginctl lock-session` |
+| App Store | `pamac-manager` |
 | Telegram | `telegram-desktop` |
 | Libreoffice Launcher | `libreoffice` |
 | Mozilla Thunderbird | `thunderbird` | 
-| Reboot system | `reboot` |
+| Screen Recording | `simplescreenrecorder --start-recording` |
 
 
 
