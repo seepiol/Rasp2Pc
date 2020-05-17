@@ -32,7 +32,7 @@ def sysf1():
     Reboot the system
     """
     logging.info("rebooting system")
-    subprocess.Popen("reboot now", shell=True)
+    subprocess.Popen(["reboot", "now"], shell=False)
     return ""
 
 def sysf2():
@@ -40,7 +40,7 @@ def sysf2():
     Lock the session
     """
     logging.info("Locking the session")
-    subprocess.Popen("loginctl lock-session", shell=True)
+    subprocess.Popen(["loginctl", "lock-session"], shell=False)
     return ""
 
 def sysf3():
@@ -48,7 +48,7 @@ def sysf3():
     Mute the audio
     """
     logging.info("Turning volume to 0%")
-    subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=True)
+    subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
 
 def app1():
     """
