@@ -32,7 +32,7 @@ def sysf1():
     Reboot the system
     """
     logging.info("rebooting system")
-    subprocess.Popen(["reboot", "now"], shell=False)
+    subprocess.Popen(["reboot"], shell=False)
     return ""
 
 def sysf2():
