@@ -27,6 +27,29 @@ import argparse
 HOST = ""  # Address
 PORT = 10000  # Port
 
+def sysf1():
+    """
+    Reboot the system
+    """
+    logging.info("rebooting system")
+    subprocess.Popen("reboot now", shell=True)
+    return ""
+
+def sysf2():
+    """
+    Lock the session
+    """
+    logging.info("Locking the session")
+    subprocess.Popen("loginctl lock-session", shell=True)
+    return ""
+
+def sysf3():
+    """
+    Mute the audio
+    """
+    logging.info("Turning volume to 0%")
+    subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=True)
+
 def app1():
     """
     Launch Firefox web Browser
@@ -59,7 +82,7 @@ def app4():
     Launch the File Manager (dolphin)
     """
     logging.info("launching dolphin")
-    subprocess.Popen("dolphin", shell=True)
+    subprocess.Popen("dolphin", shell=False)
     return ""
 
 
@@ -68,16 +91,16 @@ def app5():
     Run VSCodium
     """
     logging.info("launching vscodium")
-    subprocess.Popen("vscodium", shell=True)
+    subprocess.Popen("vscodium", shell=False)
     return ""
 
 
 def app6():
     """
-    Lock the current user session
+    Launch app store (pamac manager)
     """
-    logging.info("Locking the session")
-    subprocess.Popen("loginctl lock-session", shell=True)
+    logging.info("launching pamac manager")
+    subprocess.Popen("pamac-manager", shell=False)
     return ""
 
 
@@ -86,7 +109,7 @@ def app7():
     Launch Telegram
     """
     logging.info("launching telegram")
-    subprocess.Popen("telegram-desktop", shell=True)
+    subprocess.Popen("telegram-desktop", shell=False)
     return ""
 
 
@@ -95,7 +118,7 @@ def app8():
     Launch Libreofice launcher
     """
     logging.info("launching libreoffice")
-    subprocess.Popen("libreoffice", shell=True)
+    subprocess.Popen("libreoffice", shell=False)
     return ""
 
 
@@ -104,16 +127,16 @@ def app9():
     Run Thunderbird
     """
     logging.info("launching thunderbird")
-    subprocess.Popen("thunderbird", shell=True)
+    subprocess.Popen("thunderbird", shell=False)
     return ""
 
 
 def app10():
     """
-    Reboot system
+    Record screen with simplescreenrecorder
     """
-    logging.info("rebooting system")
-    subprocess.Popen("reboot now", shell=True)
+    logging.info("recording screen")
+    subprocess.Popen(["simplescreenrecorder", "--start-recording"], shell=False)
     return ""
 
 
@@ -334,6 +357,13 @@ if __name__ == "__main__":
                             short9()
                         elif data == "s10":
                             short10()
+
+                        elif data == "sf1":
+                            sysf1()
+                        elif data == "sf2":
+                            sysf2()
+                        elif data == "sf3":
+                            sysf3()
 
                         esit = "ok"
 
