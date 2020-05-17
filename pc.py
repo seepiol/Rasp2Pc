@@ -273,8 +273,8 @@ if __name__ == "__main__":
                 else:
                     print(f"{client_address} seems to be a RASP component")
 
-                accept_connection = input("Do you want to accept this connection? <Y es/N o>: ")
-                if accept_connection.lower() in ["y", "yes"]:
+                accept_connection = input("Do you want to accept this connection? [Y/n]: ")
+                if accept_connection.lower() in ["y", "yes", ""]:
                     print(f"Connection with {client_address} accepted")
                     logging.info(f"Connection with {client_address} accepted")
                     conn.send("ConnectionAccepted".encode())
