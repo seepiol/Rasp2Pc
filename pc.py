@@ -33,7 +33,7 @@ def sysf1():
     """
     logging.info("rebooting system")
     subprocess.Popen(["reboot"], shell=False)
-    return ""
+    return "completed"
 
 def sysf2():
     """
@@ -41,7 +41,7 @@ def sysf2():
     """
     logging.info("Locking the session")
     subprocess.Popen(["loginctl", "lock-session"], shell=False)
-    return ""
+    return "completed"
 
 def sysf3():
     """
@@ -49,6 +49,7 @@ def sysf3():
     """
     logging.info("Turning volume to 0%")
     subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
+    return "completed"
 
 def app1():
     """
@@ -56,7 +57,7 @@ def app1():
     """
     logging.info("Launching firefox")
     subprocess.Popen("firefox", shell=False)
-    return ""
+    return "completed"
 
 
 def app2():
@@ -65,7 +66,7 @@ def app2():
     """
     logging.info("Launching konsole")
     subprocess.Popen("konsole", shell=False)
-    return ""
+    return "completed"
 
 
 def app3():
@@ -74,7 +75,7 @@ def app3():
     """
     logging.info("launching virtualbox")
     subprocess.Popen("virtualbox", shell=False)
-    return ""
+    return "completed"
 
 
 def app4():
@@ -83,7 +84,7 @@ def app4():
     """
     logging.info("launching dolphin")
     subprocess.Popen("dolphin", shell=False)
-    return ""
+    return "completed"
 
 
 def app5():
@@ -92,7 +93,7 @@ def app5():
     """
     logging.info("launching vscodium")
     subprocess.Popen("vscodium", shell=False)
-    return ""
+    return "completed"
 
 
 def app6():
@@ -101,7 +102,7 @@ def app6():
     """
     logging.info("launching pamac manager")
     subprocess.Popen("pamac-manager", shell=False)
-    return ""
+    return "completed"
 
 
 def app7():
@@ -110,7 +111,7 @@ def app7():
     """
     logging.info("launching telegram")
     subprocess.Popen("telegram-desktop", shell=False)
-    return ""
+    return "completed"
 
 
 def app8():
@@ -119,7 +120,7 @@ def app8():
     """
     logging.info("launching libreoffice")
     subprocess.Popen("libreoffice", shell=False)
-    return ""
+    return "completed"
 
 
 def app9():
@@ -128,7 +129,7 @@ def app9():
     """
     logging.info("launching thunderbird")
     subprocess.Popen("thunderbird", shell=False)
-    return ""
+    return "completed"
 
 
 def app10():
@@ -137,7 +138,7 @@ def app10():
     """
     logging.info("recording screen")
     subprocess.Popen(["simplescreenrecorder", "--start-recording"], shell=False)
-    return ""
+    return "completed"
 
 
 def short1():
@@ -150,6 +151,7 @@ def short1():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("z")
         keyboard.release("z")
+    return "completed"
 
 
 def short2():
@@ -162,6 +164,7 @@ def short2():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("c")
         keyboard.release("c")
+    return "completed"
 
 
 def short3():
@@ -174,6 +177,7 @@ def short3():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("x")
         keyboard.release("x")
+    return "completed"
 
 
 def short4():
@@ -186,6 +190,7 @@ def short4():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("v")
         keyboard.release("v")
+    return "completed"
 
 
 def short5():
@@ -198,6 +203,7 @@ def short5():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("d")
         keyboard.release("d")
+    return "completed"
 
 
 def short6():
@@ -210,6 +216,7 @@ def short6():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("e")
         keyboard.release("e")
+    return "completed"
 
 
 def short7():
@@ -221,22 +228,22 @@ def short7():
     logging.info("F11")
     keyboard.press(Key.f11)
     keyboard.release(Key.f11)
-    pass
+    return "completed"
 
 
 def short8():
     logging.info("Blank")
-    pass
+    return "completed"
 
 
 def short9():
     logging.info("Blank")
-    pass
+    return "completed"
 
 
 def short10():
     logging.info("Blank")
-    pass
+    return "completed"
 
 
 if __name__ == "__main__":
@@ -370,12 +377,16 @@ if __name__ == "__main__":
                         conn.send(esit.encode())
 
                 except IOError:
+                    conn.send("TOff_PC".encode())
+                    sleep(2)
                     conn.close()
 
     except KeyboardInterrupt:
         logging.info("KeyboardInterrupt: quitting")
         print("Closed by keyboard. Bye")
         try:
+            conn.send("TOff_PC".encode())
+            sleep(2)
             conn.close()
         except NameError:
             pass
@@ -384,6 +395,12 @@ if __name__ == "__main__":
 
     except Exception as e:
         print("Something went wrong:", e)
+        try:
+            conn.send("TOff_PC".encode())
+            sleep(2)
+            conn.close()
+        except NameError:
+            pass
         logging.info(f"Error Happened {e}. closing the socket.")
         sock.close()
         exit()
