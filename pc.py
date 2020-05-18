@@ -378,7 +378,6 @@ if __name__ == "__main__":
 
                 except IOError:
                     conn.send("TOff_PC".encode())
-                    sleep(2)
                     conn.close()
 
     except KeyboardInterrupt:
@@ -386,7 +385,6 @@ if __name__ == "__main__":
         print("Closed by keyboard. Bye")
         try:
             conn.send("TOff_PC".encode())
-            sleep(2)
             conn.close()
         except NameError:
             pass
@@ -397,7 +395,6 @@ if __name__ == "__main__":
         print("Something went wrong:", e)
         try:
             conn.send("TOff_PC".encode())
-            sleep(2)
             conn.close()
         except NameError:
             pass
