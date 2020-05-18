@@ -167,8 +167,9 @@ Functioning on windows is unlikely.
 - [X] Avoid execution by unauthorized devices
 - [X] Add tooltips on RASP
 - [X] Add popups on rasp component instead of cli messages
+- [ ] Add something like "multilevel communication" ([see here](https://github.com/seepiol/Rasp2Pc/issues/3#issuecomment-630109595))
 - [ ] Resolution-responsive UI on rasp component. [See here](https://www.blog.pythonlibrary.org/2015/08/18/getting-your-screen-resolution-with-python/) and [here](https://stackoverflow.com/questions/43904594/pyqt-adjusting-for-different-screen-resolution)
-- [ ] Improve exception
+- [ ] Improve error handling
 - [ ] Improve communication security
 - [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component
