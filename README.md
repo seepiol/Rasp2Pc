@@ -115,7 +115,7 @@ By default, the program has 3 system functions shortcuts, 6 shortcuts for launch
 | Mic ON/OFF | Ctrl+D | Google Meet |
 | Webcam ON/OFF | Ctrl+E | Google Meet |
 | Fullscreen | F11 | Everywhere |
-| Blank |- | -|
+| Screenshot (spectacle) | PRTSC |everywhere|
 | Blank | -| -|
 | Blank | -|- |
 

@@ -346,7 +346,8 @@ class Ui_MainWindow(object):
         self.short7_button.setText(_translate("MainWindow", "Fullscreen"))  # short7
         self.short7_button.setToolTip("Fullscreen - F11")
 
-        self.short8_button.setText(_translate("MainWindow", "Blank"))  # short8
+        self.short8_button.setText(_translate("MainWindow", "Screenshot"))  # short8
+        self.short8_button.setToolTip("Screenshot - PRT-SC")
 
         self.short9_button.setText(_translate("MainWindow", "Blank"))  # short9
 
@@ -363,8 +364,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a1".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -378,8 +377,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a2".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -393,8 +390,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a3".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -408,8 +403,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a4".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -423,8 +416,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a5".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -438,8 +429,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a6".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -453,8 +442,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a7".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -468,8 +455,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a8".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -483,8 +468,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a9".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -498,8 +481,6 @@ class Ui_MainWindow(object):
             raspsocket.send("a10".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -514,8 +495,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s1".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -529,8 +508,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s2".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -544,8 +521,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s3".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response```
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -559,8 +534,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s4".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -574,8 +547,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s5".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -589,8 +560,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s6".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -604,8 +573,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s7".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -619,8 +586,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s8".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -634,8 +599,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s9".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -649,8 +612,6 @@ class Ui_MainWindow(object):
             raspsocket.send("s10".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -664,8 +625,6 @@ class Ui_MainWindow(object):
             raspsocket.send("sf1".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -679,8 +638,6 @@ class Ui_MainWindow(object):
             raspsocket.send("sf2".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")
@@ -694,8 +651,6 @@ class Ui_MainWindow(object):
             raspsocket.send("sf3".encode())
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
-            if response == "TOff_PC":
-                pc_turned_off(raspsocket)
 
         except BrokenPipeError:
             print("Connection closed or denied by PC.  Quitting.")

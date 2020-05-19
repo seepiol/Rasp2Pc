@@ -232,7 +232,14 @@ def short7():
 
 
 def short8():
-    logging.info("Blank")
+    """
+    PRT-SC
+    Print Screen (Screenshot)
+    Usable everywhere
+    """
+    logging.info("PRT SC")
+    keyboard.press(Key.print_screen)
+    keyboard.release(Key.print_screen)
     return "completed"
 
 
@@ -377,27 +384,20 @@ if __name__ == "__main__":
                         conn.send(esit.encode())
 
                 except IOError:
-                    conn.send("TOff_PC".encode())
-                    conn.close()
+                    logging.info("RASP Disconnected")
 
     except KeyboardInterrupt:
         logging.info("KeyboardInterrupt: quitting")
         print("Closed by keyboard. Bye")
-        try:
-            conn.send("TOff_PC".encode())
-            conn.close()
-        except NameError:
-            pass
         sock.close()
         exit()
 
+    except IOError:
+        logging.info("RASP disconnected")
+        pass
+
     except Exception as e:
         print("Something went wrong:", e)
-        try:
-            conn.send("TOff_PC".encode())
-            conn.close()
-        except NameError:
-            pass
         logging.info(f"Error Happened {e}. closing the socket.")
         sock.close()
         exit()
