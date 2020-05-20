@@ -59,8 +59,19 @@ Connection with ('127.0.0.1', 55230) accepted
 Do you want to accept this connection? <Y es/N o>: n
 Connection Denied 
 ```
+PC component also support CLI Arguments:
+```
+$ python pc.py -h
+usage: pc.py [-h] [--host HOST] [--port PORT]
 
-If you want to bind the server on a different address or port, you can specify that with CLI arguments
+Rasp2Pc PC Component
+
+optional arguments:
+  -h, --help   show this help message and exit
+  --host HOST  the addess the where socket server will be listening (default=everyone)
+  --port PORT  the port where the server will be listening (default=10000)
+```
+If you want to bind the server on a different address or port, you can specify that using
 ```
 $ python3 pc.py --host 192.168.1.20 --port 20222
 ```
@@ -72,7 +83,23 @@ Just type
 $ cd rasp2pc
 $ python3 rasp.py
 ```
-If you want to change the pc ip address, see [Configuration](#configuration)
+in this way, RASP will follow the instructions contained in the [rasp.conf file](#configuration). if you want to change the settings just once, you can do so from the CLI Arguments
+```
+$ python rasp.py -h
+usage: rasp.py [-h] [--host HOST] [--port PORT]
+
+Rasp2Pc RASP Component
+
+optional arguments:
+  -h, --help   show this help message and exit
+  --host HOST  the addess of the PC Component (default=)
+  --port PORT  the port of the PC Component (default=10000)
+```
+So, if you want to connect the RASP component to a different PC (Ex. `192.168.1.32`) on a different port (Ex. `3042`), you must type
+```
+$ python rasp.py --host 192.168.1.32 --port 3042
+```
+ELI5, the cli arguments will temporarily overwrite `rasp.conf` configuration file
 
 ## Default Shortcuts
 

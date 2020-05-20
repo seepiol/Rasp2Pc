@@ -24,6 +24,7 @@ from PyQt5.QtWidgets import QMessageBox, QApplication
 import sys
 import logging
 import csv
+import argparse
 
 ###POPUPS FOR ERROR###
 
@@ -112,7 +113,7 @@ class Ui_MainWindow(object):
 
         # System Actions 
         self.reboot_icon = QtGui.QIcon()
-        self.reboot_icon.addPixmap(QtGui.QPixmap("reboot.png"))
+        self.reboot_icon.addPixmap(QtGui.QPixmap("icons/reboot.png"))
         self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
         self.reboot_button.setGeometry(QtCore.QRect(290, 10, 41, 37))
         self.reboot_button.setIcon(self.reboot_icon)
@@ -120,7 +121,7 @@ class Ui_MainWindow(object):
         self.reboot_button.setObjectName("reboot_button")
 
         self.lock_icon = QtGui.QIcon()
-        self.lock_icon.addPixmap(QtGui.QPixmap("lock.png"))
+        self.lock_icon.addPixmap(QtGui.QPixmap("icons/lock.png"))
         self.lock_button = QtWidgets.QPushButton(self.centralwidget)
         self.lock_button.setGeometry(QtCore.QRect(340, 10, 41, 37))
         self.lock_button.setIcon(self.lock_icon)
@@ -128,7 +129,7 @@ class Ui_MainWindow(object):
         self.lock_button.setObjectName("lock_button")
 
         self.mute_icon = QtGui.QIcon()
-        self.mute_icon.addPixmap(QtGui.QPixmap("mute.png"))
+        self.mute_icon.addPixmap(QtGui.QPixmap("icons/mute.png"))
         self.mute_button = QtWidgets.QPushButton(self.centralwidget)
         self.mute_button.setGeometry(QtCore.QRect(390, 10, 41, 37))
         self.mute_button.setIcon(self.mute_icon)
@@ -661,15 +662,6 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     
-    
-    # Loading configuration file
-    with open("rasp.conf", newline="") as conf_file:
-        reader = csv.reader(conf_file, delimiter=",")
-        for row in reader:
-            PC_HOST = row[0]
-            PC_PORT = int(row[1])
-            break
-
     # Setting up the logger
     logging.basicConfig(
         filename="rasp.log",
@@ -679,6 +671,32 @@ if __name__ == "__main__":
     )
 
     logging.info("Rasp component started")
+
+    # Loading configuration file
+    try:
+        with open("rasp.conf", newline="") as conf_file:
+            reader = csv.reader(conf_file, delimiter=",")
+            for row in reader:
+                PC_HOST = row[0]
+                PC_PORT = int(row[1])
+                break
+    except Exception as e:
+        print(f"Error with rasp.conf: {e}. Fix the error and restart.")
+        logging.critical(f"Error {e} about rasp.conf. quitting")
+        exit()
+    
+    parser = argparse.ArgumentParser(description="Rasp2Pc RASP Component")
+
+    parser.add_argument("--host", type=str, default=PC_HOST, 
+    help=f"the addess of the PC Component (default={PC_HOST})")
+
+    parser.add_argument("--port", type=int, default=PC_PORT,
+    help=f"the port of the PC Component (default={PC_PORT})")
+
+    args = parser.parse_args()
+    
+    PC_HOST = args.host
+    PC_PORT = args.port
 
     try:
         logging.info("Creating socket...")
