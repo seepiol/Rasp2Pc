@@ -35,6 +35,11 @@ For example, if the ip address of the PC is 192.168.1.20, and the socket is list
 
 By default is used the port 10000, and the PC accept connection for every IP address. See [usage](#usage) to learn how to bind the server on different address/port.
 
+For security reasons, generate a cryptographic key and insert it into the code (see [security](#security)
+
+## Security
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L674) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L261)
+
 ## Usage
 ### PC Component
 ```
@@ -171,6 +176,9 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 - Subprocess - execute commands on pc
 - [pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
 - [PyQt5](https://riverbankcomputing.com/software/pyqt/) - GUI for rasp component
+- amixer - mute the pc
+- [pycrypto](https://pypi.org/project/pycrypto/) - encrypt packets with AES-128 
+
 
 ## Compatibility
 I've tested it on Manjaro Linux.
@@ -194,7 +202,7 @@ Functioning on windows is unlikely.
 - [X] Avoid execution by unauthorized devices
 - [X] Add tooltips on RASP
 - [X] Add popups on rasp component instead of cli messages
-- [ ] Improve communication security [using SSL](https://github.com/msabramo/pyOpenSSL/tree/master/examples/simple)
+- [X] Improve communication security using AES
 - [ ] Implement multilevel communication([see here](https://github.com/seepiol/Rasp2Pc/issues/6))
 - [ ] Resolution-responsive UI on rasp component. [See here](https://www.blog.pythonlibrary.org/2015/08/18/getting-your-screen-resolution-with-python/) and [here](https://stackoverflow.com/questions/43904594/pyqt-adjusting-for-different-screen-resolution)
 - [ ] Improve error handling
