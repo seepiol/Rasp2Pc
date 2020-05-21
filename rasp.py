@@ -25,6 +25,7 @@ import sys
 import logging
 import csv
 import argparse
+from Crypto.Cipher import AES
 
 ###POPUPS FOR ERROR###
 
@@ -362,7 +363,7 @@ class Ui_MainWindow(object):
     def app1(self):
         try:
             logging.info("Sending a1 index")
-            raspsocket.send("a1".encode())
+            encrypt_index("a1")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -375,7 +376,7 @@ class Ui_MainWindow(object):
     def app2(self):
         try:
             logging.info("Sending a2 index")
-            raspsocket.send("a2".encode())
+            encrypt_index("a2")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -388,7 +389,7 @@ class Ui_MainWindow(object):
     def app3(self):
         try:
             logging.info("Sending a3 index")
-            raspsocket.send("a3".encode())
+            encrypt_index("a3")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -401,7 +402,7 @@ class Ui_MainWindow(object):
     def app4(self):
         try:
             logging.info("Sending a4 index")
-            raspsocket.send("a4".encode())
+            encrypt_index("a4")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -414,7 +415,7 @@ class Ui_MainWindow(object):
     def app5(self):
         try:
             logging.info("Sending a5 index")
-            raspsocket.send("a5".encode())
+            encrypt_index("a5")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -427,7 +428,7 @@ class Ui_MainWindow(object):
     def app6(self):
         try:
             logging.info("Sending a6 index")
-            raspsocket.send("a6".encode())
+            encrypt_index("a6")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -440,7 +441,7 @@ class Ui_MainWindow(object):
     def app7(self):
         try:
             logging.info("Sending a7 index")
-            raspsocket.send("a7".encode())
+            encrypt_index("a7")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -453,7 +454,7 @@ class Ui_MainWindow(object):
     def app8(self):
         try:
             logging.info("Sending a8 index")
-            raspsocket.send("a8".encode())
+            encrypt_index("a8")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -466,7 +467,7 @@ class Ui_MainWindow(object):
     def app9(self):
         try:
             logging.info("Sending a9 index")
-            raspsocket.send("a9".encode())
+            encrypt_index("a9")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -479,7 +480,7 @@ class Ui_MainWindow(object):
     def app10(self):
         try:
             logging.info("Sending a10 index")
-            raspsocket.send("a10".encode())
+            encrypt_index("a10")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -493,7 +494,7 @@ class Ui_MainWindow(object):
     def short1(self):
         try:
             logging.info("Sending s1 index")
-            raspsocket.send("s1".encode())
+            encrypt_index("s1")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -506,7 +507,7 @@ class Ui_MainWindow(object):
     def short2(self):
         try:
             logging.info("Sending s2 index")
-            raspsocket.send("s2".encode())
+            encrypt_index("s2")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -519,7 +520,7 @@ class Ui_MainWindow(object):
     def short3(self):
         try:
             logging.info("Sending s3 index")
-            raspsocket.send("s3".encode())
+            encrypt_index("s3")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response```
 
@@ -532,7 +533,7 @@ class Ui_MainWindow(object):
     def short4(self):
         try:
             logging.info("Sending s4 index")
-            raspsocket.send("s4".encode())
+            encrypt_index("s4")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -545,7 +546,7 @@ class Ui_MainWindow(object):
     def short5(self):
         try:
             logging.info("Sending s5 index")
-            raspsocket.send("s5".encode())
+            encrypt_index("s5")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -558,7 +559,7 @@ class Ui_MainWindow(object):
     def short6(self):
         try:
             logging.info("Sending s6 index")
-            raspsocket.send("s6".encode())
+            encrypt_index("s6")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -571,7 +572,7 @@ class Ui_MainWindow(object):
     def short7(self):
         try:
             logging.info("Sending s7 index")
-            raspsocket.send("s7".encode())
+            encrypt_index("s7")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -584,7 +585,7 @@ class Ui_MainWindow(object):
     def short8(self):
         try:
             logging.info("Sending s8 index")
-            raspsocket.send("s8".encode())
+            encrypt_index("s8")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -597,7 +598,7 @@ class Ui_MainWindow(object):
     def short9(self):
         try:
             logging.info("Sending s9 index")
-            raspsocket.send("s9".encode())
+            encrypt_index("s9")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -610,7 +611,7 @@ class Ui_MainWindow(object):
     def short10(self):
         try:
             logging.info("Sending s10 index")
-            raspsocket.send("s10".encode())
+            encrypt_index("s10")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -623,7 +624,7 @@ class Ui_MainWindow(object):
     def sysf1(self):
         try:
             logging.info("Sending sf1 index")
-            raspsocket.send("sf1".encode())
+            encrypt_index("sf1")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -636,7 +637,7 @@ class Ui_MainWindow(object):
     def sysf2(self):
         try:
             logging.info("Sending sf2 index")
-            raspsocket.send("sf2".encode())
+            encrypt_index("sf2")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -649,7 +650,7 @@ class Ui_MainWindow(object):
     def sysf3(self):
         try:
             logging.info("Sending sf3 index")
-            raspsocket.send("sf3".encode())
+            encrypt_index("sf3")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -659,9 +660,19 @@ class Ui_MainWindow(object):
             raspsocket.close()
             exit()
 
+def encrypt_index(index):
+    logging.info("Encrypting the index")
+    index = index + (16-len(index)) * " "   # make the index 16 bytes
+    cipherindex = crytool.encrypt(index.encode("ascii"))
+    logging.info("Encrypting the index")
+    raspsocket.send(cipherindex)
+
 
 if __name__ == "__main__":
-    
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")  
+
     # Setting up the logger
     logging.basicConfig(
         filename="rasp.log",

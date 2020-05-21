@@ -1,19 +1,15 @@
 """
     Rasp2PC - PC component
     A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
-
     Copyright (C) 2020 seepiol
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
@@ -23,6 +19,7 @@ import subprocess
 from pynput.keyboard import Key, Controller
 import logging
 import argparse
+from Crypto.Cipher import AES
 
 HOST = ""  # Address
 PORT = 10000  # Port
@@ -252,8 +249,17 @@ def short10():
     logging.info("Blank")
     return "completed"
 
+def decrypt_index(crypted_index):
+    index = crytool.decrypt(crypted_index).decode("ascii")
+    index = index.replace(" ", "")
+    return index
+
 
 if __name__ == "__main__":
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")  
+
     # Setting up the logger
     logging.basicConfig(
         filename="pc.log",
@@ -325,9 +331,7 @@ if __name__ == "__main__":
                 try:
 
                     while True:
-                        data = conn.recv(16).decode(
-                            "ascii"
-                        )  # Recive and decode what-to-do index
+                        data = decrypt_index(conn.recv(1024))
                         logging.info(f"{client_address} has requested {data}")
                         # Execute the index corresponding program or shortcut
                         if data == "a1":
