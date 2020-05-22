@@ -24,6 +24,7 @@ from Crypto.Cipher import AES
 HOST = ""  # Address
 PORT = 10000  # Port
 
+
 def sysf1():
     """
     Reboot the system
@@ -31,6 +32,7 @@ def sysf1():
     logging.info("rebooting system")
     subprocess.Popen(["reboot"], shell=False)
     return "completed"
+
 
 def sysf2():
     """
@@ -40,6 +42,7 @@ def sysf2():
     subprocess.Popen(["loginctl", "lock-session"], shell=False)
     return "completed"
 
+
 def sysf3():
     """
     Mute the audio
@@ -47,6 +50,7 @@ def sysf3():
     logging.info("Turning volume to 0%")
     subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
     return "completed"
+
 
 def app1():
     """
@@ -249,6 +253,7 @@ def short10():
     logging.info("Blank")
     return "completed"
 
+
 def decrypt_index(crypted_index):
     """
     Decrypt the index recived from rasp
@@ -261,7 +266,7 @@ def decrypt_index(crypted_index):
 
     """
     logging.info("Decrypting the index")
-    index = crytool.decrypt(crypted_index).decode("ascii")  # Decrypting 
+    index = crytool.decrypt(crypted_index).decode("ascii")  # Decrypting
     index = index.replace(" ", "")  # Replacing whitespaces with blankstring
     return index
 
@@ -269,7 +274,7 @@ def decrypt_index(crypted_index):
 if __name__ == "__main__":
     # AES encrypter / decrypter
     #                 A casual 128bit key                A casual 128bit Initialization vector
-    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")  
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
 
     # Setting up the logger
     logging.basicConfig(
@@ -284,20 +289,30 @@ if __name__ == "__main__":
     # Cli arguments parser
     parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
 
-    parser.add_argument("--host", type=str, default="", 
-    help="the addess the where socket server will be listening (default=everyone)")
+    parser.add_argument(
+        "--host",
+        type=str,
+        default="",
+        help="the addess the where socket server will be listening (default=everyone)",
+    )
 
-    parser.add_argument("--port", type=int, default=10000,
-    help="the port where the server will be listening (default=10000)")
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=10000,
+        help="the port where the server will be listening (default=10000)",
+    )
 
     args = parser.parse_args()
-    
+
     HOST = args.host
     PORT = args.port
-    
+
     # If a privileged port is selected
     if PORT < 1024:
-        print("WARNING: You have selected a privileged port. Please choose a port above 1024")
+        print(
+            "WARNING: You have selected a privileged port. Please choose a port above 1024"
+        )
         logging.critical("Selected a privileged port")
 
     logging.info("PC Component started")
@@ -318,19 +333,23 @@ if __name__ == "__main__":
                     conn,
                     client_address,
                 ) = sock.accept()  # Accepting connection from {address}
-                
+
                 # Connection Control
 
                 print(f"{client_address} is trying to connect to this pc. ")
 
                 msg = conn.recv(1024).decode("ascii")
-                if msg != "rasp2pc_rasp_component":  # Verify if the client is a """legit""" rasp component
+                if (
+                    msg != "rasp2pc_rasp_component"
+                ):  # Verify if the client is a """legit""" rasp component
                     print(f"{client_address} doesn't seems to be a RASP component")
                 else:
                     print(f"{client_address} seems to be a RASP component")
 
                 # Accept or deny the connection
-                accept_connection = input("Do you want to accept this connection? [Y/n]: ")
+                accept_connection = input(
+                    "Do you want to accept this connection? [Y/n]: "
+                )
                 if accept_connection.lower() in ["y", "yes", ""]:
                     print(f"Connection with {client_address} accepted")
                     logging.info(f"Connection with {client_address} accepted")
@@ -402,7 +421,7 @@ if __name__ == "__main__":
 
                         esit = "ok"
 
-                        conn.send(esit.encode())    # sending a "fake" confirm message
+                        conn.send(esit.encode())  # sending a "fake" confirm message
 
                 except IOError:
                     logging.info("RASP Disconnected")

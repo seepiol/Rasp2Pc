@@ -39,6 +39,7 @@ def connection_interrupted():
     window.setStandardButtons(QMessageBox.Ok)
     window.exec()
 
+
 # Connection denied popup
 def connection_denied(socket, host):
     app = QApplication(sys.argv)
@@ -51,6 +52,7 @@ def connection_denied(socket, host):
     socket.close()
     exit()
 
+
 def not_reachable(socket, host):
     app = QApplication(sys.argv)
     window = QMessageBox()
@@ -62,16 +64,20 @@ def not_reachable(socket, host):
     socket.close()
     exit()
 
+
 def not_found(socket, host):
     app = QApplication(sys.argv)
     window = QMessageBox()
     window.setIcon(QMessageBox.Critical)
     window.setWindowTitle("Not found")
-    window.setText(f"PC not found. check the ip address and if the pc component is running.")
+    window.setText(
+        f"PC not found. check the ip address and if the pc component is running."
+    )
     window.setStandardButtons(QMessageBox.Ok)
     window.exec()
     socket.close()
     exit()
+
 
 def pc_turned_off(socket):
     socket.close()
@@ -79,7 +85,9 @@ def pc_turned_off(socket):
     window = QMessageBox()
     window.setIcon(QMessageBox.Critical)
     window.setWindowTitle("PC Turned off")
-    window.setText(f"PC is turning off. Closing the socket and application for prevent errors")
+    window.setText(
+        f"PC is turning off. Closing the socket and application for prevent errors"
+    )
     window.setStandardButtons(QMessageBox.Ok)
     window.exec()
     exit()
@@ -112,7 +120,7 @@ class Ui_MainWindow(object):
         self.pc_info_label.setText("")
         self.pc_info_label.setObjectName("pc_info_label")
 
-        # System Actions 
+        # System Actions
         self.reboot_icon = QtGui.QIcon()
         self.reboot_icon.addPixmap(QtGui.QPixmap("icons/reboot.png"))
         self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
@@ -307,7 +315,7 @@ class Ui_MainWindow(object):
 
         self.app4_button.setText(_translate("MainWindow", "Dolphin"))  # app4
         self.app4_button.setToolTip("app4")
-        
+
         self.app5_button.setText(_translate("MainWindow", "VSCode"))  # app5
         self.app5_button.setToolTip("app5")
 
@@ -325,7 +333,6 @@ class Ui_MainWindow(object):
 
         self.app10_button.setText(_translate("MainWindow", "Screen REC"))  # app10
         self.app10_button.setToolTip("app10")
-
 
         self.short1_button.setText(_translate("MainWindow", "Undo"))  # short1
         self.short1_button.setToolTip("Undo - Ctrl+Z")
@@ -354,7 +361,6 @@ class Ui_MainWindow(object):
         self.short9_button.setText(_translate("MainWindow", "Blank"))  # short9
 
         self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10
-
 
     # App launch functions
 
@@ -620,7 +626,7 @@ class Ui_MainWindow(object):
             connection_interrupted()
             raspsocket.close()
             exit()
-    
+
     def sysf1(self):
         try:
             logging.info("Selected system function 1")
@@ -633,7 +639,7 @@ class Ui_MainWindow(object):
             connection_interrupted()
             raspsocket.close()
             exit()
-    
+
     def sysf2(self):
         try:
             logging.info("Selected system function 2")
@@ -660,6 +666,7 @@ class Ui_MainWindow(object):
             raspsocket.close()
             exit()
 
+
 def encrypt_index(index):
     """
     encrypt the index, add whitespace to make the string >= 16 bytes and send the index to PC.
@@ -669,10 +676,10 @@ def encrypt_index(index):
 
     """
     logging.info(f"Encrypting the index {index}")
-    index = index + (16-len(index)) * " "   # make the index 16 bytes
-    cipherindex = crytool.encrypt(index.encode("ascii"))    # encrypting the index
+    index = index + (16 - len(index)) * " "  # make the index 16 bytes
+    cipherindex = crytool.encrypt(index.encode("ascii"))  # encrypting the index
     logging.info("Index encrypted. Sending to PC")
-    raspsocket.send(cipherindex)    # send the index
+    raspsocket.send(cipherindex)  # send the index
     logging.info("Index sent")
 
 
@@ -690,9 +697,7 @@ if __name__ == "__main__":
     logging.info("Creating AES --crypter object")
     # AES encrypter / decrypter
     #                 A casual 128bit key                A casual 128bit Initialization vector
-    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")  
-
-    
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
 
     # Loading configuration file
     try:
@@ -706,20 +711,28 @@ if __name__ == "__main__":
                 break
 
             logging.info(f"setting pc host to {PC_HOST} and pc port to {PC_PORT}")
-            
+
     except Exception as e:
         print(f"Error with rasp.conf: {e}. Fix the error and restart.")
         logging.critical(f"Error {e} about rasp.conf. quitting")
         exit()
-    
+
     # Cli arguments parser
     parser = argparse.ArgumentParser(description="Rasp2Pc RASP Component")
 
-    parser.add_argument("--host", type=str, default=PC_HOST, 
-    help=f"the addess of the PC Component (default={PC_HOST})")
+    parser.add_argument(
+        "--host",
+        type=str,
+        default=PC_HOST,
+        help=f"the addess of the PC Component (default={PC_HOST})",
+    )
 
-    parser.add_argument("--port", type=int, default=PC_PORT,
-    help=f"the port of the PC Component (default={PC_PORT})")
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=PC_PORT,
+        help=f"the port of the PC Component (default={PC_PORT})",
+    )
 
     logging.info("Getting cli args")
     args = parser.parse_args()
@@ -735,7 +748,9 @@ if __name__ == "__main__":
             logging.info(f"Connecting to {PC_HOST}:{PC_PORT}...")
             raspsocket.connect((PC_HOST, PC_PORT))  # Connect to the PC
             logging.info("sending raspcomponent identifier")
-            raspsocket.send("rasp2pc_rasp_component".encode())  # Declare to PC that this is a """legit""" rasp component
+            raspsocket.send(
+                "rasp2pc_rasp_component".encode()
+            )  # Declare to PC that this is a """legit""" rasp component
             connection = raspsocket.recv(1024).decode("ascii")
             if connection == "ConnectionAccepted":
                 logging.info("Connection accepted")
