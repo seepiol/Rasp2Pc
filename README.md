@@ -38,7 +38,7 @@ By default is used the port 10000, and the PC accept connection for every IP add
 For security reasons, generate a cryptographic key and insert it into the code (see [security](#security)
 
 ## Security
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L674) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L261)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L693) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L272)
 
 ## Usage
 ### PC Component
