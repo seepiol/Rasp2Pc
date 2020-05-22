@@ -250,8 +250,19 @@ def short10():
     return "completed"
 
 def decrypt_index(crypted_index):
-    index = crytool.decrypt(crypted_index).decode("ascii")
-    index = index.replace(" ", "")
+    """
+    Decrypt the index recived from rasp
+
+    Args:
+        crypted index (bytes): the aes128 encryptrd byte string
+    
+    Returns:
+        index (string): the decrypted index
+
+    """
+    logging.info("Decrypting the index")
+    index = crytool.decrypt(crypted_index).decode("ascii")  # Decrypting 
+    index = index.replace(" ", "")  # Replacing whitespaces with blankstring
     return index
 
 
@@ -270,6 +281,7 @@ if __name__ == "__main__":
 
     keyboard = Controller()  # Create a virtual keyboard
 
+    # Cli arguments parser
     parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
 
     parser.add_argument("--host", type=str, default="", 
@@ -283,6 +295,7 @@ if __name__ == "__main__":
     HOST = args.host
     PORT = args.port
     
+    # If a privileged port is selected
     if PORT < 1024:
         print("WARNING: You have selected a privileged port. Please choose a port above 1024")
         logging.critical("Selected a privileged port")
@@ -316,6 +329,7 @@ if __name__ == "__main__":
                 else:
                     print(f"{client_address} seems to be a RASP component")
 
+                # Accept or deny the connection
                 accept_connection = input("Do you want to accept this connection? [Y/n]: ")
                 if accept_connection.lower() in ["y", "yes", ""]:
                     print(f"Connection with {client_address} accepted")
@@ -331,8 +345,11 @@ if __name__ == "__main__":
                 try:
 
                     while True:
+                        logging.info("Reciving the index")
+                        # Reciving the encrypted index directly as an argument for decrypt_index()
                         data = decrypt_index(conn.recv(1024))
                         logging.info(f"{client_address} has requested {data}")
+
                         # Execute the index corresponding program or shortcut
                         if data == "a1":
                             app1()
@@ -385,7 +402,7 @@ if __name__ == "__main__":
 
                         esit = "ok"
 
-                        conn.send(esit.encode())
+                        conn.send(esit.encode())    # sending a "fake" confirm message
 
                 except IOError:
                     logging.info("RASP Disconnected")

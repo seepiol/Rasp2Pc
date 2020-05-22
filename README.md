@@ -195,7 +195,6 @@ Functioning on windows is unlikely.
 - [X] Add logging on rasp
 - [X] Add more shortcuts
 - [X] Add logging on pc
-- [X] Comment the code
 - [X] Implement a better way to choose the pc address on rasp (using rasp.conf file)
 - [X] Add CLI arguments on PC component (host and port)
 - [X] Add possibility to deny connection on PC and verify that is a RASP component
@@ -203,9 +202,10 @@ Functioning on windows is unlikely.
 - [X] Add tooltips on RASP
 - [X] Add popups on rasp component instead of cli messages
 - [X] Improve communication security using AES
+- [X] Comment the code
+- [ ] Improve error handling
 - [ ] Implement multilevel communication([see here](https://github.com/seepiol/Rasp2Pc/issues/6))
 - [ ] Resolution-responsive UI on rasp component. [See here](https://www.blog.pythonlibrary.org/2015/08/18/getting-your-screen-resolution-with-python/) and [here](https://stackoverflow.com/questions/43904594/pyqt-adjusting-for-different-screen-resolution)
-- [ ] Improve error handling
 - [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [ ] Android component
 - [ ] Windows support
