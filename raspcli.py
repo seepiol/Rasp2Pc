@@ -27,7 +27,6 @@ def encrypt_index(index):
 
     """
     index = index + (16 - len(index)) * " "  # make the index 16 bytes
-    print(len(index))
     cipherindex = crytool.encrypt(index.encode("ascii"))  # encrypting the index
     raspsocket.send(cipherindex)  # send the index
     return cipherindex
@@ -107,9 +106,7 @@ sf3) Mute
             while choice not in ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10", "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","sf1","sf2","sf3"]:    # Input validation
                 choice = input("what to do? :")
             try:
-                print(choice)
-                print(choice=="a1")
-                print(encrypt_index(choice))
+                encrypt_index(choice)
                 response = raspsocket.recv(1024).decode("ascii")    # Recive the response
             except BrokenPipeError:
                 print("Connection closed or denied by PC.  Quitting.")
