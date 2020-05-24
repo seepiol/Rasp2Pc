@@ -8,7 +8,9 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
   - [Usage](#usage)
     - [PC Component](#pc-component)
     - [RASP Component](#rasp-component)
+    - [RASPCLI Component](#raspcli-component)
   - [Default Shortcuts](#default-shortcuts)
+    - [System Fuctions](#system-functions)
     - [Programs / Commands](#programs--commands)
     - [Keyboard shortcuts](#keyboard-shortcuts)
   - [Technologies](#technologies)
@@ -107,6 +109,14 @@ $ python rasp.py --host 192.168.1.32 --port 3042
 ```
 ELI5, the cli arguments will temporarily overwrite `rasp.conf` configuration file
 
+### RaspCli Component
+This component is the equal to RASP but without GUI.
+It's made for non-GUI systems, For example TERMUX on android phones.
+
+type:
+```
+python raspcli.py --host <pcipaddress> 
+```
 ## Default Shortcuts
 
 ![Rasp Ui](https://user-images.githubusercontent.com/60071372/82150926-18df7e00-985a-11ea-9746-9316ddae0272.png)

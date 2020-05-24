@@ -77,31 +77,31 @@ if __name__ == "__main__":
 
         while True:
             print("""
-a1)
-a2)
-a3)
-a4)
-a5)
-a6)
-a7)
-a8)
-a9)
-a10)
+a1) Firefox
+a2) Terminal
+a3) Virtualbox
+a4) File Manager
+a5) VSCodium
+a6) App Store
+a7) Telegram
+a8) Libreoffice
+a9) Thunderbird
+a10) Record Screen
 
-s1)
-s2)
-s3)
-s4)
-s5)
-s6)
-s7)
-s8)
-s9)
-s10)
+s1) Undo
+s2) Copy
+s3) Cut
+s4) Paste
+s5) Mic
+s6) Webcam
+s7) Fullscreen
+s8) Screenshot
+s9) Blank
+s10) Blank
 
-sf1)
-sf2)
-sf3)
+sf1) Reboot
+sf2) Lock
+sf3) Mute
             """)
             choice = input("What to do? :")
             while choice not in ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10", "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","sf1","sf2","sf3"]:    # Input validation
