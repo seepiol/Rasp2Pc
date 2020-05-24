@@ -1,6 +1,4 @@
 '''
-    WARNING: THIS ISN'T READY YET
-    
     Rasp2PC - RASP CLI Component
     A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
     Copyright (C) 2020 seepiol
@@ -18,16 +16,27 @@
 
 import socket
 import argparse
-import logging
+from Crypto.Cipher import AES
+
+def encrypt_index(index):
+    """
+    encrypt the index, add whitespace to make the string >= 16 bytes and send the index to PC.
+
+    Args:
+        index (string): the index to encrypt
+
+    """
+    index = index + (16 - len(index)) * " "  # make the index 16 bytes
+    print(len(index))
+    cipherindex = crytool.encrypt(index.encode("ascii"))  # encrypting the index
+    raspsocket.send(cipherindex)  # send the index
+    return cipherindex
 
 if __name__ == "__main__":
 
-    logging.basicConfig(
-        filename="raspcli.log",
-        filemode="w",
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        level=logging.INFO,
-    )
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
 
     parser = argparse.ArgumentParser(description="Rasp2Pc RASP Component")
 
@@ -45,7 +54,6 @@ if __name__ == "__main__":
         help=f"the port of the PC Component (default=10000)",
     )
 
-    logging.info("Getting cli args")
     args = parser.parse_args()
     PC_HOST = args.host
     PC_PORT = args.port
@@ -53,6 +61,19 @@ if __name__ == "__main__":
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
         # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)
         raspsocket.connect((PC_HOST, PC_PORT))    # Connect to the PC 
+        print(f"Connected to {PC_HOST}:{PC_PORT}")
+
+        raspsocket.send(
+            "rasp2pc_rasp_component".encode()
+        )  # Declare to PC that this is a """legit""" rasp component
+        print("waiting for PC to accept the connection...")
+        connection = raspsocket.recv(1024).decode("ascii")
+        if connection == "ConnectionAccepted":
+            print("Connection Accepted")
+        else:
+            print("Connection Denied")
+            raspsocket.close()
+            exit()
 
         while True:
             print("""
@@ -78,14 +99,20 @@ s8)
 s9)
 s10)
 
-sysf1)
-sysf2)
-sysf3)
+sf1)
+sf2)
+sf3)
             """)
             choice = input("What to do? :")
-            while choice not in ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10", "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","sysf1","sysf2","sysf3"]:    # Input validation
+            while choice not in ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10", "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","sf1","sf2","sf3"]:    # Input validation
                 choice = input("what to do? :")
-
-            raspsocket.sendall(choice.encode())    # Send the index
-            response = raspsocket.recv(1024).decode("ascii")    # Recive the response
-            print(response)    # Print the response
+            try:
+                print(choice)
+                print(choice=="a1")
+                print(encrypt_index(choice))
+                response = raspsocket.recv(1024).decode("ascii")    # Recive the response
+            except BrokenPipeError:
+                print("Connection closed or denied by PC.  Quitting.")
+                raspsocket.close()
+                exit()
+            
