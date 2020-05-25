@@ -40,7 +40,7 @@ The RASP (or raspcli) component send an encrypted index to the PC, which corresp
 **[RASPCLI Component](https://user-images.githubusercontent.com/60071372/82824929-8880e900-9eaa-11ea-8521-fa99afb0eb06.png)**
 
 ## Security
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L700), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#40) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L277)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L700), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#40) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L291)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 

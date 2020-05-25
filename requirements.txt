@@ -2,3 +2,4 @@ pynput==1.6.8
 PyQt5==5.14.2
 PyQt5-sip==12.7.2
 pycryptodome==3.9.7
+notify2==0.3.1

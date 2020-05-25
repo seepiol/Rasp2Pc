@@ -14,12 +14,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+import time
 import socket
 import subprocess
 from pynput.keyboard import Key, Controller
 import logging
 import argparse
 from Crypto.Cipher import AES
+import notify2
 
 HOST = ""  # Address
 PORT = 10000  # Port
@@ -29,9 +31,9 @@ def sysf1():
     """
     Reboot the system
     """
-    logging.info("rebooting system")
-    subprocess.Popen(["reboot"], shell=False)
-    return "completed"
+    logging.info("rebooting system")    # Logging
+    subprocess.Popen(["reboot"], shell=False)   # Run the command
+    return "Reboot"  # action name
 
 
 def sysf2():
@@ -40,7 +42,7 @@ def sysf2():
     """
     logging.info("Locking the session")
     subprocess.Popen(["loginctl", "lock-session"], shell=False)
-    return "completed"
+    return "lock"
 
 
 def sysf3():
@@ -49,7 +51,7 @@ def sysf3():
     """
     logging.info("Turning volume to 0%")
     subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
-    return "completed"
+    return "mute"
 
 
 def app1():
@@ -58,7 +60,7 @@ def app1():
     """
     logging.info("Launching firefox")
     subprocess.Popen("firefox", shell=False)
-    return "completed"
+    return "firefox"
 
 
 def app2():
@@ -67,7 +69,7 @@ def app2():
     """
     logging.info("Launching konsole")
     subprocess.Popen("konsole", shell=False)
-    return "completed"
+    return "terminal"
 
 
 def app3():
@@ -76,7 +78,7 @@ def app3():
     """
     logging.info("launching virtualbox")
     subprocess.Popen("virtualbox", shell=False)
-    return "completed"
+    return "virtualbox"
 
 
 def app4():
@@ -85,7 +87,7 @@ def app4():
     """
     logging.info("launching dolphin")
     subprocess.Popen("dolphin", shell=False)
-    return "completed"
+    return "dolphin"
 
 
 def app5():
@@ -94,7 +96,7 @@ def app5():
     """
     logging.info("launching vscodium")
     subprocess.Popen("vscodium", shell=False)
-    return "completed"
+    return "VSCodium"
 
 
 def app6():
@@ -103,7 +105,7 @@ def app6():
     """
     logging.info("launching pamac manager")
     subprocess.Popen("pamac-manager", shell=False)
-    return "completed"
+    return "Store"
 
 
 def app7():
@@ -112,7 +114,7 @@ def app7():
     """
     logging.info("launching telegram")
     subprocess.Popen("telegram-desktop", shell=False)
-    return "completed"
+    return "telegram"
 
 
 def app8():
@@ -121,7 +123,7 @@ def app8():
     """
     logging.info("launching libreoffice")
     subprocess.Popen("libreoffice", shell=False)
-    return "completed"
+    return "libreoffice"
 
 
 def app9():
@@ -130,7 +132,7 @@ def app9():
     """
     logging.info("launching thunderbird")
     subprocess.Popen("thunderbird", shell=False)
-    return "completed"
+    return "thunderbird"
 
 
 def app10():
@@ -139,7 +141,7 @@ def app10():
     """
     logging.info("recording screen")
     subprocess.Popen(["simplescreenrecorder", "--start-recording"], shell=False)
-    return "completed"
+    return "screen recording"
 
 
 def short1():
@@ -152,7 +154,7 @@ def short1():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("z")
         keyboard.release("z")
-    return "completed"
+    return "undo"
 
 
 def short2():
@@ -165,7 +167,7 @@ def short2():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("c")
         keyboard.release("c")
-    return "completed"
+    return "copy"
 
 
 def short3():
@@ -178,7 +180,7 @@ def short3():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("x")
         keyboard.release("x")
-    return "completed"
+    return "cut"
 
 
 def short4():
@@ -191,7 +193,7 @@ def short4():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("v")
         keyboard.release("v")
-    return "completed"
+    return "paste"
 
 
 def short5():
@@ -204,7 +206,7 @@ def short5():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("d")
         keyboard.release("d")
-    return "completed"
+    return "webcam"
 
 
 def short6():
@@ -217,7 +219,7 @@ def short6():
     with keyboard.pressed(Key.ctrl):
         keyboard.press("e")
         keyboard.release("e")
-    return "completed"
+    return "microphone"
 
 
 def short7():
@@ -229,7 +231,7 @@ def short7():
     logging.info("F11")
     keyboard.press(Key.f11)
     keyboard.release(Key.f11)
-    return "completed"
+    return "fullscreen"
 
 
 def short8():
@@ -241,17 +243,17 @@ def short8():
     logging.info("PRT SC")
     keyboard.press(Key.print_screen)
     keyboard.release(Key.print_screen)
-    return "completed"
+    return "screenshot"
 
 
 def short9():
     logging.info("Blank")
-    return "completed"
+    return 
 
 
 def short10():
     logging.info("Blank")
-    return "completed"
+    return 
 
 
 def decrypt_index(crypted_index):
@@ -259,10 +261,10 @@ def decrypt_index(crypted_index):
     Decrypt the index recived from rasp
 
     Args:
-        crypted index (bytes): the aes128 encryptrd byte string
+        crypted index {bytes}: the aes128 encryptrd byte string
     
     Returns:
-        index (string): the decrypted index
+        index {string}: the decrypted index
 
     """
     logging.info("Decrypting the index")
@@ -270,6 +272,19 @@ def decrypt_index(crypted_index):
     index = index.replace(" ", "")  # Replacing whitespaces with blankstring
     return index
 
+def send_notification(title, message):
+    # Avoid a weird bug with fstrings
+    #title=title
+    #message=message
+    #n = notify2.Notification(title,
+    #                        message
+    #                        )
+    #time.sleep(1)
+    #try:
+    #    n.show()
+    #except: 
+    #    pass
+    pass
 
 if __name__ == "__main__":
     # AES encrypter / decrypter
@@ -286,6 +301,8 @@ if __name__ == "__main__":
 
     keyboard = Controller()  # Create a virtual keyboard
 
+    # Notifications settings
+    notify2.init("RASP2PC")
     # Cli arguments parser
     parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
 
@@ -315,6 +332,7 @@ if __name__ == "__main__":
         )
         logging.critical("Selected a privileged port")
 
+
     logging.info("PC Component started")
     try:
         logging.info("Creating socket object")
@@ -322,6 +340,10 @@ if __name__ == "__main__":
             socket.AF_INET, socket.SOCK_STREAM
         ) as sock:  # creating socket object
             sock.bind((HOST, PORT))  # binding socket on {host:port}
+
+            # Start notification
+            send_notification("Start","Pc component is running.")
+
             print(f"Socket binded on {HOST}:{PORT}")
             logging.info(f"binding socket on {HOST}:{PORT}")
 
@@ -334,8 +356,10 @@ if __name__ == "__main__":
                     client_address,
                 ) = sock.accept()  # Accepting connection from {address}
 
-                # Connection Control
+                # connection notification
+                send_notification("Connection", f"{client_address[0]}:{str(client_address[1])} Is trying to connect to this pc")
 
+                # Connection Control
                 print(f"{client_address} is trying to connect to this pc. ")
 
                 msg = conn.recv(1024).decode("ascii")
@@ -362,7 +386,8 @@ if __name__ == "__main__":
                     conn.close()
 
                 try:
-
+                    
+                    action_title=None
                     while True:
                         logging.info("Reciving the index")
                         # Reciving the encrypted index directly as an argument for decrypt_index()
@@ -371,53 +396,57 @@ if __name__ == "__main__":
 
                         # Execute the index corresponding program or shortcut
                         if data == "a1":
-                            app1()
+                            action_title = app1()
                         elif data == "a2":
-                            app2()
+                            action_title = app2()
                         elif data == "a3":
-                            app3()
+                            action_title = app3()
                         elif data == "a4":
-                            app4()
+                            action_title = app4()
                         elif data == "a5":
-                            app5()
+                            action_title = app5()
                         elif data == "a6":
-                            app6()
+                            action_title = app6()
                         elif data == "a7":
-                            app7()
+                            action_title = app7()
                         elif data == "a8":
-                            app8()
+                            action_title = app8()
                         elif data == "a9":
-                            app9()
+                            action_title = app9()
                         elif data == "a10":
-                            app10()
+                            action_title = app10()
 
                         elif data == "s1":
-                            short1()
+                            action_title = short1()
                         elif data == "s2":
-                            short2()
+                            action_title = short2()
                         elif data == "s3":
-                            short3()
+                            action_title = short3()
                         elif data == "s4":
-                            short4()
+                            action_title = short4()
                         elif data == "s5":
-                            short5()
+                            action_title = short5()
                         elif data == "s6":
-                            short6()
+                            action_title = short6()
                         elif data == "s7":
-                            short7()
+                            action_title = short7()
                         elif data == "s8":
-                            short8()
+                            action_title = short8()
                         elif data == "s9":
-                            short9()
+                            action_title = short9()
                         elif data == "s10":
-                            short10()
+                            action_title = short10()
 
                         elif data == "sf1":
-                            sysf1()
+                            action_title = sysf1()
                         elif data == "sf2":
-                            sysf2()
+                            action_title = sysf2()
                         elif data == "sf3":
-                            sysf3()
+                            action_title = sysf3()
+                        
+                        if action_title != None:
+                            # Notification
+                            send_notification("Rasp2Pc Action", f"Action {action_title}")
 
                         esit = "ok"
 
@@ -432,8 +461,9 @@ if __name__ == "__main__":
         sock.close()
         exit()
 
-    except IOError:
+    except IOError as E:
         logging.info("RASP disconnected")
+        print(E)
         pass
 
     except Exception as e:
