@@ -22,11 +22,27 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 
 
 ## How it Works
-The project is divided in the PC component (that acts as a socket server) and the RASP component (is made for raspberry but can be used on other devices).
-
-The most complex part is on the pc. The RASP component send just an index to the PC, which corresponds to a certain function. The PC get the index, run the command and eventually return the result or the status of the command.
-
 ![Rasp2Pc functioning](https://user-images.githubusercontent.com/60071372/81484790-cd6d1480-9248-11ea-8d92-9ec84f5cc686.png)
+
+The project is composed of 3 parts, called "components".
+
+* **PC Component**, which runs on the main computer (with linux operating system) and which consists of a socket server
+* **RASP Component**, which is made to run on a [Raspberry Pi](https://www.raspberrypi.org/) with a touchscreen and it's the client
+* **RASPCLI Component**, an alternative to RASP components, for devices that do not have a graphical environment (for example **[Termux](https://termux.com/) on android**)
+
+The RASP (or raspcli) component send an encrypted index to the PC, which corresponds to a certain function. The PC gets the index, run the command and eventually returns the result or the status of the command.
+
+## Screenshots
+**[PC Component](https://user-images.githubusercontent.com/60071372/82824947-90408d80-9eaa-11ea-9457-c172377f6858.png)**
+
+**[RASP Component](https://user-images.githubusercontent.com/60071372/82824949-90d92400-9eaa-11ea-8d4e-b58012138afc.png)**
+
+**[RASPCLI Component](https://user-images.githubusercontent.com/60071372/82824929-8880e900-9eaa-11ea-8521-fa99afb0eb06.png)**
+
+## Security
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L700), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#40) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L277)
+
+The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
 ## Configuration
 You have to add the ip address of the PC on the rasp.conf configuration file.
@@ -39,10 +55,6 @@ By default is used the port 10000, and the PC accept connection for every IP add
 
 For security reasons, generate a cryptographic key and insert it into the code (see [security](#security)
 
-## Security
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L700) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L277)
-
-I have replaced PyCrypto with [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 ## Usage
 ### PC Component
 ```
