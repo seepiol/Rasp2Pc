@@ -204,7 +204,14 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 
 
 ## Compatibility
-I've tested it on Manjaro Linux.
+I've tested components on these machines/os:
+| Component | OS | Device |
+|:----------|:----:|:-------:|
+| PC | Manjaro GNU/Linux (Plasma) | Laptop |
+| RASP | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ |
+| RASP | Manjaro GNU/Linux (Plasma) | Laptop
+| RASPCLI | Android 10 (Termux) | Google Pixel 3a |
+
 Feel free to test it on your machine and open an issue to let me know if it works.
 
 Should work on most linux distributions.
