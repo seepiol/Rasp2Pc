@@ -1,13 +1,15 @@
 # RASP2PC
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
+![demo](https://user-images.githubusercontent.com/60071372/83892755-62cbcd80-a74f-11ea-87ab-04bca522ce64.gif)
+
 ## Index
-  - [Index](#index)
   - [How it Works](#how-it-works)
   - [Configuration](#configuration)
   - [Usage](#usage)
     - [PC Component](#pc-component)
     - [RASP Component](#rasp-component)
+    - [RASPBIG Component](#raspbig-component)
     - [RASPCLI Component](#raspcli-component)
   - [Default Shortcuts](#default-shortcuts)
     - [System Fuctions](#system-functions)
@@ -22,6 +24,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 
 
 ## How it Works
+
 ![Rasp2Pc functioning](https://user-images.githubusercontent.com/60071372/81484790-cd6d1480-9248-11ea-8d92-9ec84f5cc686.png)
 
 The project is composed of 3 parts, called "components".
@@ -121,6 +124,9 @@ $ python rasp.py --host 192.168.1.32 --port 3042
 ```
 ELI5, the cli arguments will temporarily overwrite `rasp.conf` configuration file
 
+### RaspBig Component
+This is equal to the RASP Component, but the GUI is bigger and T H I C C, made for high resolution monitor (800x420)
+
 ### RaspCli Component
 This component is the equal to RASP but without GUI.
 It's made for non-GUI systems, For example TERMUX on android phones.
@@ -208,8 +214,8 @@ I've tested components on these machines/os:
 | Component | OS | Device |
 |:----------|:----:|:-------:|
 | PC | Manjaro GNU/Linux (Plasma) | Laptop |
-| RASP | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ |
-| RASP | Manjaro GNU/Linux (Plasma) | Laptop
+| RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ - 800x480 5 inch touchscreen monitor|
+| RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
 | RASPCLI | Android 10 (Termux) | Google Pixel 3a |
 
 Feel free to test it on your machine and open an issue to let me know if it works.
