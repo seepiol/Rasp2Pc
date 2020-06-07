@@ -21,7 +21,7 @@ from pynput.keyboard import Key, Controller
 import logging
 import argparse
 from Crypto.Cipher import AES
-import notify2
+#import notify2
 
 HOST = ""  # Address
 PORT = 10000  # Port

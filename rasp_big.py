@@ -751,6 +751,7 @@ if __name__ == "__main__":
             raspsocket.send(
                 "rasp2pc_rasp_component".encode()
             )  # Declare to PC that this is a """legit""" rasp component
+            print("Waiting for PC to accept the connection...")
             connection = raspsocket.recv(1024).decode("ascii")
             if connection == "ConnectionAccepted":
                 logging.info("Connection accepted")
