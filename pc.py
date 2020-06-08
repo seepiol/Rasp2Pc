@@ -302,7 +302,7 @@ if __name__ == "__main__":
     keyboard = Controller()  # Create a virtual keyboard
 
     # Notifications settings
-    notify2.init("RASP2PC")
+    #notify2.init("RASP2PC")
     # Cli arguments parser
     parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
 
