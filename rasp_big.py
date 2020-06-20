@@ -102,15 +102,15 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
 
         self.RASPcomponent_label = QtWidgets.QLabel(self.centralwidget)
-        self.RASPcomponent_label.setGeometry(QtCore.QRect(10, 10, 181, 18))
+        self.RASPcomponent_label.setGeometry(QtCore.QRect(540, 10, 181, 18))
         self.RASPcomponent_label.setObjectName("RASPcomponent_label")
 
         self.connected_to_label = QtWidgets.QLabel(self.centralwidget)
-        self.connected_to_label.setGeometry(QtCore.QRect(10, 30, 101, 18))
+        self.connected_to_label.setGeometry(QtCore.QRect(540, 30, 101, 18))
         self.connected_to_label.setObjectName("connected_to_label")
 
         self.pc_info_label = QtWidgets.QLabel(self.centralwidget)
-        self.pc_info_label.setGeometry(QtCore.QRect(110, 30, 181, 18))
+        self.pc_info_label.setGeometry(QtCore.QRect(640, 30, 181, 18))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -124,7 +124,7 @@ class Ui_MainWindow(object):
         self.reboot_icon = QtGui.QIcon()
         self.reboot_icon.addPixmap(QtGui.QPixmap("icons/reboot.png"))
         self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
-        self.reboot_button.setGeometry(QtCore.QRect(290, 10, 55, 55))
+        self.reboot_button.setGeometry(QtCore.QRect(540, 60, 221, 55))
         self.reboot_button.setIcon(self.reboot_icon)
         self.reboot_button.setToolTip("Reboot the PC")
         self.reboot_button.setObjectName("reboot_button")
@@ -132,7 +132,7 @@ class Ui_MainWindow(object):
         self.lock_icon = QtGui.QIcon()
         self.lock_icon.addPixmap(QtGui.QPixmap("icons/lock.png"))
         self.lock_button = QtWidgets.QPushButton(self.centralwidget)
-        self.lock_button.setGeometry(QtCore.QRect(370, 10, 55, 55))
+        self.lock_button.setGeometry(QtCore.QRect(540, 140, 221, 55))
         self.lock_button.setIcon(self.lock_icon)
         self.lock_button.setToolTip("Lock the session")
         self.lock_button.setObjectName("lock_button")
@@ -140,14 +140,14 @@ class Ui_MainWindow(object):
         self.mute_icon = QtGui.QIcon()
         self.mute_icon.addPixmap(QtGui.QPixmap("icons/mute.png"))
         self.mute_button = QtWidgets.QPushButton(self.centralwidget)
-        self.mute_button.setGeometry(QtCore.QRect(450, 10, 55, 55))
+        self.mute_button.setGeometry(QtCore.QRect(540, 220, 221, 55))
         self.mute_button.setIcon(self.mute_icon)
         self.mute_button.setToolTip("Mute the PC audio")
         self.mute_button.setObjectName("mute_button")
 
         # Programs
         self.app_frame = QtWidgets.QFrame(self.centralwidget)
-        self.app_frame.setGeometry(QtCore.QRect(10, 70, 231, 401))
+        self.app_frame.setGeometry(QtCore.QRect(10, 10, 231, 401))
         self.app_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.app_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.app_frame.setObjectName("app_frame")
@@ -204,7 +204,7 @@ class Ui_MainWindow(object):
         # Keyboard
 
         self.keyboard_frame = QtWidgets.QFrame(self.centralwidget)
-        self.keyboard_frame.setGeometry(QtCore.QRect(280, 70, 231, 401))
+        self.keyboard_frame.setGeometry(QtCore.QRect(280, 10, 231, 401))
         self.keyboard_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.keyboard_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.keyboard_frame.setObjectName("keyboard_frame")
