@@ -224,12 +224,10 @@ The actions marked with an asterisk (*) are system specific.
 | Blank                  | -      | -           |
 | Blank                  | -      | -           |
 
-An important future part of this program is the shortcuts costumization. If you want to modify it now, you have to 
+If you want to modify the keyboard shortcuts,
 
-1) Modify rasp.py and change the button text, and keep note of the name of the index (written in the comment next to it)
-2) Go on the corresponding function on pc.py and change the command called by subprocess: `subprocess.Popen("insert the command here", shell=True)`. The command will be the one that, as terminal, launches the application
-
-The same goes for keyboard shortcuts, with the difference that, for example, if you want to add the `Ctrl+F` shortcut, write:
+1) Modify rasp.py and change the button text, and keep note of the name of the shortcut index (written in the comment next to it)
+2) Go on the corresponding function on pc.py and change the keys called by pynput. For example, if you want to add the `Ctrl+F` shortcut, write:
 
 ```
 with keyboard.pressed(Key.ctrl):
@@ -239,7 +237,6 @@ with keyboard.pressed(Key.ctrl):
 
 If you want to know more about keyboard shortcuts, view [PyNput documentation](https://pynput.readthedocs.io/en/latest/keyboard.html).
 
-I know that's a crappy way to do that, I'm working about that. If you have any suggestion about how to do that, please open a documentation issue and let me know!
 
 ## Technologies
 
@@ -253,12 +250,14 @@ I know that's a crappy way to do that, I'm working about that. If you have any s
 
 ## Compatibility
 
-I've tested components on these machines/os:
+I've succesfully tested all the components on these configs:
 | Component | OS | Device |
 |:----------|:----:|:-------:|
 | PC | Manjaro GNU/Linux (Plasma) | Laptop |
+| PC | Manjaro GNU/Linux (Gnome) | Laptop
 | RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ - 800x480 5 inch touchscreen monitor|
 | RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
+| RASP/RASPBIG | Manjaro GNU/Linux (Gnome) | Laptop |
 | RASPCLI | Android 10 (Termux) | Google Pixel 3a |
 
 Feel free to test it on your machine and open an issue to let me know if it works.
