@@ -13,7 +13,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
+import csv
 import time
 import socket
 import subprocess
@@ -26,6 +26,7 @@ from Crypto.Cipher import AES
 HOST = ""  # Address
 PORT = 10000  # Port
 
+commands=[]
 
 def sysf1():
     """
@@ -59,7 +60,7 @@ def app1():
     Launch Firefox web Browser
     """
     logging.info("Launching firefox")
-    subprocess.Popen("firefox", shell=False)
+    subprocess.Popen([commands[0]], shell=False)
     return "firefox"
 
 
@@ -67,8 +68,8 @@ def app2():
     """
     Open a terminal window
     """
-    logging.info("Launching konsole")
-    subprocess.Popen("konsole", shell=False)
+    logging.info("Launching terminal")
+    subprocess.Popen(commands[1], shell=False)
     return "terminal"
 
 
@@ -77,17 +78,17 @@ def app3():
     Launch VirtualBox
     """
     logging.info("launching virtualbox")
-    subprocess.Popen("virtualbox", shell=False)
+    subprocess.Popen(commands[2], shell=False)
     return "virtualbox"
 
 
 def app4():
     """
-    Launch the File Manager (dolphin)
+    Launch the File Manager
     """
-    logging.info("launching dolphin")
-    subprocess.Popen("dolphin", shell=False)
-    return "dolphin"
+    logging.info("launching files")
+    subprocess.Popen(commands[3], shell=False)
+    return "nautilus"
 
 
 def app5():
@@ -95,7 +96,7 @@ def app5():
     Run VSCodium
     """
     logging.info("launching vscodium")
-    subprocess.Popen("vscodium", shell=False)
+    subprocess.Popen(commands[4], shell=False)
     return "VSCodium"
 
 
@@ -104,7 +105,7 @@ def app6():
     Launch app store (pamac manager)
     """
     logging.info("launching pamac manager")
-    subprocess.Popen("pamac-manager", shell=False)
+    subprocess.Popen(commands[5], shell=False)
     return "Store"
 
 
@@ -113,7 +114,7 @@ def app7():
     Launch Telegram
     """
     logging.info("launching telegram")
-    subprocess.Popen("telegram-desktop", shell=False)
+    subprocess.Popen(command[6], shell=False)
     return "telegram"
 
 
@@ -122,7 +123,7 @@ def app8():
     Launch Libreofice launcher
     """
     logging.info("launching libreoffice")
-    subprocess.Popen("libreoffice", shell=False)
+    subprocess.Popen(commands[7], shell=False)
     return "libreoffice"
 
 
@@ -131,7 +132,7 @@ def app9():
     Run Thunderbird
     """
     logging.info("launching thunderbird")
-    subprocess.Popen("thunderbird", shell=False)
+    subprocess.Popen(commands[8], shell=False)
     return "thunderbird"
 
 
@@ -140,7 +141,7 @@ def app10():
     Record screen with simplescreenrecorder
     """
     logging.info("recording screen")
-    subprocess.Popen(["simplescreenrecorder", "--start-recording"], shell=False)
+    subprocess.Popen(commands[9], shell=False)
     return "screen recording"
 
 
@@ -332,6 +333,16 @@ if __name__ == "__main__":
         )
         logging.critical("Selected a privileged port")
 
+    # Loading commands
+    with open("shortcuts.csv", "r") as commands_file:
+        reader = csv.reader(commands_file)
+
+        for row in reader:
+            try:
+                commands.append(row[1])
+            except IndexError:
+                print("Error while reading shortcuts.csv file. quitting")
+                exit()
 
     logging.info("PC Component started")
     try:

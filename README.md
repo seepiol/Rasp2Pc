@@ -62,6 +62,7 @@ The library used for the encryption is [PyCryptoDome](https://github.com/Legrand
 
 ## Configuration
 
+First of all, you need to make sure that the shortcuts file is correct for your pc's system and good for you (more [here](#default-shortcuts))
 You have to add the ip address of the PC on the rasp.conf configuration file.
 For example, if the ip address of the PC is 192.168.1.20, and the socket is listening to the port 10000 (as default), rasp.conf will be:
 
@@ -185,18 +186,28 @@ By default, the program has 3 system functions shortcuts, 6 shortcuts for launch
 
 ### Programs / Commands
 
-| Program/Action          | Subprocess Command                       |
+The labels and the commands are now defined in [shortcuts.csv file](github.com/seepiol/rasp2pc/shortcuts.csv).
+
+For the consistency between rasp(s) component and pc the shortcuts file must be identical.
+
+The file format is `Label,Subprocess Command`. Each shortcut is separated by newline. 
+
+The default programs shortcuts are:
+
+| Program/Action (label)         | Subprocess Command                       |
 | ----------------------- |:----------------------------------------:|
 | Mozilla Firefox Browser | `firefox`                                |
-| Terminal (KDE)          | `konsole`                                |
+| Terminal*          | `gnome-terminal`                                |
 | Virtualbox              | `virtualbox`                             |
-| File Manager (KDE)      | `dolphin`                                |
+| File Manager*     | `nautilus`                                |
 | VS Codium               | `vscodium`                               |
-| App Store               | `pamac-manager`                          |
+| App Store*               | `pamac-manager`                          |
 | Telegram                | `telegram-desktop`                       |
 | Libreoffice Launcher    | `libreoffice`                            |
 | Mozilla Thunderbird     | `thunderbird`                            |
 | Screen Recording        | `simplescreenrecorder --start-recording` |
+
+The actions marked with an asterisk (*) are system specific. 
 
 ### Keyboard shortcuts
 

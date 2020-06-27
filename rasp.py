@@ -27,6 +27,8 @@ import csv
 import argparse
 from Crypto.Cipher import AES
 
+labels=[]
+
 ###POPUPS FOR ERROR###
 
 # BrokenPipeError Exception popup
@@ -304,34 +306,34 @@ class Ui_MainWindow(object):
 
         # !!!BUTTONS TEXT HERE!!!
 
-        self.app1_button.setText(_translate("MainWindow", "Firefox"))  # app1
+        self.app1_button.setText(_translate("MainWindow", labels[0]))  # app1
         self.app1_button.setToolTip("app1")
 
-        self.app2_button.setText(_translate("MainWindow", "Terminal"))  # app2
+        self.app2_button.setText(_translate("MainWindow", labels[1]))  # app2
         self.app2_button.setToolTip("app2")
 
-        self.app3_button.setText(_translate("MainWindow", "VirtualBox"))  # app3
+        self.app3_button.setText(_translate("MainWindow", labels[2]))  # app3
         self.app3_button.setToolTip("app3")
 
-        self.app4_button.setText(_translate("MainWindow", "Dolphin"))  # app4
+        self.app4_button.setText(_translate("MainWindow", labels[3]))  # app4
         self.app4_button.setToolTip("app4")
 
-        self.app5_button.setText(_translate("MainWindow", "VSCode"))  # app5
+        self.app5_button.setText(_translate("MainWindow", labels[4]))  # app5
         self.app5_button.setToolTip("app5")
 
-        self.app6_button.setText(_translate("MainWindow", "Store"))  # app6
+        self.app6_button.setText(_translate("MainWindow", labels[5]))  # app6
         self.app6_button.setToolTip("app6")
 
-        self.app7_button.setText(_translate("MainWindow", "Telegram"))  # app7
+        self.app7_button.setText(_translate("MainWindow", labels[6]))  # app7
         self.app7_button.setToolTip("app7")
 
-        self.app8_button.setText(_translate("MainWindow", "Libreoffice"))  # app8
+        self.app8_button.setText(_translate("MainWindow", labels[7]))  # app8
         self.app8_button.setToolTip("app8")
 
-        self.app9_button.setText(_translate("MainWindow", "Thunderbird"))  # app9
+        self.app9_button.setText(_translate("MainWindow", labels[8]))  # app9
         self.app9_button.setToolTip("app9")
 
-        self.app10_button.setText(_translate("MainWindow", "Screen REC"))  # app10
+        self.app10_button.setText(_translate("MainWindow", labels[9]))  # app10
         self.app10_button.setToolTip("app10")
 
         self.short1_button.setText(_translate("MainWindow", "Undo"))  # short1
@@ -738,6 +740,17 @@ if __name__ == "__main__":
     args = parser.parse_args()
     PC_HOST = args.host
     PC_PORT = args.port
+
+    #Loading labels
+    with open("shortcuts.csv", "r") as labels_file:
+        reader = csv.reader(labels_file)
+
+        for row in reader:
+            try:
+                labels.append(row[0])
+            except IndexError:
+                print("Error while reading shortcuts.csv file. quitting")
+                exit()
 
     try:
         logging.info("Creating socket...")
