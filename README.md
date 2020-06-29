@@ -61,6 +61,8 @@ The packets are encrypted before sending with [AES-128](https://en.wikipedia.org
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
 ## Configuration
+Make sure that all the dependencies are installed by typing `pip install -r requirements.txt`.
+On debian-based distros, install PyQt5 by typing in a terminal window `sudo apt install python3-pyqt5`.
 
 First of all, you need to make sure that the shortcuts file is correct for your pc's system and good for you (more [here](#default-shortcuts))
 You have to add the ip address of the PC on the rasp.conf configuration file.
@@ -252,12 +254,14 @@ If you want to know more about keyboard shortcuts, view [PyNput documentation](h
 
 I've succesfully tested all the components on these configs:
 | Component | OS | Device |
-|:----------|:----:|:-------:|
+|:----------|:----|:-------|
 | PC | Manjaro GNU/Linux (Plasma) | Laptop |
-| PC | Manjaro GNU/Linux (Gnome) | Laptop
-| RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ - 800x480 5 inch touchscreen monitor|
+| PC | Manjaro GNU/Linux (Gnome) | Laptop |
+| PC | GNU/LINUX antiX-19 | Laptop|
+| RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ <br>800x480 5 inch touchscreen monitor|
 | RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
 | RASP/RASPBIG | Manjaro GNU/Linux (Gnome) | Laptop |
+| RASP/RASPBIG | GNU/LINUX antiX-19 | Laptop|
 | RASPCLI | Android 10 (Termux) | Google Pixel 3a |
 
 Feel free to test it on your machine and open an issue to let me know if it works.
@@ -284,7 +288,7 @@ Functioning on windows is unlikely.
 - [x] Comment the code
 - [ ] Improve error handling
 - [x] ~~Resolution-responsive UI on rasp component~~ Make a bigger UI
-- [ ] Add better way to change shortcuts, functions and button text on RASP component from pc
+- [x] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [x] Android component (RaspCli)
 - [ ] Windows support
 - [ ] Mac Os support (but i haven't a mac so idk)
