@@ -22,6 +22,9 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
   - [Keyboard shortcuts](#keyboard-shortcuts)
 - [Technologies](#technologies)
 - [Compatibility](#compatibility)
+  - [Linux](#linux)
+  - [Windows](#windows)
+  - [Mac Os](#mac-os)
 - [ToDo](#todo)
 - [Known Issues](#known-issues)
 - [License](#license)
@@ -266,8 +269,18 @@ I've succesfully tested all the components on these configs:
 
 Feel free to test it on your machine and open an issue to let me know if it works.
 
-Should work on most linux distributions.
-Functioning on windows is unlikely.
+### Linux
+I made this on linux, and I've tested on it all of the time. It should work on every distro without problems.
+
+### Windows
+The problem is that on windows not all executables can be launched from the command prompt, so "subprocess" doesn't work as well as on linux. for this reason the PC component cannot be compatible with windows, at least not for the moment.
+
+The rasp component can be made compatible, and it would make sense because there are many low cost windows tablets that can be used instead of the raspberry.
+On my windows test system though, the PyCryptodome module makes compilation problems when installing using pip. I have to check if it only affects my system or is a common problem.
+
+### Mac Os
+It teorically works (because it uses the bash shell), both pc and rasp, but I haven't tested yet.
+
 
 ## ToDo
 
