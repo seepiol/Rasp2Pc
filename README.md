@@ -55,11 +55,13 @@ It also exist the [**RASPBIG Component**](https://github.com/seepiol/Rasp2Pc/blo
 
 **[RASPCLI Component](https://user-images.githubusercontent.com/60071372/82824929-8880e900-9eaa-11ea-8521-fa99afb0eb06.png)**
 
-[**RASPBIG Component**](https://user-images.githubusercontent.com/60071372/83944820-bea55d80-a806-11ea-93b9-874c8b8f02a1.png)
+**[RASPBIG Component](https://user-images.githubusercontent.com/60071372/86596035-e4568b80-bf99-11ea-9348-0a7fbfae2479.png)**
+
+The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L700), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L700), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#40) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L291)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L702), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L702), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#38) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L293)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
