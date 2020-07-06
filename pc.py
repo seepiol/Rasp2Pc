@@ -114,7 +114,7 @@ def app7():
     Launch Telegram
     """
     logging.info("launching telegram")
-    subprocess.Popen(command[6], shell=False)
+    subprocess.Popen(commands[6], shell=False)
     return "telegram"
 
 
