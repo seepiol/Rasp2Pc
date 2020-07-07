@@ -33,7 +33,10 @@ def sysf1():
     Reboot the system
     """
     logging.info("rebooting system")    # Logging
-    subprocess.Popen(["reboot"], shell=False)   # Run the command
+    try:
+        subprocess.Popen(["reboot"], shell=False)   # Run the command
+    except FileNotFoundError:
+        print("No such file or directory")
     return "Reboot"  # action name
 
 
@@ -42,7 +45,10 @@ def sysf2():
     Lock the session
     """
     logging.info("Locking the session")
-    subprocess.Popen(["loginctl", "lock-session"], shell=False)
+    try:
+        subprocess.Popen(["loginctl", "lock-session"], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "lock"
 
 
@@ -51,7 +57,10 @@ def sysf3():
     Mute the audio
     """
     logging.info("Turning volume to 0%")
-    subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
+    try:
+        subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "mute"
 
 
@@ -60,7 +69,10 @@ def app1():
     Launch Firefox web Browser
     """
     logging.info("Launching firefox")
-    subprocess.Popen([commands[0]], shell=False)
+    try:
+        subprocess.Popen([commands[0]], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "firefox"
 
 
@@ -69,7 +81,10 @@ def app2():
     Open a terminal window
     """
     logging.info("Launching terminal")
-    subprocess.Popen(commands[1], shell=False)
+    try:
+        subprocess.Popen(commands[1], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "terminal"
 
 
@@ -78,7 +93,10 @@ def app3():
     Launch VirtualBox
     """
     logging.info("launching virtualbox")
-    subprocess.Popen(commands[2], shell=False)
+    try:
+        subprocess.Popen(commands[2], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "virtualbox"
 
 
@@ -87,7 +105,10 @@ def app4():
     Launch the File Manager
     """
     logging.info("launching files")
-    subprocess.Popen(commands[3], shell=False)
+    try:
+        subprocess.Popen(commands[3], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "nautilus"
 
 
@@ -96,7 +117,10 @@ def app5():
     Run VSCodium
     """
     logging.info("launching vscodium")
-    subprocess.Popen(commands[4], shell=False)
+    try:
+        subprocess.Popen(commands[4], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "VSCodium"
 
 
@@ -105,7 +129,10 @@ def app6():
     Launch app store (pamac manager)
     """
     logging.info("launching pamac manager")
-    subprocess.Popen(commands[5], shell=False)
+    try:
+        subprocess.Popen(commands[5], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "Store"
 
 
@@ -114,7 +141,10 @@ def app7():
     Launch Telegram
     """
     logging.info("launching telegram")
-    subprocess.Popen(commands[6], shell=False)
+    try:
+        subprocess.Popen(commands[6], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "telegram"
 
 
@@ -123,7 +153,10 @@ def app8():
     Launch Libreofice launcher
     """
     logging.info("launching libreoffice")
-    subprocess.Popen(commands[7], shell=False)
+    try:
+        subprocess.Popen(commands[7], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "libreoffice"
 
 
@@ -132,7 +165,10 @@ def app9():
     Run Thunderbird
     """
     logging.info("launching thunderbird")
-    subprocess.Popen(commands[8], shell=False)
+    try:
+        subprocess.Popen(commands[8], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "thunderbird"
 
 
@@ -141,7 +177,10 @@ def app10():
     Record screen with simplescreenrecorder
     """
     logging.info("recording screen")
-    subprocess.Popen(commands[9], shell=False)
+    try:
+        subprocess.Popen(commands[9], shell=False)
+    except FileNotFoundError:
+        print("No such file or directory")
     return "screen recording"
 
 
@@ -287,6 +326,9 @@ def send_notification(title, message):
     #    pass
     pass
 
+def parse_command(command):
+    return command.split()
+
 if __name__ == "__main__":
     # AES encrypter / decrypter
     #                 A casual 128bit key                A casual 128bit Initialization vector
@@ -339,7 +381,7 @@ if __name__ == "__main__":
 
         for row in reader:
             try:
-                commands.append(row[1])
+                commands.append(parse_command(row[1]))
             except IndexError:
                 print("Error while reading shortcuts.csv file. quitting")
                 exit()
