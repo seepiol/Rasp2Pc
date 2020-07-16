@@ -31,7 +31,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 
 ## Why?
 
-Because using the keyboard and mouse, especially while you're doing something else, like video calling. And also, control a computer with a touch screen seems really *c o o l*.
+Because using the keyboard and mouse, especially while you're doing something else, like video calling, can be really unconfortable. And also, control a computer with a touch screen seems really *c o o l*.
 
 ## How it Works
 
