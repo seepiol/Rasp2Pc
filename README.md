@@ -275,7 +275,10 @@ Feel free to test it on your machine and open an issue to let me know if it work
 I made this on linux, and I've tested on it all of the time. It should work on every distro without problems.
 
 ### Windows
-The problem is that on windows not all executables can be launched from the command prompt, so "subprocess" doesn't work as well as on linux. for this reason the PC component cannot be compatible with windows, at least not for the moment.
+~~The problem is that on windows not all executables can be launched from the command prompt, so "subprocess" doesn't work as well as on linux. for this reason the PC component cannot be compatible with windows, at least not for the moment.~~
+On windows you can start programs from cmd py just typing the executable (.exe) filename. 
+To make the PC component compatible with windows, therefore, it should be enough to change the values in "shortcuts.CSV".
+I'll verify that later.
 
 The rasp component can be made compatible, and it would make sense because there are many low cost windows tablets that can be used instead of the raspberry.
 On my windows test system though, the PyCryptodome module makes compilation problems when installing using pip. I have to check if it only affects my system or is a common problem.
@@ -308,6 +311,7 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 - [ ] Windows support
   - [ ] Test if is enough to put into shortcuts.CSV the path of the executable file
 - [ ] Mac Os support (but i haven't a mac so idk)
+- [ ] System Tray Icon and actions (exit, )
 
 ## Known Issues
 
