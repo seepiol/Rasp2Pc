@@ -264,7 +264,7 @@ I've succesfully tested all the components on these configs:
 | PC | Manjaro GNU/Linux (Gnome) | Laptop |
 | PC | GNU/LINUX antiX-19 | Laptop|
 | PC | Microsoft Windows 10* | Laptop |
-| PC | WSL (win 10) |Laptop| 
+| PC | WSL Ubuntu (win 10) |Laptop| 
 | RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ <br>800x480 5 inch touchscreen monitor|
 | RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
 | RASP/RASPBIG | Manjaro GNU/Linux (Gnome) | Laptop |

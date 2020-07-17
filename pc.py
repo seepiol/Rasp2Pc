@@ -367,6 +367,8 @@ if __name__ == "__main__":
 
     if "nt" in os.name:
         windows=True
+    else:
+        windows=False
 
     # Setting up the logger
     logging.basicConfig(
