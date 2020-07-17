@@ -314,8 +314,8 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 - [x] ~~Resolution-responsive UI on rasp component~~ Make a bigger UI
 - [x] Add better way to change shortcuts, functions and button text on RASP component from pc
 - [x] Android component (RaspCli)
-- [ ] Windows support
-  - [ ] Test if is enough to put into shortcuts.CSV the path of the executable file
+- [X] Windows support
+  - [X] Test if is enough to put into shortcuts.CSV the path of the executable file
 - [ ] Mac Os support (but i haven't a mac so idk)
 - [ ] System Tray Icon and actions (exit, )
 
