@@ -21,6 +21,7 @@ from pynput.keyboard import Key, Controller
 import logging
 import argparse
 from Crypto.Cipher import AES
+import os
 #import notify2
 
 HOST = ""  # Address
@@ -70,7 +71,10 @@ def app1():
     """
     logging.info("Launching firefox")
     try:
-        subprocess.Popen([commands[0]], shell=False)
+        if windows:
+            subprocess.Popen(commands[0], shell=True)
+        else:
+            subprocess.Popen(commands[0], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "firefox"
@@ -82,7 +86,10 @@ def app2():
     """
     logging.info("Launching terminal")
     try:
-        subprocess.Popen(commands[1], shell=False)
+        if windows:
+            subprocess.Popen(commands[1], shell=True)
+        else:
+            subprocess.Popen(commands[1], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "terminal"
@@ -94,7 +101,10 @@ def app3():
     """
     logging.info("launching virtualbox")
     try:
-        subprocess.Popen(commands[2], shell=False)
+        if windows:
+            subprocess.Popen(commands[2], shell=True)
+        else:
+            subprocess.Popen(commands[2], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "virtualbox"
@@ -106,7 +116,10 @@ def app4():
     """
     logging.info("launching files")
     try:
-        subprocess.Popen(commands[3], shell=False)
+        if windows:
+            subprocess.Popen(commands[3], shell=True)
+        else:
+            subprocess.Popen(commands[3], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "nautilus"
@@ -118,7 +131,10 @@ def app5():
     """
     logging.info("launching vscodium")
     try:
-        subprocess.Popen(commands[4], shell=False)
+        if windows:
+            subprocess.Popen(commands[4], shell=True)
+        else:
+            subprocess.Popen(commands[4], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "VSCodium"
@@ -130,7 +146,10 @@ def app6():
     """
     logging.info("launching pamac manager")
     try:
-        subprocess.Popen(commands[5], shell=False)
+        if windows:
+            subprocess.Popen(commands[5], shell=True)
+        else:
+            subprocess.Popen(commands[5], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "Store"
@@ -142,7 +161,10 @@ def app7():
     """
     logging.info("launching telegram")
     try:
-        subprocess.Popen(commands[6], shell=False)
+        if windows:
+            subprocess.Popen(commands[6], shell=True)
+        else:
+            subprocess.Popen(commands[6], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "telegram"
@@ -154,7 +176,10 @@ def app8():
     """
     logging.info("launching libreoffice")
     try:
-        subprocess.Popen(commands[7], shell=False)
+        if windows:
+            subprocess.Popen(commands[7], shell=True)
+        else:
+            subprocess.Popen(commands[7], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "libreoffice"
@@ -166,7 +191,10 @@ def app9():
     """
     logging.info("launching thunderbird")
     try:
-        subprocess.Popen(commands[8], shell=False)
+        if windows:
+            subprocess.Popen(commands[8], shell=True)
+        else:
+            subprocess.Popen(commands[8], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "thunderbird"
@@ -178,7 +206,10 @@ def app10():
     """
     logging.info("recording screen")
     try:
-        subprocess.Popen(commands[9], shell=False)
+        if windows:
+            subprocess.Popen(commands[9], shell=True)
+        else:
+            subprocess.Popen(commands[9], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
     return "screen recording"
@@ -333,6 +364,9 @@ if __name__ == "__main__":
     # AES encrypter / decrypter
     #                 A casual 128bit key                A casual 128bit Initialization vector
     crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
+
+    if "nt" in os.name:
+        windows=True
 
     # Setting up the logger
     logging.basicConfig(

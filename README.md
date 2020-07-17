@@ -61,7 +61,7 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L702), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L702), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#38) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#L293)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L702), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L702), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#38) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#366)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
@@ -263,25 +263,31 @@ I've succesfully tested all the components on these configs:
 | PC | Manjaro GNU/Linux (Plasma) | Laptop |
 | PC | Manjaro GNU/Linux (Gnome) | Laptop |
 | PC | GNU/LINUX antiX-19 | Laptop|
+| PC | Microsoft Windows 10* | Laptop |
+| PC | WSL (win 10) |Laptop| 
 | RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ <br>800x480 5 inch touchscreen monitor|
 | RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
 | RASP/RASPBIG | Manjaro GNU/Linux (Gnome) | Laptop |
 | RASP/RASPBIG | GNU/LINUX antiX-19 | Laptop|
+| RASP/RASPBIG | Microsoft Windows 10* | Laptop|
 | RASPCLI | Android 10 (Termux) | Google Pixel 3a |
 
 Feel free to test it on your machine and open an issue to let me know if it works.
+
+\* : see [Windows](#windows) for windows configuration
 
 ### Linux
 I made this on linux, and I've tested on it all of the time. It should work on every distro without problems.
 
 ### Windows
-~~The problem is that on windows not all executables can be launched from the command prompt, so "subprocess" doesn't work as well as on linux. for this reason the PC component cannot be compatible with windows, at least not for the moment.~~
-On windows you can start programs from cmd py just typing the executable (.exe) filename. 
-To make the PC component compatible with windows, therefore, it should be enough to change the values in "shortcuts.CSV".
-I'll verify that later.
+To make the PC component compatible with windows, it's enough to customize the shortcuts.csv.
+The command should be `start <executable filename>`. If the executable is in the path, is enough to insert `start <name>`.  
+For example:<br>
+```Firefox, start firefox```.
 
-The rasp component can be made compatible, and it would make sense because there are many low cost windows tablets that can be used instead of the raspberry.
-On my windows test system though, the PyCryptodome module makes compilation problems when installing using pip. I have to check if it only affects my system or is a common problem.
+At the moment, the only way to make the system actions work on windows is to change the code.
+
+RASP and RASPBIG components are compatible by default.
 
 ### Mac Os
 It teorically works (because it uses the bash shell), both pc and rasp, but I haven't tested yet.
