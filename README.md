@@ -61,7 +61,7 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L702), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L702), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#38) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#366)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L702), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L702), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#38) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#325)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
@@ -292,31 +292,11 @@ RASP and RASPBIG components are compatible by default.
 ### Mac Os
 It teorically works (because it uses the bash shell), both pc and rasp, but I haven't tested yet.
 
-
 ## ToDo
 
-- [x] Basic "PC" component (server)
-- [x] Basic "RASP" component (client)
-- [x] Add reqirements.txt
-- [x] GUI for RASP component (PyQt5)
-- [x] Add logging on rasp
-- [x] Add more shortcuts
-- [x] Add logging on pc
-- [x] Implement a better way to choose the pc address on rasp (using rasp.conf file)
-- [x] Add CLI arguments on PC component (host and port)
-- [x] Add possibility to deny connection on PC and verify that is a RASP component
-- [x] Avoid execution by unauthorized devices
-- [x] Add tooltips on RASP
-- [x] Add popups on rasp component instead of cli messages
-- [x] Improve communication security using AES
-- [x] Comment the code
+- [ ] Shortcuts.csv for system actions and keyboard shortcuts
 - [ ] Improve error handling
-- [x] ~~Resolution-responsive UI on rasp component~~ Make a bigger UI
-- [x] Add better way to change shortcuts, functions and button text on RASP component from pc
-- [x] Android component (RaspCli)
-- [X] Windows support
-  - [X] Test if is enough to put into shortcuts.CSV the path of the executable file
-- [ ] Mac Os support (but i haven't a mac so idk)
+- [ ] Test Mac Os support
 - [ ] System Tray Icon and actions (exit, )
 
 ## Known Issues
