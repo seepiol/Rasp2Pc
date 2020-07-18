@@ -298,6 +298,14 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 - [ ] Improve error handling
 - [ ] Test Mac Os support
 - [ ] System Tray Icon and actions (exit, )
+- [ ] permit the execution of the rasp component even if the pc is down
+- [ ] Rasp Autostart option
+- [ ] Pc autostart option
+- [ ] simple pc component ui (tkinter?)
+- [ ] more actions (with python libs maybe, not just subprocess and keyboard)
+- [ ] password instead of just AES
+- [ ] OOP implementation (python is weird, maybe in another language)
+- [ ] kde plugin
 
 ## Known Issues
 
