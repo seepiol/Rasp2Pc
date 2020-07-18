@@ -14,7 +14,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import csv
-import time
 import socket
 import subprocess
 from pynput.keyboard import Key, Controller
@@ -22,7 +21,6 @@ import logging
 import argparse
 from Crypto.Cipher import AES
 import os
-#import notify2
 
 HOST = ""  # Address
 PORT = 10000  # Port
@@ -65,26 +63,25 @@ def sysf3():
     return "mute"
 
 
+
 def app1():
     """
-    Launch Firefox web Browser
+    Launch First app in shortcuts.csv
     """
-    logging.info("Launching firefox")
+    logging.info(f"Executing {commands[0]}")
     try:
-        if windows:
+        # Platform check
+        if windows:    # With windows subprocess needs to run in a shell. More here: https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess#3172488
             subprocess.Popen(commands[0], shell=True)
-        else:
+        else:    # If not windows, better with shell=False
             subprocess.Popen(commands[0], shell=False)
-    except FileNotFoundError:
+    except FileNotFoundError:    # The command is not found 
         print("No such file or directory")
-    return "firefox"
+    return command[0]
 
 
 def app2():
-    """
-    Open a terminal window
-    """
-    logging.info("Launching terminal")
+    logging.info(f"Executing {commands[1]}")
     try:
         if windows:
             subprocess.Popen(commands[1], shell=True)
@@ -92,14 +89,11 @@ def app2():
             subprocess.Popen(commands[1], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "terminal"
+    return command[1]
 
 
 def app3():
-    """
-    Launch VirtualBox
-    """
-    logging.info("launching virtualbox")
+    logging.info(f"Executing {commands[2]}")    
     try:
         if windows:
             subprocess.Popen(commands[2], shell=True)
@@ -107,14 +101,11 @@ def app3():
             subprocess.Popen(commands[2], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "virtualbox"
+    return command[2]
 
 
 def app4():
-    """
-    Launch the File Manager
-    """
-    logging.info("launching files")
+    logging.info(f"Executing {commands[3]}")
     try:
         if windows:
             subprocess.Popen(commands[3], shell=True)
@@ -122,14 +113,11 @@ def app4():
             subprocess.Popen(commands[3], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "nautilus"
+    return command[3]
 
 
 def app5():
-    """
-    Run VSCodium
-    """
-    logging.info("launching vscodium")
+    logging.info(f"Executing {commands[4]}")
     try:
         if windows:
             subprocess.Popen(commands[4], shell=True)
@@ -137,14 +125,11 @@ def app5():
             subprocess.Popen(commands[4], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "VSCodium"
+    return command[4]
 
 
 def app6():
-    """
-    Launch app store (pamac manager)
-    """
-    logging.info("launching pamac manager")
+    logging.info(f"Executing {commands[5]}")
     try:
         if windows:
             subprocess.Popen(commands[5], shell=True)
@@ -152,14 +137,11 @@ def app6():
             subprocess.Popen(commands[5], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "Store"
+    return commands[5]
 
 
 def app7():
-    """
-    Launch Telegram
-    """
-    logging.info("launching telegram")
+    logging.info(f"Executing {commands[6]}")
     try:
         if windows:
             subprocess.Popen(commands[6], shell=True)
@@ -167,14 +149,11 @@ def app7():
             subprocess.Popen(commands[6], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "telegram"
+    return commands[6]
 
 
 def app8():
-    """
-    Launch Libreofice launcher
-    """
-    logging.info("launching libreoffice")
+    logging.info(f"Executing {commands[7]}")
     try:
         if windows:
             subprocess.Popen(commands[7], shell=True)
@@ -182,14 +161,11 @@ def app8():
             subprocess.Popen(commands[7], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "libreoffice"
+    return commands[7]
 
 
 def app9():
-    """
-    Run Thunderbird
-    """
-    logging.info("launching thunderbird")
+    logging.info(f"Executing {commands[8]}")
     try:
         if windows:
             subprocess.Popen(commands[8], shell=True)
@@ -197,14 +173,11 @@ def app9():
             subprocess.Popen(commands[8], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "thunderbird"
+    return commands[8]
 
 
 def app10():
-    """
-    Record screen with simplescreenrecorder
-    """
-    logging.info("recording screen")
+    logging.info(f"Executing {commands[9]}")
     try:
         if windows:
             subprocess.Popen(commands[9], shell=True)
@@ -212,7 +185,7 @@ def app10():
             subprocess.Popen(commands[9], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return "screen recording"
+    return commands[9]
 
 
 def short1():
@@ -343,20 +316,6 @@ def decrypt_index(crypted_index):
     index = index.replace(" ", "")  # Replacing whitespaces with blankstring
     return index
 
-def send_notification(title, message):
-    # Avoid a weird bug with fstrings
-    #title=title
-    #message=message
-    #n = notify2.Notification(title,
-    #                        message
-    #                        )
-    #time.sleep(1)
-    #try:
-    #    n.show()
-    #except: 
-    #    pass
-    pass
-
 def parse_command(command):
     return command.split()
 
@@ -380,8 +339,6 @@ if __name__ == "__main__":
 
     keyboard = Controller()  # Create a virtual keyboard
 
-    # Notifications settings
-    #notify2.init("RASP2PC")
     # Cli arguments parser
     parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
 
@@ -430,9 +387,6 @@ if __name__ == "__main__":
         ) as sock:  # creating socket object
             sock.bind((HOST, PORT))  # binding socket on {host:port}
 
-            # Start notification
-            send_notification("Start","Pc component is running.")
-
             print(f"Socket binded on {HOST}:{PORT}")
             logging.info(f"binding socket on {HOST}:{PORT}")
 
@@ -444,9 +398,6 @@ if __name__ == "__main__":
                     conn,
                     client_address,
                 ) = sock.accept()  # Accepting connection from {address}
-
-                # connection notification
-                send_notification("Connection", f"{client_address[0]}:{str(client_address[1])} Is trying to connect to this pc")
 
                 # Connection Control
                 print(f"{client_address} is trying to connect to this pc. ")
@@ -533,10 +484,6 @@ if __name__ == "__main__":
                         elif data == "sf3":
                             action_title = sysf3()
                         
-                        if action_title != None:
-                            # Notification
-                            send_notification("Rasp2Pc Action", f"Action {action_title}")
-
                         esit = "ok"
 
                         conn.send(esit.encode())  # sending a "fake" confirm message
