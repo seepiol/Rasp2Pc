@@ -265,11 +265,13 @@ I've succesfully tested all the components on these configs:
 | PC | GNU/LINUX antiX-19 | Laptop|
 | PC | Microsoft Windows 10* | Laptop |
 | PC | WSL Ubuntu (win 10) |Laptop| 
+| PC | Ubuntu 20.04 LTS GNOME | Laptop |
 | RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ <br>800x480 5 inch touchscreen monitor|
 | RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
 | RASP/RASPBIG | Manjaro GNU/Linux (Gnome) | Laptop |
 | RASP/RASPBIG | GNU/LINUX antiX-19 | Laptop|
 | RASP/RASPBIG | Microsoft Windows 10* | Laptop|
+| RASP/RASPBIG | Ubuntu 20.04 LTS GNOME | Laptop |
 | RASPCLI | Android 10 (Termux) | Google Pixel 3a |
 
 Feel free to test it on your machine and open an issue to let me know if it works.

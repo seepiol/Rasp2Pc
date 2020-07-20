@@ -77,7 +77,7 @@ def app1():
             subprocess.Popen(commands[0], shell=False)
     except FileNotFoundError:    # The command is not found 
         print("No such file or directory")
-    return command[0]
+    return commands[0]
 
 
 def app2():
@@ -89,7 +89,7 @@ def app2():
             subprocess.Popen(commands[1], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return command[1]
+    return commands[1]
 
 
 def app3():
@@ -101,7 +101,7 @@ def app3():
             subprocess.Popen(commands[2], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return command[2]
+    return commands[2]
 
 
 def app4():
@@ -113,7 +113,7 @@ def app4():
             subprocess.Popen(commands[3], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return command[3]
+    return commands[3]
 
 
 def app5():
@@ -125,7 +125,7 @@ def app5():
             subprocess.Popen(commands[4], shell=False)
     except FileNotFoundError:
         print("No such file or directory")
-    return command[4]
+    return commands[4]
 
 
 def app6():
