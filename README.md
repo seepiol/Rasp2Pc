@@ -272,6 +272,7 @@ I've succesfully tested all the components on these configs:
 | RASP/RASPBIG | GNU/LINUX antiX-19 | Laptop|
 | RASP/RASPBIG | Microsoft Windows 10* | Laptop|
 | RASP/RASPBIG | Ubuntu 20.04 LTS GNOME | Laptop |
+| RASPCLI | Ubuntu 20.04 LTS | Laptop |
 | RASPCLI | Android 10 (Termux) | Google Pixel 3a |
 
 Feel free to test it on your machine and open an issue to let me know if it works.
@@ -300,7 +301,7 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 - [ ] Leave applications open after shutting down pc component
 - [x] DRY on index sending functions (RASP,RASPBIG)
 - [ ] DRY on application startup functions (PC)
-- [ ] Update RASPCLI
+- [x] Update RASPCLI
 - [ ] Improve error handling
 - [ ] Test Mac Os support
 - [ ] System Tray Icon and actions (exit, )
