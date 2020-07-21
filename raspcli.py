@@ -17,6 +17,7 @@
 import socket
 import argparse
 from Crypto.Cipher import AES
+import csv
 
 def encrypt_index(index):
     """
@@ -57,6 +58,18 @@ if __name__ == "__main__":
         PC_HOST = args.host
         PC_PORT = args.port
 
+        #Loading labels
+        labels=[]
+        with open("shortcuts.csv", "r") as labels_file:
+            reader = csv.reader(labels_file)
+
+            for row in reader:
+                try:
+                    labels.append(row[0])
+                except IndexError:
+                    print("Error while reading shortcuts.csv file. quitting")
+                    exit()
+
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
             # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)
             raspsocket.connect((PC_HOST, PC_PORT))    # Connect to the PC 
@@ -75,17 +88,17 @@ if __name__ == "__main__":
                 exit()
 
             while True:
-                print("""
-    a1) Firefox
-    a2) Terminal
-    a3) Virtualbox
-    a4) File Manager
-    a5) VSCodium
-    a6) App Store
-    a7) Telegram
-    a8) Libreoffice
-    a9) Thunderbird
-    a10) Record Screen
+                print(f"""
+    a1) {labels[0]}
+    a2) {labels[1]}
+    a3) {labels[2]}
+    a4) {labels[3]}
+    a5) {labels[4]}
+    a6) {labels[5]}
+    a7) {labels[6]}
+    a8) {labels[7]}
+    a9) {labels[8]}
+    a10) {labels[9]}
 
     s1) Undo
     s2) Copy
