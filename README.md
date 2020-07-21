@@ -1,8 +1,11 @@
+
 # RASP2PC
+![icon](https://user-images.githubusercontent.com/60071372/88109998-bda86f80-cbab-11ea-9965-191bb3c7d02c.png)
+
+<br>
 
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
-![demo](https://user-images.githubusercontent.com/60071372/83892755-62cbcd80-a74f-11ea-87ab-04bca522ce64.gif)
 
 ## Index
 
@@ -30,6 +33,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 - [License](#license)
 
 ## Why?
+![demo](https://user-images.githubusercontent.com/60071372/83892755-62cbcd80-a74f-11ea-87ab-04bca522ce64.gif)
 
 Because using the keyboard and mouse, especially while you're doing something else, like video calling, can be really unconfortable. And also, control a computer with a touch screen seems really *c o o l*.
 

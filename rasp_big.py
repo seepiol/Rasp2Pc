@@ -485,11 +485,11 @@ if __name__ == "__main__":
                 connection_denied(raspsocket, PC_HOST)
 
             app = QtWidgets.QApplication(sys.argv)
-            MainWindow = QtWidgets.QMainWindow()
-            ui = Ui_MainWindow()
-            ui.setupUi(MainWindow)
-            logging.debug("Showing the gui")
-            MainWindow.show()
+            ex = Ui_MainWindow()
+            w = QtWidgets.QMainWindow()
+            w.setWindowIcon(QtGui.QIcon("icons/icon.png"))
+            ex.setupUi(w)
+            w.show()
 
             sys.exit(app.exec_())
 
