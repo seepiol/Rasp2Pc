@@ -1,11 +1,11 @@
 
-# RASP2PC
-![icon](https://user-images.githubusercontent.com/60071372/88109998-bda86f80-cbab-11ea-9965-191bb3c7d02c.png)
-
+<div align="center">
+<h1>RASP2PC</h1>
+<img widht="256" height="256" src="icons/icon.png">
 <br>
 
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
-
+</div>
 
 ## Index
 
