@@ -264,31 +264,31 @@ class Ui_MainWindow(object):
 
         # Function Connections
         # System Function
-        self.reboot_button.clicked.connect(self.sysf1)
-        self.lock_button.clicked.connect(self.sysf2)
-        self.mute_button.clicked.connect(self.sysf3)
+        self.reboot_button.clicked.connect(lambda:self.send("sf1"))
+        self.lock_button.clicked.connect(lambda:self.send("sf2"))
+        self.mute_button.clicked.connect(lambda:self.send("sf3"))
         # Apps
-        self.app1_button.clicked.connect(self.app1)
-        self.app2_button.clicked.connect(self.app2)
-        self.app3_button.clicked.connect(self.app3)
-        self.app4_button.clicked.connect(self.app4)
-        self.app5_button.clicked.connect(self.app5)
-        self.app6_button.clicked.connect(self.app6)
-        self.app7_button.clicked.connect(self.app7)
-        self.app8_button.clicked.connect(self.app8)
-        self.app9_button.clicked.connect(self.app9)
-        self.app10_button.clicked.connect(self.app10)
+        self.app1_button.clicked.connect(lambda:self.send("a1"))
+        self.app2_button.clicked.connect(lambda:self.send("a2"))
+        self.app3_button.clicked.connect(lambda:self.send("a3"))
+        self.app4_button.clicked.connect(lambda:self.send("a4"))
+        self.app5_button.clicked.connect(lambda:self.send("a5"))
+        self.app6_button.clicked.connect(lambda:self.send("a6"))
+        self.app7_button.clicked.connect(lambda:self.send("a7"))
+        self.app8_button.clicked.connect(lambda:self.send("a8"))
+        self.app9_button.clicked.connect(lambda:self.send("a9"))
+        self.app10_button.clicked.connect(lambda:self.send("a10"))
         # Keyboard
-        self.short1_button.clicked.connect(self.short1)
-        self.short2_button.clicked.connect(self.short2)
-        self.short3_button.clicked.connect(self.short3)
-        self.short4_button.clicked.connect(self.short4)
-        self.short5_button.clicked.connect(self.short5)
-        self.short6_button.clicked.connect(self.short6)
-        self.short7_button.clicked.connect(self.short7)
-        self.short8_button.clicked.connect(self.short8)
-        self.short9_button.clicked.connect(self.short9)
-        self.short10_button.clicked.connect(self.short10)
+        self.short1_button.clicked.connect(lambda:self.send("s1"))
+        self.short2_button.clicked.connect(lambda:self.send("s2"))
+        self.short3_button.clicked.connect(lambda:self.send("s3"))
+        self.short4_button.clicked.connect(lambda:self.send("s4"))
+        self.short5_button.clicked.connect(lambda:self.send("s5"))
+        self.short6_button.clicked.connect(lambda:self.send("s6"))
+        self.short7_button.clicked.connect(lambda:self.send("s7"))
+        self.short8_button.clicked.connect(lambda:self.send("s8"))
+        self.short9_button.clicked.connect(lambda:self.send("s9"))
+        self.short10_button.clicked.connect(lambda:self.send("s10"))
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -364,14 +364,14 @@ class Ui_MainWindow(object):
 
         self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10
 
-    # App launch functions
+    # App/keyboard shortcuts/system functions launch functions
 
     # I know that that's not the best way to handle an exception, but it works and it's enough for me
 
-    def app1(self):
+    def send(self, index):
         try:
-            logging.info("Selected app1")
-            encrypt_index("a1")
+            logging.info(f"Selected {index}")
+            encrypt_index(f"{index}")
             response = raspsocket.recv(1024).decode("ascii")  # Recive the response
             print(response)  # Print the response
 
@@ -380,294 +380,6 @@ class Ui_MainWindow(object):
             connection_interrupted()
             raspsocket.close()
             exit()
-
-    def app2(self):
-        try:
-            logging.info("Selected app2")
-            encrypt_index("a2")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app3(self):
-        try:
-            logging.info("Selected app3")
-            encrypt_index("a3")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app4(self):
-        try:
-            logging.info("Selected app4")
-            encrypt_index("a4")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app5(self):
-        try:
-            logging.info("Selected app5")
-            encrypt_index("a5")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app6(self):
-        try:
-            logging.info("Selected app6")
-            encrypt_index("a6")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app7(self):
-        try:
-            logging.info("Selected app7")
-            encrypt_index("a7")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app8(self):
-        try:
-            logging.info("Selected app8")
-            encrypt_index("a8")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app9(self):
-        try:
-            logging.info("Selected app9")
-            encrypt_index("a9")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def app10(self):
-        try:
-            logging.info("Selected app10")
-            encrypt_index("a10")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    # Keyboard shortcuts functions
-    def short1(self):
-        try:
-            logging.info("Selected short1")
-            encrypt_index("s1")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short2(self):
-        try:
-            logging.info("Selected short2")
-            encrypt_index("s2")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short3(self):
-        try:
-            logging.info("Selected short3")
-            encrypt_index("s3")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response```
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short4(self):
-        try:
-            logging.info("Selected short4")
-            encrypt_index("s4")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short5(self):
-        try:
-            logging.info("Selected short5")
-            encrypt_index("s5")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short6(self):
-        try:
-            logging.info("Selected short6")
-            encrypt_index("s6")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short7(self):
-        try:
-            logging.info("Selected short7")
-            encrypt_index("s7")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short8(self):
-        try:
-            logging.info("Selected short8")
-            encrypt_index("s8")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short9(self):
-        try:
-            logging.info("Selected short9")
-            encrypt_index("s9")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def short10(self):
-        try:
-            logging.info("Selected short10")
-            encrypt_index("s10")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def sysf1(self):
-        try:
-            logging.info("Selected system function 1")
-            encrypt_index("sf1")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def sysf2(self):
-        try:
-            logging.info("Selected system function 2")
-            encrypt_index("sf2")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
-    def sysf3(self):
-        try:
-            logging.info("Selected system function 3")
-            encrypt_index("sf3")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
-            print(response)  # Print the response
-
-        except BrokenPipeError:
-            print("Connection closed or denied by PC.  Quitting.")
-            connection_interrupted()
-            raspsocket.close()
-            exit()
-
 
 def encrypt_index(index):
     """

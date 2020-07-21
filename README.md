@@ -298,7 +298,9 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 
 - [ ] Shortcuts.csv for system actions and keyboard shortcuts
 - [ ] Leave applications open after shutting down pc component
-- [ ] DRY on app launching functions
+- [x] DRY on index sending functions (RASP,RASPBIG)
+- [ ] DRY on application startup functions (PC)
+- [ ] Update RASPCLI
 - [ ] Improve error handling
 - [ ] Test Mac Os support
 - [ ] System Tray Icon and actions (exit, )
