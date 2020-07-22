@@ -28,7 +28,7 @@ def encrypt_index(index):
 
     """
     index = index + (16 - len(index)) * " "  # make the index 16 bytes
-    cipherindex = crytool.encrypt(index.encode("ascii"))  # encrypting the index
+    cipherindex = crytool.encrypt(index.encode("utf-8"))  # encrypting the index
     raspsocket.send(cipherindex)  # send the index
     return cipherindex
 
@@ -76,10 +76,10 @@ if __name__ == "__main__":
             print(f"Connected to {PC_HOST}:{PC_PORT}")
 
             raspsocket.send(
-                "rasp2pc_rasp_component".encode()
+                "rasp2pc_rasp_component".encode("utf-8")
             )  # Declare to PC that this is a """legit""" rasp component
             print("waiting for PC to accept the connection...")
-            connection = raspsocket.recv(1024).decode("ascii")
+            connection = raspsocket.recv(1024).decode("utf-8")
             if connection == "ConnectionAccepted":
                 print("Connection Accepted")
             else:
@@ -121,7 +121,7 @@ if __name__ == "__main__":
                 try:
                     print("Sending....")
                     encrypt_index(choice)
-                    print(raspsocket.recv(1024).decode("ascii"))    # Recive the response
+                    print(raspsocket.recv(1024).decode("utf-8"))    # Recive the response
                 except BrokenPipeError:
                     print("Connection closed or denied by PC.  Quitting.")
                     raspsocket.close()

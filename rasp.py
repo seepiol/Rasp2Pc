@@ -372,7 +372,7 @@ class Ui_MainWindow(object):
         try:
             logging.info(f"Selected {index}")
             encrypt_index(f"{index}")
-            response = raspsocket.recv(1024).decode("ascii")  # Recive the response
+            response = raspsocket.recv(1024).decode("utf-8")  # Recive the response
             print(response)  # Print the response
 
         except BrokenPipeError:
@@ -392,7 +392,7 @@ def encrypt_index(index):
     """
     logging.info(f"Encrypting the index {index}")
     index = index + (16 - len(index)) * " "  # make the index 16 bytes
-    cipherindex = crytool.encrypt(index.encode("ascii"))  # encrypting the index
+    cipherindex = crytool.encrypt(index.encode("utf-8"))  # encrypting the index
     logging.info("Index encrypted. Sending to PC")
     raspsocket.send(cipherindex)  # send the index
     logging.info("Index sent")
@@ -475,10 +475,10 @@ if __name__ == "__main__":
             raspsocket.connect((PC_HOST, PC_PORT))  # Connect to the PC
             logging.info("sending raspcomponent identifier")
             raspsocket.send(
-                "rasp2pc_rasp_component".encode()
+                "rasp2pc_rasp_component".encode("utf-8")
             )  # Declare to PC that this is a """legit""" rasp component
             print("Waiting for PC to accept the connection...")
-            connection = raspsocket.recv(1024).decode("ascii")
+            connection = raspsocket.recv(1024).decode("utf-8")
             if connection == "ConnectionAccepted":
                 logging.info("Connection accepted")
             else:

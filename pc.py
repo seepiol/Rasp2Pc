@@ -312,7 +312,11 @@ def decrypt_index(crypted_index):
 
     """
     logging.info("Decrypting the index")
-    index = crytool.decrypt(crypted_index).decode("ascii")  # Decrypting
+    index = crytool.decrypt(crypted_index) # Decrypting
+    try:    # When rasp disconnect and another rasp connect, the pc component recive a strange and non-decodable "string"
+        index = index.decode("utf-8")
+    except UnicodeDecodeError:
+        index="0"  
     index = index.replace(" ", "")  # Replacing whitespaces with blankstring
     return index
 
@@ -402,7 +406,7 @@ if __name__ == "__main__":
                 # Connection Control
                 print(f"{client_address} is trying to connect to this pc. ")
 
-                msg = conn.recv(1024).decode("ascii")
+                msg = conn.recv(1024).decode("utf-8")
                 if (
                     msg != "rasp2pc_rasp_component"
                 ):  # Verify if the client is a """legit""" rasp component
@@ -417,12 +421,12 @@ if __name__ == "__main__":
                 if accept_connection.lower() in ["y", "yes", ""]:
                     print(f"Connection with {client_address} accepted")
                     logging.info(f"Connection with {client_address} accepted")
-                    conn.send("ConnectionAccepted".encode())
+                    conn.send("ConnectionAccepted".encode("utf-8"))
                     pass
                 else:
                     print("Connection Denied")
                     logging.info("Connection Denied")
-                    conn.send("ConnectionDenied".encode())
+                    conn.send("ConnectionDenied".encode("utf-8"))
                     conn.close()
 
                 try:
@@ -432,6 +436,10 @@ if __name__ == "__main__":
                         logging.info("Reciving the index")
                         # Reciving the encrypted index directly as an argument for decrypt_index()
                         data = decrypt_index(conn.recv(1024))
+                        if data == "":
+                            raise IOError
+                        elif data == "0":    # see decrypt_index try comment
+                            pass
                         logging.info(f"{client_address} has requested {data}")
 
                         # Execute the index corresponding program or shortcut
@@ -486,10 +494,11 @@ if __name__ == "__main__":
                         
                         esit = "ok"
 
-                        conn.send(esit.encode())  # sending a "fake" confirm message
-
-                except IOError:
+                        conn.send(esit.encode("utf-8"))  # sending a "fake" confirm message
+                
+                except IOError as e:
                     logging.info("RASP Disconnected")
+                    print("RASP Disconnected")
 
     except KeyboardInterrupt:
         logging.info("KeyboardInterrupt: quitting")

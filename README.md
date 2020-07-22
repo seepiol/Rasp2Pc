@@ -65,7 +65,7 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L702), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L702), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#38) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#325)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py#L415), [raspBig component](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L414), [raspCli component](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py#39) and [on pc component](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py#325)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
@@ -321,6 +321,8 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 ## Known Issues
 
 * If the PC component is turned off (Ctrl+C) with a RASP component still connected, PC will give you `Something went wrong: [Errno 98] Address already in use`. This is a system issue. Close the RASP component and wait 1 minute more or less, and restart the PC component
+
+* If a RASP connects to PC the second time, the first command that will be selected on rasp won't work. That's because when a RASP component reconnects to PC it sends to the socket a weird undecodable string. It's an annoyng bug but it solves [this issue](https://github.com/seepiol/Rasp2Pc/issues/8)
 
 ## License
 
