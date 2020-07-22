@@ -507,7 +507,7 @@ if __name__ == "__main__":
         exit()
 
     except IOError as E:
-        logging.info("RASP disconnected")
+        logging.info(E)
         print(E)
         pass
 
