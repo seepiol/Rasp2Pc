@@ -6,7 +6,7 @@
 
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 </div>
-
+## WARNING: THIS REPOSITORY HAS BEEN MOVED TO [GITLAB](https://gitlab.com/seepiol/Rasp2Pc). CONSIDER ALL THE CODE IN THIS REPOSITORY AS DEPRECATED
 ## Index
 
 - [Why?](#why?)
