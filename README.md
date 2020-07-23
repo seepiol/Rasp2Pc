@@ -276,22 +276,15 @@ If you want to know more about keyboard shortcuts, view [PyNput documentation](h
 ## Compatibility
 
 I've succesfully tested all the components on these configs:
-| Component | OS | Device |
-|:----------|:----|:-------|
-| PC | Manjaro GNU/Linux (Plasma) | Laptop |
-| PC | Manjaro GNU/Linux (Gnome) | Laptop |
-| PC | GNU/LINUX antiX-19 | Laptop|
-| PC | Microsoft Windows 10* | Laptop |
-| PC | WSL Ubuntu (win 10) |Laptop| 
-| PC | Ubuntu 20.04 LTS GNOME | Laptop |
-| RASP/RASPBIG | Raspbian GNU/Linux 10 (Buster) | Raspberry Pi 3B+ <br>800x480 5 inch touchscreen monitor|
-| RASP/RASPBIG | Manjaro GNU/Linux (Plasma) | Laptop |
-| RASP/RASPBIG | Manjaro GNU/Linux (Gnome) | Laptop |
-| RASP/RASPBIG | GNU/LINUX antiX-19 | Laptop|
-| RASP/RASPBIG | Microsoft Windows 10* | Laptop|
-| RASP/RASPBIG | Ubuntu 20.04 LTS GNOME | Laptop |
-| RASPCLI | Ubuntu 20.04 LTS | Laptop |
-| RASPCLI | Android 10 (Termux) | Google Pixel 3a |
+
+* PC and RASP on Manjaro GNU/Linux (Plasma)
+* PC and RASP on Manjaro GNU/Linux (GNOME)
+* PC and RASP on GNU/LINUX antiX-19
+* PC and RASP on Microsoft Windows 10 *
+* PC and RASP on WSL Ubuntu
+* PC and RASP (including RASPCLI) on Ubuntu 20.04 LTS (GNOME)
+* RASPCLI on Termux (Android 10)
+
 
 Feel free to test it on your machine and open an issue to let me know if it works.
 
