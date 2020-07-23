@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
     Rasp2PC - RASP T H I C C Component
     A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
