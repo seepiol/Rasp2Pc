@@ -13,6 +13,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 - [How it Works](#how-it-works)
 - [Screenshots](#screenshots)
 - [Security](#security)
+- [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
   - [PC Component](#pc-component)
@@ -65,9 +66,22 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L415), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L414), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#39) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#329)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L416), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L415), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#40) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#330)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
+
+## Installation
+1) Clone this repository:
+
+    ``git clone https://gitlab.com/seepiol/rasp2pc.git``
+    
+2) Move into the folder
+
+    `` cd rasp2pc``
+
+3) Install the dependencies
+
+    ``python3 -m pip install --user -r requirements.txt``
 
 ## Configuration
 Make sure that all the dependencies are installed by typing `pip install -r requirements.txt`.
