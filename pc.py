@@ -292,8 +292,16 @@ def short8():
 
 
 def short9():
-    logging.info("Blank")
-    return 
+    """
+    ALT-F4
+    Close window
+    Usable everywhere
+    """
+    logging.info("Alt+F4")
+    with keyboard.pressed(Key.alt):
+        keyboard.press(Key.f4)
+        keyboard.release(Key.f4)
+    return "close window"
 
 
 def short10():

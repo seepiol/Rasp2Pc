@@ -109,7 +109,7 @@ if __name__ == "__main__":
     s6) Webcam
     s7) Fullscreen
     s8) Screenshot
-    s9) Blank
+    s9) Close Window
     s10) Blank
 
     sf1) Reboot

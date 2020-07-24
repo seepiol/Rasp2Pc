@@ -358,8 +358,8 @@ class Ui_MainWindow(object):
         self.short7_button.setText(_translate("MainWindow", "Fullscreen"))  # short7
         self.short7_button.setToolTip("Fullscreen - F11")
 
-        self.short8_button.setText(_translate("MainWindow", "Screenshot"))  # short8
-        self.short8_button.setToolTip("Screenshot - PRT-SC")
+        self.short9_button.setText(_translate("MainWindow", "Close Win"))  # short9
+        self.short9_button.setToolTip("Close Window - Alt+F4")
 
         self.short9_button.setText(_translate("MainWindow", "Blank"))  # short9
 

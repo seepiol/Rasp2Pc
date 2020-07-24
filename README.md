@@ -246,7 +246,7 @@ The actions marked with an asterisk (*) are system specific.
 | Webcam ON/OFF          | Ctrl+E | Google Meet |
 | Fullscreen             | F11    | Everywhere  |
 | Screenshot (spectacle) | PRTSC  | everywhere  |
-| Blank                  | -      | -           |
+| Close Window           | Alt+F4 | everywhere  |
 | Blank                  | -      | -           |
 
 If you want to modify the keyboard shortcuts,
