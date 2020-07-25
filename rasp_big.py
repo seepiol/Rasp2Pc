@@ -358,13 +358,14 @@ class Ui_MainWindow(object):
         self.short7_button.setText(_translate("MainWindow", "Fullscreen"))  # short7
         self.short7_button.setToolTip("Fullscreen - F11")
 
+        self.short8_button.setText(_translate("MainWindow", "Screenshot"))  # short8
+        self.short8_button.setToolTip("Screenshot - PRT-SC")
+
         self.short9_button.setText(_translate("MainWindow", "Close Win"))  # short9
         self.short9_button.setToolTip("Close Window - Alt+F4")
 
-        self.short9_button.setText(_translate("MainWindow", "Blank"))  # short9
-
         self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10
-
+        
     # App/keyboard shortcuts/system functions launch functions
 
     # I know that that's not the best way to handle an exception, but it works and it's enough for me
