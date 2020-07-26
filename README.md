@@ -83,6 +83,10 @@ The library used for the encryption is [PyCryptoDome](https://github.com/Legrand
 
     ``python3 -m pip install --user -r requirements.txt``
 
+### How to install PyQt5 on Raspbian (now Raspberry Pi OS)
+
+``sudo apt update && sudo apt-get install qt5-default pyqt5-dev pyqt5-dev-tools``
+
 ## Configuration
 Make sure that all the dependencies are installed by typing `pip install -r requirements.txt`.
 On debian-based distros, install PyQt5 by typing in a terminal window `sudo apt install python3-pyqt5`.
@@ -283,6 +287,7 @@ I've succesfully tested all the components on these configs:
 * PC and RASP on Microsoft Windows 10 *
 * PC and RASP on WSL Ubuntu
 * PC and RASP (including RASPCLI) on Ubuntu 20.04 LTS (GNOME)
+* RASP on Raspberry Pi 3B+ Raspbian GNU/Linux 10 (Buster) (now raspberry pi os) & 800x480 5 inch touchscreen monitor
 * RASPCLI on Termux (Android 10)
 
 
