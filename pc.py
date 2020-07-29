@@ -64,129 +64,20 @@ def sysf3():
     return "mute"
 
 
+def app(index):
+    # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
+    index = int(index[1:])-1
 
-def app1():
-    """
-    Launch First app in shortcuts.csv
-    """
-    logging.info(f"Executing {commands[0]}")
+    logging.info(f"Executing {commands[index]}")
     try:
-        # Platform check
+        # Platform Check
         if windows:    # With windows subprocess needs to run in a shell. More here: https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess#3172488
-            subprocess.Popen(commands[0], shell=True)
+            subprocess.Popen(commands[index], shell=True)
         else:    # If not windows, better with shell=False
-            subprocess.Popen(commands[0], shell=False)
-    except FileNotFoundError:    # The command is not found 
+            subprocess.Popen(commands[index], shell=False)
+    except FileNotFoundError:    # The command isn't recognized 
         print("No such file or directory")
-    return commands[0]
-
-
-def app2():
-    logging.info(f"Executing {commands[1]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[1], shell=True)
-        else:
-            subprocess.Popen(commands[1], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[1]
-
-
-def app3():
-    logging.info(f"Executing {commands[2]}")    
-    try:
-        if windows:
-            subprocess.Popen(commands[2], shell=True)
-        else:
-            subprocess.Popen(commands[2], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[2]
-
-
-def app4():
-    logging.info(f"Executing {commands[3]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[3], shell=True)
-        else:
-            subprocess.Popen(commands[3], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[3]
-
-
-def app5():
-    logging.info(f"Executing {commands[4]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[4], shell=True)
-        else:
-            subprocess.Popen(commands[4], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[4]
-
-
-def app6():
-    logging.info(f"Executing {commands[5]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[5], shell=True)
-        else:
-            subprocess.Popen(commands[5], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[5]
-
-
-def app7():
-    logging.info(f"Executing {commands[6]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[6], shell=True)
-        else:
-            subprocess.Popen(commands[6], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[6]
-
-
-def app8():
-    logging.info(f"Executing {commands[7]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[7], shell=True)
-        else:
-            subprocess.Popen(commands[7], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[7]
-
-
-def app9():
-    logging.info(f"Executing {commands[8]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[8], shell=True)
-        else:
-            subprocess.Popen(commands[8], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[8]
-
-
-def app10():
-    logging.info(f"Executing {commands[9]}")
-    try:
-        if windows:
-            subprocess.Popen(commands[9], shell=True)
-        else:
-            subprocess.Popen(commands[9], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return commands[9]
+    return commands[index]
 
 
 def short1():
@@ -452,27 +343,9 @@ if __name__ == "__main__":
                         logging.info(f"{client_address} has requested {data}")
 
                         # Execute the index corresponding program or shortcut
-                        if data == "a1":
-                            action_title = app1()
-                        elif data == "a2":
-                            action_title = app2()
-                        elif data == "a3":
-                            action_title = app3()
-                        elif data == "a4":
-                            action_title = app4()
-                        elif data == "a5":
-                            action_title = app5()
-                        elif data == "a6":
-                            action_title = app6()
-                        elif data == "a7":
-                            action_title = app7()
-                        elif data == "a8":
-                            action_title = app8()
-                        elif data == "a9":
-                            action_title = app9()
-                        elif data == "a10":
-                            action_title = app10()
 
+                        if data[0] == "a":    # If the first char of the data is "a" (an application), use the unified function
+                            app(data)
                         elif data == "s1":
                             action_title = short1()
                         elif data == "s2":
