@@ -22,6 +22,7 @@ import logging
 import argparse
 from Crypto.Cipher import AES
 import os
+import time
 
 HOST = ""  # Address
 PORT = 10000  # Port
@@ -211,6 +212,10 @@ def decrypt_index(crypted_index):
         index {string}: the decrypted index
 
     """
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
+
     logging.info("Decrypting the index")
     index = crytool.decrypt(crypted_index) # Decrypting
     try:    # When rasp disconnect and another rasp connect, the pc component recive a strange and non-decodable "string"
@@ -224,9 +229,6 @@ def parse_command(command):
     return command.split()
 
 if __name__ == "__main__":
-    # AES encrypter / decrypter
-    #                 A casual 128bit key                A casual 128bit Initialization vector
-    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
 
     if "nt" in os.name:
         windows=True
@@ -286,101 +288,105 @@ if __name__ == "__main__":
     logging.info("PC Component started")
     try:
         logging.info("Creating socket object")
-        with socket.socket(
-            socket.AF_INET, socket.SOCK_STREAM
-        ) as sock:  # creating socket object
-            sock.bind((HOST, PORT))  # binding socket on {host:port}
-
-            print(f"Socket binded on {HOST}:{PORT}")
-            logging.info(f"binding socket on {HOST}:{PORT}")
-
-            sock.listen()  # listening for connection requests
-            print("Socket in listening...")
-            logging.info(f"Socket listening on {HOST}:{PORT}")
-            while True:
-                (
-                    conn,
-                    client_address,
-                ) = sock.accept()  # Accepting connection from {address}
-
-                # Connection Control
-                print(f"{client_address} is trying to connect to this pc. ")
-
-                msg = conn.recv(1024).decode("utf-8")
-                if (
-                    msg != "rasp2pc_rasp_component"
-                ):  # Verify if the client is a """legit""" rasp component
-                    print(f"{client_address} doesn't seems to be a RASP component")
-                else:
-                    print(f"{client_address} seems to be a RASP component")
-
-                # Accept or deny the connection
-                accept_connection = input(
-                    "Do you want to accept this connection? [Y/n]: "
-                )
-                if accept_connection.lower() in ["y", "yes", ""]:
-                    print(f"Connection with {client_address} accepted")
-                    logging.info(f"Connection with {client_address} accepted")
-                    conn.send("ConnectionAccepted".encode("utf-8"))
-                    pass
-                else:
-                    print("Connection Denied")
-                    logging.info("Connection Denied")
-                    conn.send("ConnectionDenied".encode("utf-8"))
-                    conn.close()
-
-                try:
-                    
-                    action_title=None
-                    while True:
-                        logging.info("Reciving the index")
-                        # Reciving the encrypted index directly as an argument for decrypt_index()
-                        data = decrypt_index(conn.recv(1024))
-                        if data == "":
-                            raise IOError
-                        elif data == "0":    # see decrypt_index try comment
-                            pass
-                        logging.info(f"{client_address} has requested {data}")
-
-                        # Execute the index corresponding program or shortcut
-
-                        if data[0] == "a":    # If the first char of the data is "a" (an application), use the unified function
-                            app(data)
-                        elif data == "s1":
-                            action_title = short1()
-                        elif data == "s2":
-                            action_title = short2()
-                        elif data == "s3":
-                            action_title = short3()
-                        elif data == "s4":
-                            action_title = short4()
-                        elif data == "s5":
-                            action_title = short5()
-                        elif data == "s6":
-                            action_title = short6()
-                        elif data == "s7":
-                            action_title = short7()
-                        elif data == "s8":
-                            action_title = short8()
-                        elif data == "s9":
-                            action_title = short9()
-                        elif data == "s10":
-                            action_title = short10()
-
-                        elif data == "sf1":
-                            action_title = sysf1()
-                        elif data == "sf2":
-                            action_title = sysf2()
-                        elif data == "sf3":
-                            action_title = sysf3()
-                        
-                        esit = "ok"
-
-                        conn.send(esit.encode("utf-8"))  # sending a "fake" confirm message
+        while True:
+            with socket.socket(
+                socket.AF_INET, socket.SOCK_STREAM
+            ) as sock:  # creating socket object
+                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Permit the reutilization of the socket when in TIME_WAIT
+                sock.bind((HOST, PORT))  # binding socket on {host:port}
                 
-                except IOError as e:
-                    logging.info("RASP Disconnected")
-                    print("RASP Disconnected")
+
+                print(f"Socket binded on {HOST}:{PORT}")
+                logging.info(f"binding socket on {HOST}:{PORT}")
+
+                sock.listen()  # listening for connection requests
+                print("Socket in listening...")
+                logging.info(f"Socket listening on {HOST}:{PORT}")
+                while True:
+                    (
+                        conn,
+                        client_address,
+                    ) = sock.accept()  # Accepting connection from {address}
+
+                    # Connection Control
+                    print(f"{client_address} is trying to connect to this pc. ")
+
+                    msg = conn.recv(1024).decode("utf-8")
+                    if (
+                        msg != "rasp2pc_rasp_component"
+                    ):  # Verify if the client is a """legit""" rasp component
+                        print(f"{client_address} doesn't seems to be a RASP component")
+                    else:
+                        print(f"{client_address} seems to be a RASP component")
+
+                    # Accept or deny the connection
+                    accept_connection = input(
+                        "Do you want to accept this connection? [Y/n]: "
+                    )
+                    if accept_connection.lower() in ["y", "yes", ""]:
+                        print(f"Connection with {client_address} accepted")
+                        logging.info(f"Connection with {client_address} accepted")
+                        conn.send("ConnectionAccepted".encode("utf-8"))
+                    else:
+                        print("Connection Denied")
+                        logging.info("Connection Denied")
+                        conn.send("ConnectionDenied".encode("utf-8"))
+                        conn.close()
+
+                    try:
+                        
+                        action_title=None
+                        while True:
+                            logging.info("Reciving the index")
+                            # Reciving the encrypted index directly as an argument for decrypt_index()
+                            data = decrypt_index(conn.recv(1024))
+                            if data == "":
+                                raise IOError
+                            elif data == "0":    # see decrypt_index try comment
+                                pass
+                            logging.info(f"{client_address} has requested {data}")
+
+                            # Execute the index corresponding program or shortcut
+
+                            if data[0] == "a":    # If the first char of the data is "a" (an application), use the unified function
+                                app(data)
+                            elif data == "s1":
+                                action_title = short1()
+                            elif data == "s2":
+                                action_title = short2()
+                            elif data == "s3":
+                                action_title = short3()
+                            elif data == "s4":
+                                action_title = short4()
+                            elif data == "s5":
+                                action_title = short5()
+                            elif data == "s6":
+                                action_title = short6()
+                            elif data == "s7":
+                                action_title = short7()
+                            elif data == "s8":
+                                action_title = short8()
+                            elif data == "s9":
+                                action_title = short9()
+                            elif data == "s10":
+                                action_title = short10()
+
+                            elif data == "sf1":
+                                action_title = sysf1()
+                            elif data == "sf2":
+                                action_title = sysf2()
+                            elif data == "sf3":
+                                action_title = sysf3()
+                            
+                            esit = "ok"
+
+                            conn.send(esit.encode("utf-8"))  # sending a "fake" confirm message
+                    
+                    except IOError as e:
+                        logging.info("RASP Disconnected")
+                        print("RASP Disconnected")
+                        sock.close()
+                        break
 
     except KeyboardInterrupt:
         logging.info("KeyboardInterrupt: quitting")
