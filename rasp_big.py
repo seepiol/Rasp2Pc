@@ -391,6 +391,9 @@ def encrypt_index(index):
         index (string): the index to encrypt
 
     """
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
     logging.info(f"Encrypting the index {index}")
     index = index + (16 - len(index)) * " "  # make the index 16 bytes
     cipherindex = crytool.encrypt(index.encode("utf-8"))  # encrypting the index
@@ -409,12 +412,7 @@ if __name__ == "__main__":
     )
 
     logging.info("Rasp component started")
-
-    logging.info("Creating AES --crypter object")
-    # AES encrypter / decrypter
-    #                 A casual 128bit key                A casual 128bit Initialization vector
-    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
-
+    
     # Loading configuration file
     try:
         logging.info("Opening rasp.conf")

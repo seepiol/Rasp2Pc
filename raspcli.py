@@ -28,6 +28,9 @@ def encrypt_index(index):
         index (string): the index to encrypt
 
     """
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
     index = index + (16 - len(index)) * " "  # make the index 16 bytes
     cipherindex = crytool.encrypt(index.encode("utf-8"))  # encrypting the index
     raspsocket.send(cipherindex)  # send the index
@@ -35,10 +38,6 @@ def encrypt_index(index):
 
 if __name__ == "__main__":
     try:
-        # AES encrypter / decrypter
-        #                 A casual 128bit key                A casual 128bit Initialization vector
-        crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
-
         parser = argparse.ArgumentParser(description="Rasp2Pc RASP Component")
 
         parser.add_argument(
