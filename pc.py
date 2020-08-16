@@ -65,7 +65,7 @@ def sysf3():
     return "mute"
 
 
-def app(index):
+def app(index, windows):
     # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
     index = int(index[1:])-1
 
@@ -228,8 +228,7 @@ def decrypt_index(crypted_index):
 def parse_command(command):
     return command.split()
 
-if __name__ == "__main__":
-
+def initialize():
     if "nt" in os.name:
         windows=True
     else:
@@ -349,7 +348,7 @@ if __name__ == "__main__":
                             # Execute the index corresponding program or shortcut
 
                             if data[0] == "a":    # If the first char of the data is "a" (an application), use the unified function
-                                app(data)
+                                app(data, windows)
                             elif data == "s1":
                                 action_title = short1()
                             elif data == "s2":
@@ -404,3 +403,7 @@ if __name__ == "__main__":
         logging.info(f"Error Happened {e}. closing the socket.")
         sock.close()
         exit()
+
+
+if __name__ == '__main__':
+    initialize()
