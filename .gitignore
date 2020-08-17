@@ -3,3 +3,4 @@ pc.log
 __pycache__/pc.cpython-38.pyc
 .vscode/launch.json
 draft.py
+.vscode/settings.json

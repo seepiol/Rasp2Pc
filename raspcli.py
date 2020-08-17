@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''
+"""
     Rasp2PC - RASP CLI Component
     A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
     Copyright (C) 2020 seepiol
@@ -13,14 +13,15 @@
     GNU General Public License for more details.
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-'''
+"""
 
 import socket
 import argparse
 from Crypto.Cipher import AES
 import csv
 
-labels=[]
+labels = []
+
 
 def encrypt_index(index):
     """
@@ -38,8 +39,9 @@ def encrypt_index(index):
     raspsocket.send(cipherindex)  # send the index
     return cipherindex
 
+
 def load_csv():
-    #Loading labels
+    # Loading labels
     global labels
     with open("shortcuts.csv", "r") as labels_file:
         reader = csv.reader(labels_file)
@@ -51,6 +53,7 @@ def load_csv():
                 print("Error while reading shortcuts.csv file. quitting")
                 exit()
 
+
 if __name__ == "__main__":
     try:
         parser = argparse.ArgumentParser(description="Rasp2Pc RASP Component")
@@ -59,7 +62,7 @@ if __name__ == "__main__":
             "--host",
             type=str,
             required=True,
-            help=f"the addess of the PC Component (Required)"
+            help=f"the addess of the PC Component (Required)",
         )
 
         parser.add_argument(
@@ -73,12 +76,14 @@ if __name__ == "__main__":
         PC_HOST = args.host
         PC_PORT = args.port
 
-        #Loading labels        
+        # Loading labels
         load_csv()
 
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
+        with socket.socket(
+            socket.AF_INET, socket.SOCK_STREAM
+        ) as raspsocket:  # Create socket object
             # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)
-            raspsocket.connect((PC_HOST, PC_PORT))    # Connect to the PC 
+            raspsocket.connect((PC_HOST, PC_PORT))  # Connect to the PC
             print(f"Connected to {PC_HOST}:{PC_PORT}")
 
             raspsocket.send(
@@ -94,7 +99,8 @@ if __name__ == "__main__":
                 exit()
 
             while True:
-                print(f"""
+                print(
+                    f"""
     a1) {labels[0]}
     a2) {labels[1]}
     a3) {labels[2]}
@@ -120,14 +126,39 @@ if __name__ == "__main__":
     sf1) Reboot
     sf2) Lock
     sf3) Mute
-                """)
+                """
+                )
                 choice = input("What to do? :")
-                while choice not in ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10", "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","sf1","sf2","sf3"]:    # Input validation
+                while choice not in [
+                    "a1",
+                    "a2",
+                    "a3",
+                    "a4",
+                    "a5",
+                    "a6",
+                    "a7",
+                    "a8",
+                    "a9",
+                    "a10",
+                    "s1",
+                    "s2",
+                    "s3",
+                    "s4",
+                    "s5",
+                    "s6",
+                    "s7",
+                    "s8",
+                    "s9",
+                    "s10",
+                    "sf1",
+                    "sf2",
+                    "sf3",
+                ]:  # Input validation
                     choice = input("what to do? :")
                 try:
                     print("Sending....")
                     encrypt_index(choice)
-                    print(raspsocket.recv(1024).decode("utf-8"))    # Recive the response
+                    print(raspsocket.recv(1024).decode("utf-8"))  # Recive the response
                 except BrokenPipeError:
                     print("Connection closed or denied by PC.  Quitting.")
                     raspsocket.close()
@@ -139,4 +170,3 @@ if __name__ == "__main__":
         except NameError:
             pass
         exit()
-            

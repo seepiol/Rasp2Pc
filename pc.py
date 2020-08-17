@@ -27,15 +27,16 @@ import time
 HOST = ""  # Address
 PORT = 10000  # Port
 
-commands=[]
+commands = []
+
 
 def sysf1():
     """
     Reboot the system
     """
-    logging.info("rebooting system")    # Logging
+    logging.info("rebooting system")  # Logging
     try:
-        subprocess.Popen(["reboot"], shell=False)   # Run the command
+        subprocess.Popen(["reboot"], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
     return "Reboot"  # action name
@@ -67,16 +68,18 @@ def sysf3():
 
 def app(index, windows):
     # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
-    index = int(index[1:])-1
+    index = int(index[1:]) - 1
 
     logging.info(f"Executing {commands[index]}")
     try:
         # Platform Check
-        if windows:    # With windows subprocess needs to run in a shell. More here: https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess#3172488
+        if (
+            windows
+        ):  # With windows subprocess needs to run in a shell. More here: https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess#3172488
             subprocess.Popen(commands[index], shell=True)
-        else:    # If not windows, better with shell=False
+        else:  # If not windows, better with shell=False
             subprocess.Popen(commands[index], shell=False)
-    except FileNotFoundError:    # The command isn't recognized 
+    except FileNotFoundError:  # The command isn't recognized
         print("No such file or directory")
     return commands[index]
 
@@ -198,7 +201,7 @@ def short9():
 
 def short10():
     logging.info("Blank")
-    return 
+    return
 
 
 def decrypt_index(crypted_index):
@@ -207,7 +210,7 @@ def decrypt_index(crypted_index):
 
     Args:
         crypted index {bytes}: the aes128 encryptrd byte string
-    
+
     Returns:
         index {string}: the decrypted index
 
@@ -217,16 +220,18 @@ def decrypt_index(crypted_index):
     crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
 
     logging.info("Decrypting the index")
-    index = crytool.decrypt(crypted_index) # Decrypting
-    try:    # When rasp disconnect and another rasp connect, the pc component recive a strange and non-decodable "string"
+    index = crytool.decrypt(crypted_index)  # Decrypting
+    try:  # When rasp disconnect and another rasp connect, the pc component recive a strange and non-decodable "string"
         index = index.decode("utf-8")
     except UnicodeDecodeError:
-        index="0"  
+        index = "0"
     index = index.replace(" ", "")  # Replacing whitespaces with blankstring
     return index
 
+
 def parse_command(command):
     return command.split()
+
 
 def load_csv():
     global commands
@@ -241,11 +246,12 @@ def load_csv():
                 print("Error while reading shortcuts.csv file. quitting")
                 exit()
 
+
 def initialize():
     if "nt" in os.name:
-        windows=True
+        windows = True
     else:
-        windows=False
+        windows = False
 
     # Setting up the logger
     logging.basicConfig(
@@ -295,9 +301,10 @@ def initialize():
             with socket.socket(
                 socket.AF_INET, socket.SOCK_STREAM
             ) as sock:  # creating socket object
-                sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)  # Permit the reutilization of the socket when in TIME_WAIT
+                sock.setsockopt(
+                    socket.SOL_SOCKET, socket.SO_REUSEADDR, 1
+                )  # Permit the reutilization of the socket when in TIME_WAIT
                 sock.bind((HOST, PORT))  # binding socket on {host:port}
-                
 
                 print(f"Socket binded on {HOST}:{PORT}")
                 logging.info(f"binding socket on {HOST}:{PORT}")
@@ -337,21 +344,23 @@ def initialize():
                         conn.close()
 
                     try:
-                        
-                        action_title=None
+
+                        action_title = None
                         while True:
                             logging.info("Reciving the index")
                             # Reciving the encrypted index directly as an argument for decrypt_index()
                             data = decrypt_index(conn.recv(1024))
                             if data == "":
                                 raise IOError
-                            elif data == "0":    # see decrypt_index try comment
+                            elif data == "0":  # see decrypt_index try comment
                                 pass
                             logging.info(f"{client_address} has requested {data}")
 
                             # Execute the index corresponding program or shortcut
 
-                            if data[0] == "a":    # If the first char of the data is "a" (an application), use the unified function
+                            if (
+                                data[0] == "a"
+                            ):  # If the first char of the data is "a" (an application), use the unified function
                                 app(data, windows)
                             elif data == "s1":
                                 action_title = short1()
@@ -380,11 +389,13 @@ def initialize():
                                 action_title = sysf2()
                             elif data == "sf3":
                                 action_title = sysf3()
-                            
+
                             esit = "ok"
 
-                            conn.send(esit.encode("utf-8"))  # sending a "fake" confirm message
-                    
+                            conn.send(
+                                esit.encode("utf-8")
+                            )  # sending a "fake" confirm message
+
                     except IOError as e:
                         logging.info("RASP Disconnected")
                         print("RASP Disconnected")
@@ -409,5 +420,5 @@ def initialize():
         exit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     initialize()

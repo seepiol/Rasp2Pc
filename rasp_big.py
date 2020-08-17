@@ -28,9 +28,10 @@ import csv
 import argparse
 from Crypto.Cipher import AES
 
-labels=[]
+labels = []
 
-###POPUPS FOR ERROR###
+
+# POPUPS FOR ERROR
 
 # BrokenPipeError Exception popup
 def connection_interrupted():
@@ -99,7 +100,7 @@ def pc_turned_off(socket):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800,480)
+        MainWindow.resize(800, 480)
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -265,31 +266,31 @@ class Ui_MainWindow(object):
 
         # Function Connections
         # System Function
-        self.reboot_button.clicked.connect(lambda:self.send("sf1"))
-        self.lock_button.clicked.connect(lambda:self.send("sf2"))
-        self.mute_button.clicked.connect(lambda:self.send("sf3"))
+        self.reboot_button.clicked.connect(lambda: self.send("sf1"))
+        self.lock_button.clicked.connect(lambda: self.send("sf2"))
+        self.mute_button.clicked.connect(lambda: self.send("sf3"))
         # Apps
-        self.app1_button.clicked.connect(lambda:self.send("a1"))
-        self.app2_button.clicked.connect(lambda:self.send("a2"))
-        self.app3_button.clicked.connect(lambda:self.send("a3"))
-        self.app4_button.clicked.connect(lambda:self.send("a4"))
-        self.app5_button.clicked.connect(lambda:self.send("a5"))
-        self.app6_button.clicked.connect(lambda:self.send("a6"))
-        self.app7_button.clicked.connect(lambda:self.send("a7"))
-        self.app8_button.clicked.connect(lambda:self.send("a8"))
-        self.app9_button.clicked.connect(lambda:self.send("a9"))
-        self.app10_button.clicked.connect(lambda:self.send("a10"))
+        self.app1_button.clicked.connect(lambda: self.send("a1"))
+        self.app2_button.clicked.connect(lambda: self.send("a2"))
+        self.app3_button.clicked.connect(lambda: self.send("a3"))
+        self.app4_button.clicked.connect(lambda: self.send("a4"))
+        self.app5_button.clicked.connect(lambda: self.send("a5"))
+        self.app6_button.clicked.connect(lambda: self.send("a6"))
+        self.app7_button.clicked.connect(lambda: self.send("a7"))
+        self.app8_button.clicked.connect(lambda: self.send("a8"))
+        self.app9_button.clicked.connect(lambda: self.send("a9"))
+        self.app10_button.clicked.connect(lambda: self.send("a10"))
         # Keyboard
-        self.short1_button.clicked.connect(lambda:self.send("s1"))
-        self.short2_button.clicked.connect(lambda:self.send("s2"))
-        self.short3_button.clicked.connect(lambda:self.send("s3"))
-        self.short4_button.clicked.connect(lambda:self.send("s4"))
-        self.short5_button.clicked.connect(lambda:self.send("s5"))
-        self.short6_button.clicked.connect(lambda:self.send("s6"))
-        self.short7_button.clicked.connect(lambda:self.send("s7"))
-        self.short8_button.clicked.connect(lambda:self.send("s8"))
-        self.short9_button.clicked.connect(lambda:self.send("s9"))
-        self.short10_button.clicked.connect(lambda:self.send("s10"))
+        self.short1_button.clicked.connect(lambda: self.send("s1"))
+        self.short2_button.clicked.connect(lambda: self.send("s2"))
+        self.short3_button.clicked.connect(lambda: self.send("s3"))
+        self.short4_button.clicked.connect(lambda: self.send("s4"))
+        self.short5_button.clicked.connect(lambda: self.send("s5"))
+        self.short6_button.clicked.connect(lambda: self.send("s6"))
+        self.short7_button.clicked.connect(lambda: self.send("s7"))
+        self.short8_button.clicked.connect(lambda: self.send("s8"))
+        self.short9_button.clicked.connect(lambda: self.send("s9"))
+        self.short10_button.clicked.connect(lambda: self.send("s10"))
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -365,7 +366,7 @@ class Ui_MainWindow(object):
         self.short9_button.setToolTip("Close Window - Alt+F4")
 
         self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10
-        
+
     # App/keyboard shortcuts/system functions launch functions
 
     # I know that that's not the best way to handle an exception, but it works and it's enough for me
@@ -382,6 +383,7 @@ class Ui_MainWindow(object):
             connection_interrupted()
             raspsocket.close()
             exit()
+
 
 def encrypt_index(index):
     """
@@ -401,8 +403,9 @@ def encrypt_index(index):
     raspsocket.send(cipherindex)  # send the index
     logging.info("Index sent")
 
+
 def load_csv():
-    #Loading labels
+    # Loading labels
     global labels
     with open("shortcuts.csv", "r") as labels_file:
         reader = csv.reader(labels_file)
@@ -414,6 +417,7 @@ def load_csv():
                 print("Error while reading shortcuts.csv file. quitting")
                 exit()
 
+
 if __name__ == "__main__":
     # Setting up the logger
     logging.basicConfig(
@@ -424,7 +428,7 @@ if __name__ == "__main__":
     )
 
     logging.info("Rasp component started")
-    
+
     # Loading configuration file
     try:
         logging.info("Opening rasp.conf")
