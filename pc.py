@@ -228,6 +228,19 @@ def decrypt_index(crypted_index):
 def parse_command(command):
     return command.split()
 
+def load_csv():
+    global commands
+    # Loading commands
+    with open("shortcuts.csv", "r") as commands_file:
+        reader = csv.reader(commands_file)
+
+        for row in reader:
+            try:
+                commands.append(parse_command(row[1]))
+            except IndexError:
+                print("Error while reading shortcuts.csv file. quitting")
+                exit()
+
 def initialize():
     if "nt" in os.name:
         windows=True
@@ -273,16 +286,7 @@ def initialize():
         )
         logging.critical("Selected a privileged port")
 
-    # Loading commands
-    with open("shortcuts.csv", "r") as commands_file:
-        reader = csv.reader(commands_file)
-
-        for row in reader:
-            try:
-                commands.append(parse_command(row[1]))
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
+    load_csv()
 
     logging.info("PC Component started")
     try:

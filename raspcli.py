@@ -20,6 +20,8 @@ import argparse
 from Crypto.Cipher import AES
 import csv
 
+labels=[]
+
 def encrypt_index(index):
     """
     encrypt the index, add whitespace to make the string >= 16 bytes and send the index to PC.
@@ -35,6 +37,19 @@ def encrypt_index(index):
     cipherindex = crytool.encrypt(index.encode("utf-8"))  # encrypting the index
     raspsocket.send(cipherindex)  # send the index
     return cipherindex
+
+def load_csv():
+    #Loading labels
+    global labels
+    with open("shortcuts.csv", "r") as labels_file:
+        reader = csv.reader(labels_file)
+
+        for row in reader:
+            try:
+                labels.append(row[0])
+            except IndexError:
+                print("Error while reading shortcuts.csv file. quitting")
+                exit()
 
 if __name__ == "__main__":
     try:
@@ -58,17 +73,8 @@ if __name__ == "__main__":
         PC_HOST = args.host
         PC_PORT = args.port
 
-        #Loading labels
-        labels=[]
-        with open("shortcuts.csv", "r") as labels_file:
-            reader = csv.reader(labels_file)
-
-            for row in reader:
-                try:
-                    labels.append(row[0])
-                except IndexError:
-                    print("Error while reading shortcuts.csv file. quitting")
-                    exit()
+        #Loading labels        
+        load_csv()
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as raspsocket:    # Create socket object
             # ATTENTION: You have to modify the line below with the PC ip address and the port (default:10000)

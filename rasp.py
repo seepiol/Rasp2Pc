@@ -402,6 +402,18 @@ def encrypt_index(index):
     raspsocket.send(cipherindex)  # send the index
     logging.info("Index sent")
 
+def load_csv():
+    #Loading labels
+    global labels
+    with open("shortcuts.csv", "r") as labels_file:
+        reader = csv.reader(labels_file)
+
+        for row in reader:
+            try:
+                labels.append(row[0])
+            except IndexError:
+                print("Error while reading shortcuts.csv file. quitting")
+                exit()
 
 if __name__ == "__main__":
     # Setting up the logger
@@ -454,16 +466,7 @@ if __name__ == "__main__":
     PC_HOST = args.host
     PC_PORT = args.port
 
-    #Loading labels
-    with open("shortcuts.csv", "r") as labels_file:
-        reader = csv.reader(labels_file)
-
-        for row in reader:
-            try:
-                labels.append(row[0])
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
+    load_csv()
 
     try:
         logging.info("Creating socket...")
