@@ -19,6 +19,7 @@ import socket
 import argparse
 from Crypto.Cipher import AES
 import csv
+import os
 
 labels = []
 
@@ -99,8 +100,18 @@ if __name__ == "__main__":
                 exit()
 
             while True:
+                os.system("clear")
                 print(
                     f"""
+   __                ____    ___  ___ 
+  /__\ __ _ ___ _ __|___ \  / _ \/ __\\
+ / \/// _` / __| '_ \ __) |/ /_)/ /   
+/ _  \ (_| \__ \ |_) / __// ___/ /___ 
+\/ \_/\__,_|___/ .__/_____\/   \____/ 
+               |_|                    
+RASPCLI COMPONENT
+https://gitlab.com/seepiol/rasp2pc
+
     a1) {labels[0]}
     a2) {labels[1]}
     a3) {labels[2]}
