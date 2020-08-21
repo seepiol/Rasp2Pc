@@ -24,6 +24,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
   - [System Fuctions](#system-functions)
   - [Programs / Commands](#programs--commands)
   - [Keyboard shortcuts](#keyboard-shortcuts)
+- [Enhancements](#enhancements)
 - [Technologies](#technologies)
 - [Compatibility](#compatibility)
   - [Linux](#linux)
@@ -44,13 +45,13 @@ Because using the keyboard and mouse, especially while you're doing something el
 
 The project is composed of 3 parts, called "components".
 
-* [**PC Component**](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py), which runs on the main computer (with linux operating system) and which consists of a socket server
+* [**PC Component**](https://github.com/seepiol/Rasp2Pc/blob/master/pc.py), which runs on the main computer (with linux operating system) and which consists of a socket server
 * [**RASP Component**](https://github.com/seepiol/Rasp2Pc/blob/master/rasp.py), which is made to run on a [Raspberry Pi](https://www.raspberrypi.org/) with a touchscreen and it's the client
 * [**RASPCLI Component**](https://github.com/seepiol/Rasp2Pc/blob/master/raspcli.py), an alternative to RASP components, for devices that do not have a graphical environment (for example [**Termux**](https://termux.com/) on android)
 
 The RASP (or raspcli) component send an encrypted index to the PC, which corresponds to a certain function. The PC gets the index, run the command and eventually returns the result or the status of the command.
 
-It also exist the [**RASPBIG Component**](https://github.com/seepiol/Rasp2Pc/blob/master/rasp_big.py), which is equal to rasp but the GUI is optimized for high resolution touchscreen monitors (>800x480)
+It also exist the [**RASPBIG Component**](https://github.com/seepiol/Rasp2Pc/blob/master/raspbig.py), which is equal to rasp but the GUI is optimized for high resolution touchscreen monitors (>800x480)
 
 ## Screenshots
 
@@ -66,7 +67,7 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L398), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp_big.py#L398), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#365) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#220)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L398), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspbig.py#L398), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#365) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#220)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
@@ -265,6 +266,35 @@ with keyboard.pressed(Key.ctrl):
 ```
 
 If you want to know more about keyboard shortcuts, view [PyNput documentation](https://pynput.readthedocs.io/en/latest/keyboard.html).
+
+## Enhancements
+
+### Create .desktop file
+If you want to launch rasp2pc components by clicking an icon instead of opening the terminal, follow the instructions below
+
+Remember to replace `<RASP2PC_PATH>` with the path of rasp2pc folder, and `<COMPONENT>` with the component name (`pc`, `rasp`, `raspbig`, `raspcli`)
+
+- Create a file named `rasp2pc-<COMPONENT>.desktop`
+(for example, `rasp2pc-rasp.py`)
+in `.local/share/applications/`
+
+- Open the .desktop file and paste the code below
+
+```
+[Desktop Entry]
+Name=Rasp2Pc
+GenericName=Rasp2Pc-<COMPONENT> component
+Exec=python <RASP2PC_PATH>/<COMPONENT>.py
+Path=<RASP2PC_PATH>/
+Icon=<RASP2PC_PATH>/icons/icon.png
+Type=Application
+Terminal=True
+Categories=Utilities;Network;Utility;Remote;Internet;
+```
+
+> This procedure is available only on linux distributions
+
+
 
 
 ## Technologies
