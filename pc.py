@@ -84,7 +84,7 @@ def app(index, windows):
     return commands[index]
 
 
-def short1():
+def short1(keyboard):
     """
     Ctrl+Z
     Undo shortcut
@@ -97,7 +97,7 @@ def short1():
     return "undo"
 
 
-def short2():
+def short2(keyboard):
     """
     Ctrl+c
     Copy
@@ -110,7 +110,7 @@ def short2():
     return "copy"
 
 
-def short3():
+def short3(keyboard):
     """
     Ctrl+x
     Cut
@@ -123,7 +123,7 @@ def short3():
     return "cut"
 
 
-def short4():
+def short4(keyboard):
     """
     Ctrl+v
     Paste
@@ -136,7 +136,7 @@ def short4():
     return "paste"
 
 
-def short5():
+def short5(keyboard):
     """
     Ctrl+D
     Activate/disactivate the microphone
@@ -149,7 +149,7 @@ def short5():
     return "webcam"
 
 
-def short6():
+def short6(keyboard):
     """
     Ctrl+E
     Activate/disactivate the microphone
@@ -162,7 +162,7 @@ def short6():
     return "microphone"
 
 
-def short7():
+def short7(keyboard):
     """
     F11
     Make full screen
@@ -174,7 +174,7 @@ def short7():
     return "fullscreen"
 
 
-def short8():
+def short8(keyboard):
     """
     PRT-SC
     Print Screen (Screenshot)
@@ -186,7 +186,7 @@ def short8():
     return "screenshot"
 
 
-def short9():
+def short9(keyboard):
     """
     ALT-F4
     Close window
@@ -199,7 +199,7 @@ def short9():
     return "close window"
 
 
-def short10():
+def short10(keyboard):
     logging.info("Blank")
     return
 
@@ -363,25 +363,25 @@ def initialize():
                             ):  # If the first char of the data is "a" (an application), use the unified function
                                 app(data, windows)
                             elif data == "s1":
-                                action_title = short1()
+                                action_title = short1(keyboard)
                             elif data == "s2":
-                                action_title = short2()
+                                action_title = short2(keyboard)
                             elif data == "s3":
-                                action_title = short3()
+                                action_title = short3(keyboard)
                             elif data == "s4":
-                                action_title = short4()
+                                action_title = short4(keyboard)
                             elif data == "s5":
-                                action_title = short5()
+                                action_title = short5(keyboard)
                             elif data == "s6":
-                                action_title = short6()
+                                action_title = short6(keyboard)
                             elif data == "s7":
-                                action_title = short7()
+                                action_title = short7(keyboard)
                             elif data == "s8":
-                                action_title = short8()
+                                action_title = short8(keyboard)
                             elif data == "s9":
-                                action_title = short9()
+                                action_title = short9(keyboard)
                             elif data == "s10":
-                                action_title = short10()
+                                action_title = short10(keyboard)
 
                             elif data == "sf1":
                                 action_title = sysf1()
