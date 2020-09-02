@@ -21,8 +21,8 @@ from pynput.keyboard import Key, Controller
 import logging
 import argparse
 from Crypto.Cipher import AES
-import os
 import time
+import platform
 
 HOST = ""  # Address
 PORT = 10000  # Port
@@ -248,7 +248,7 @@ def load_csv():
 
 
 def initialize():
-    if "nt" in os.name:
+    if platform.system() == "Windows":
         windows = True
     else:
         windows = False

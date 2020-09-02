@@ -284,8 +284,7 @@ in `.local/share/applications/`
 [Desktop Entry]
 Name=Rasp2Pc
 GenericName=Rasp2Pc-<COMPONENT> component
-Exec=python <RASP2PC_PATH>/<COMPONENT>.py
-Path=<RASP2PC_PATH>/
+Exec=cd <RASP2PC_PATH>/ && python3 <COMPONENT>.py
 Icon=<RASP2PC_PATH>/icons/icon.png
 Type=Application
 Terminal=True
