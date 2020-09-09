@@ -316,6 +316,7 @@ I've succesfully tested all the components on these configs:
 * PC and RASP on Microsoft Windows 10 *
 * PC and RASP on WSL Ubuntu
 * PC and RASP (including RASPCLI) on Ubuntu 20.04 LTS (GNOME)
+* PC on Arch Linux (Plasma)
 * RASP on Raspberry Pi 3B+ Raspbian GNU/Linux 10 (Buster) (now raspberry pi os) & 800x480 5 inch touchscreen monitor
 * RASPCLI on Termux (Android 10)
 

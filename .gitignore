@@ -4,3 +4,8 @@ __pycache__/pc.cpython-38.pyc
 .vscode/launch.json
 draft.py
 .vscode/settings.json
+.idea/misc.xml
+.idea/modules.xml
+.idea/rasp2pc.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
