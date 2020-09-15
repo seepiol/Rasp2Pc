@@ -25,6 +25,7 @@ from PyQt5.QtWidgets import QMessageBox, QApplication
 import sys
 import logging
 import csv
+import json
 import argparse
 from Crypto.Cipher import AES
 
@@ -404,18 +405,19 @@ def encrypt_index(index):
     logging.info("Index sent")
 
 
-def load_csv():
-    # Loading labels
+def load_json():
     global labels
-    with open("shortcuts.csv", "r") as labels_file:
-        reader = csv.reader(labels_file)
+    # Loading labels
+    try:
+        with open("shortcuts.json", "r") as shortcuts_file:
+            shortcuts_json = json.load(shortcuts_file)
+            for label in shortcuts_json["app"]:
+                labels.append(label)
+    except Exception as E:
+        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
+        logging.critical("Error while reading shortcuts.json")
+        exit()
 
-        for row in reader:
-            try:
-                labels.append(row[0])
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
 
 
 if __name__ == "__main__":
@@ -469,7 +471,7 @@ if __name__ == "__main__":
     PC_HOST = args.host
     PC_PORT = args.port
 
-    load_csv()
+    load_json()
 
     try:
         logging.info("Creating socket...")

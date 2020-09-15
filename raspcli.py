@@ -18,8 +18,8 @@
 import socket
 import argparse
 from Crypto.Cipher import AES
-import csv
 import os
+import json
 
 labels = []
 
@@ -41,18 +41,19 @@ def encrypt_index(index):
     return cipherindex
 
 
-def load_csv():
-    # Loading labels
+def load_json():
     global labels
-    with open("shortcuts.csv", "r") as labels_file:
-        reader = csv.reader(labels_file)
+    # Loading labels
+    try:
+        with open("shortcuts.json", "r") as shortcuts_file:
+            shortcuts_json = json.load(shortcuts_file)
+            for label in shortcuts_json["app"]:
+                labels.append(label)
+    except Exception as E:
+        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
+        logging.critical("Error while reading shortcuts.json")
+        exit()
 
-        for row in reader:
-            try:
-                labels.append(row[0])
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
 
 
 if __name__ == "__main__":
@@ -78,7 +79,7 @@ if __name__ == "__main__":
         PC_PORT = args.port
 
         # Loading labels
-        load_csv()
+        load_json()
 
         with socket.socket(
             socket.AF_INET, socket.SOCK_STREAM
