@@ -28,7 +28,10 @@ HOST = ""  # Address
 PORT = 10000  # Port
 
 commands = []
+windows = None
 
+# System functions methods
+# TODO: take the system functions from shortcuts.csv
 
 def sysf1():
     """
@@ -66,7 +69,12 @@ def sysf3():
     return "mute"
 
 
-def app(index, windows):
+# App launch methods
+# It's kinda ok, but 
+# TODO: return the esit (if the execution is gone ok)
+# TODO: mantain the command running even if I close pc component
+
+def app(index):
     # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
     index = int(index[1:]) - 1
 
@@ -83,6 +91,9 @@ def app(index, windows):
         print("No such file or directory")
     return commands[index]
 
+
+# Keyboard shortcuts execution methods
+# TODO: avoid to hardcode. maybe parse from shortcuts.csv in some way? 
 
 def short1(keyboard):
     """
@@ -232,7 +243,7 @@ def decrypt_index(crypted_index):
 def parse_command(command):
     return command.split()
 
-
+# FIXME: why csv? it isn't really a comma separated value file, it's more like a dictionery. json would be better
 def load_csv():
     global commands
     # Loading commands
@@ -248,6 +259,7 @@ def load_csv():
 
 
 def initialize():
+    global windows
     if platform.system() == "Windows":
         windows = True
     else:
@@ -350,7 +362,7 @@ def initialize():
                             logging.info("Reciving the index")
                             # Reciving the encrypted index directly as an argument for decrypt_index()
                             data = decrypt_index(conn.recv(1024))
-                            if data == "":
+                            if data == "":  # FIXME: is that useless?
                                 raise IOError
                             elif data == "0":  # see decrypt_index try comment
                                 pass
@@ -361,9 +373,9 @@ def initialize():
                             if (
                                 data[0] == "a"
                             ):  # If the first char of the data is "a" (an application), use the unified function
-                                app(data, windows)
+                                app(data)
                             elif data == "s1":
-                                action_title = short1(keyboard)
+                                action_title = short1(keyboard) # FIXME; does really make sense to pass the keyboard as argument? 
                             elif data == "s2":
                                 action_title = short2(keyboard)
                             elif data == "s3":
@@ -390,7 +402,7 @@ def initialize():
                             elif data == "sf3":
                                 action_title = sysf3()
 
-                            esit = "ok"
+                            esit = "ok" # FIXME: this useless return code
 
                             conn.send(
                                 esit.encode("utf-8")
