@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-import csv
+import json
 import socket
 import subprocess
 from pynput.keyboard import Key, Controller
@@ -243,19 +243,20 @@ def decrypt_index(crypted_index):
 def parse_command(command):
     return command.split()
 
-# FIXME: why csv? it isn't really a comma separated value file, it's more like a dictionery. json would be better
-def load_csv():
+
+def load_json():
     global commands
     # Loading commands
-    with open("shortcuts.csv", "r") as commands_file:
-        reader = csv.reader(commands_file)
-
-        for row in reader:
-            try:
-                commands.append(parse_command(row[1]))
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
+    try:
+        with open("shortcuts.json", "r") as shortcuts_file:
+            shortcuts_json = json.load(shortcuts_file)
+            for key in shortcuts_json["app"]:
+                commands.append(parse_command(shortcuts_json["app"].get(key)))
+            print(commands)
+    except Exception as E:
+        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
+        logging.critical("Error while reading shortcuts.json")
+        exit()
 
 
 def initialize():
@@ -304,7 +305,7 @@ def initialize():
         )
         logging.critical("Selected a privileged port")
 
-    load_csv()
+    load_json()
 
     logging.info("PC Component started")
     try:
