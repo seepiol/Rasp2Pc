@@ -5,6 +5,8 @@
 <br>
 
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
+
+<a href="https://gitlab.com/seepiol/rasp2pc/">Stable Branch</a> - <a href="https://gitlab.com/seepiol/rasp2pc/-/tree/features_in_dev">Developing Branch</a>
 </div>
 
 ## Index
@@ -216,11 +218,25 @@ By default, the program has 3 system functions shortcuts, 6 shortcuts for launch
 
 ### Programs / Commands
 
-The labels and the commands are now defined in [shortcuts.csv file](gitlab.com/seepiol/rasp2pc/shortcuts.csv).
+The labels and the commands are defined in [shortcuts.json file](gitlab.com/seepiol/rasp2pc/shortcuts.json), app list.
 
 For the consistency between rasp(s) component and pc the shortcuts file must be identical.
 
-The file format is `Label,Subprocess Command`. Each shortcut is separated by newline. 
+The file format is `"label":"command",`, and each line is contained in the `app` section of `shortcuts.json`.
+
+```
+{
+  "system_action":{
+    ...
+  },
+  "app":{
+    <------ SEE HERE
+  },
+  "keyboard":{
+    ...
+  }
+}
+```
 
 The default programs shortcuts are:
 
@@ -329,7 +345,7 @@ Feel free to test it on your machine and open an issue to let me know if it work
 I made this on linux, and I've tested on it all of the time. It should work on every distro without problems.
 
 ### Windows
-To make the PC component compatible with windows, it's enough to customize the shortcuts.csv.
+To make the PC component compatible with windows, it's enough to customize the shortcuts.json.
 The command should be `start <executable filename>`. If the executable is in the path, is enough to insert `start <name>`.  
 For example:<br>
 ```Firefox, start firefox```.
@@ -347,7 +363,7 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 - [ ] Unify keyboard shortcuts execution functions
 - [ ] Unify system actions execution functions
 - [ ] Confiration popup when reboot sysfunction
-- [ ] Shortcuts.csv for system actions and keyboard shortcuts
+- [ ] Shortcuts.json for system actions and keyboard shortcuts
 - [ ] Leave applications open after shutting down pc component
 - [x] DRY on index sending functions (RASP,RASPBIG)
 - [ ] DRY on application startup functions (PC)
