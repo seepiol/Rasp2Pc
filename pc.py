@@ -252,7 +252,6 @@ def load_json():
             shortcuts_json = json.load(shortcuts_file)
             for key in shortcuts_json["app"]:
                 commands.append(parse_command(shortcuts_json["app"].get(key)))
-            print(commands)
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
         logging.critical("Error while reading shortcuts.json")
