@@ -128,7 +128,8 @@ class Ui_MainWindow(object):
         self.pc_info_label.setText("")
         self.pc_info_label.setObjectName("pc_info_label")
 
-        # System Actions
+        # System Functions
+        # FIXME: variable name, tooltip, object name
         self.reboot_icon = QtGui.QIcon()
         self.reboot_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[0]}.png"))
         self.reboot_button = QtWidgets.QPushButton(self.centralwidget)

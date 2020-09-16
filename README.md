@@ -69,7 +69,7 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L400), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspbig.py#L399), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#37) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#231)
+The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L403), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspbig.py#L401), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#39) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#231)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 

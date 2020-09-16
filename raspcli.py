@@ -20,7 +20,9 @@ import argparse
 from Crypto.Cipher import AES
 import os
 import json
+# TODO: add logging
 
+system_functions_labels = []
 labels = []
 
 
@@ -47,11 +49,15 @@ def load_json():
     try:
         with open("shortcuts.json", "r") as shortcuts_file:
             shortcuts_json = json.load(shortcuts_file)
+
             for label in shortcuts_json["app"]:
                 labels.append(label)
+
+            for label in shortcuts_json["system_functions"]:
+                system_functions_labels.append(label)
+
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
-        logging.critical("Error while reading shortcuts.json")
         exit()
 
 
@@ -135,9 +141,9 @@ https://gitlab.com/seepiol/rasp2pc
     s9) Close Window
     s10) Blank
 
-    sf1) Reboot
-    sf2) Lock
-    sf3) Mute
+    sf1) {system_functions_labels[0].title()}
+    sf2) {system_functions_labels[1].title()}
+    sf3) {system_functions_labels[2].title()}
                 """
                 )
                 choice = input("What to do? :")
