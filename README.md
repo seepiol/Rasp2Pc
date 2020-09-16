@@ -5,6 +5,9 @@
 <br>
 
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
+
+<a href="https://gitlab.com/seepiol/rasp2pc/">Stable Branch</a> - <a href="https://gitlab.com/seepiol/rasp2pc/-/tree/features_in_dev">Developing Branch</a>
+
 </div>
 
 ## Index
