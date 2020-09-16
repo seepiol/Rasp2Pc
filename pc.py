@@ -28,6 +28,8 @@ HOST = ""  # Address
 PORT = 10000  # Port
 
 commands = []
+system_functions = []
+
 windows = None
 
 # System functions methods
@@ -37,36 +39,36 @@ def sysf1():
     """
     Reboot the system
     """
-    logging.info("rebooting system")  # Logging
+    logging.info(f"executing system function: {' '.join(system_functions[0])}")  # Logging
     try:
-        subprocess.Popen(["reboot"], shell=False)  # Run the command
+        subprocess.Popen(system_functions[0], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
-    return "Reboot"  # action name
+    return "sysf1"  # action name
 
 
 def sysf2():
     """
     Lock the session
     """
-    logging.info("Locking the session")
+    logging.info(f"executing system function: {' '.join(system_functions[1])}")  # Logging
     try:
-        subprocess.Popen(["loginctl", "lock-session"], shell=False)
+        subprocess.Popen(system_functions[1], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
-    return "lock"
+    return "sysf2"
 
 
 def sysf3():
     """
     Mute the audio
     """
-    logging.info("Turning volume to 0%")
+    logging.info(f"executing system function: {' '.join(system_functions[2])}")  # Logging
     try:
-        subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
+        subprocess.Popen(system_functions[2], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
-    return "mute"
+    return "sysf3"
 
 
 # App launch methods
@@ -250,8 +252,13 @@ def load_json():
     try:
         with open("shortcuts.json", "r") as shortcuts_file:
             shortcuts_json = json.load(shortcuts_file)
+
             for key in shortcuts_json["app"]:
                 commands.append(parse_command(shortcuts_json["app"].get(key)))
+
+            for key in shortcuts_json["system_functions"]:
+                system_functions.append(parse_command(shortcuts_json["system_functions"].get(key)))
+                
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
         logging.critical("Error while reading shortcuts.json")

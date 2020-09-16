@@ -210,6 +210,24 @@ By default, the program has 3 system functions shortcuts, 6 shortcuts for launch
 
 ### System Functions
 
+The system functions are defined in `shortcuts.json`, and the format is `"name":"command"`.
+
+Please note that system function icons must be contained in `icons/` and must have the same name as the key inserted in the shortcuts.json file, followed by the .png extension. For example, if a system action is `"network":"ifconfig wlan0 down"`, in `icons/` there must be an icon called `network.png`
+
+```
+{
+  "system_functions":{
+    <------- SEE HERE
+  },
+  "app":{
+    ...
+  },
+  "keyboard":{
+    ...
+  }
+}
+```
+
 | Function     | Command                          |
 | ------------ |:--------------------------------:|
 | Reboot PC    | `reboot`                         |
@@ -226,7 +244,7 @@ The file format is `"label":"command",`, and each line is contained in the `app`
 
 ```
 {
-  "system_action":{
+  "system_functions":{
     ...
   },
   "app":{

@@ -29,7 +29,9 @@ import csv
 import argparse
 from Crypto.Cipher import AES
 
+system_functions_icons = []
 labels = []
+
 
 # FIXME: the GUI code is a mess
 
@@ -128,7 +130,7 @@ class Ui_MainWindow(object):
 
         # System Actions
         self.reboot_icon = QtGui.QIcon()
-        self.reboot_icon.addPixmap(QtGui.QPixmap("icons/reboot.png"))
+        self.reboot_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[0]}.png"))
         self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
         self.reboot_button.setGeometry(QtCore.QRect(290, 10, 41, 37))
         self.reboot_button.setIcon(self.reboot_icon)
@@ -136,7 +138,7 @@ class Ui_MainWindow(object):
         self.reboot_button.setObjectName("reboot_button")
 
         self.lock_icon = QtGui.QIcon()
-        self.lock_icon.addPixmap(QtGui.QPixmap("icons/lock.png"))
+        self.lock_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[1]}.png"))
         self.lock_button = QtWidgets.QPushButton(self.centralwidget)
         self.lock_button.setGeometry(QtCore.QRect(340, 10, 41, 37))
         self.lock_button.setIcon(self.lock_icon)
@@ -144,7 +146,7 @@ class Ui_MainWindow(object):
         self.lock_button.setObjectName("lock_button")
 
         self.mute_icon = QtGui.QIcon()
-        self.mute_icon.addPixmap(QtGui.QPixmap("icons/mute.png"))
+        self.mute_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[2]}.png"))
         self.mute_button = QtWidgets.QPushButton(self.centralwidget)
         self.mute_button.setGeometry(QtCore.QRect(390, 10, 41, 37))
         self.mute_button.setIcon(self.mute_icon)
@@ -412,8 +414,13 @@ def load_json():
     try:
         with open("shortcuts.json", "r") as shortcuts_file:
             shortcuts_json = json.load(shortcuts_file)
+
             for label in shortcuts_json["app"]:
                 labels.append(label)
+
+            for icon in shortcuts_json["system_functions"]:
+                system_functions_icons.append(icon)
+
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
         logging.critical("Error while reading shortcuts.json")
