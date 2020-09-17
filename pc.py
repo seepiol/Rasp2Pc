@@ -265,6 +265,73 @@ def load_json():
         exit()
 
 
+def keyboard_shortcut(keyboard, press):
+
+    # https://pynput.readthedocs.io/en/latest/keyboard.html#pynput.keyboard.Key
+    keys = {
+        "alt":Key.alt,
+        "alt_gr":Key.alt_gr,
+        "alt_r":Key.alt_r,
+        "alt_l":Key.alt_l,
+        "backspace":Key.backspace,
+        "caps_lock":Key.caps_lock,
+        "cmd":Key.cmd,
+        "cmd_l":Key.cmd_l,
+        "cmd_r":Key.cmd_r,
+        "delete":Key.delete,
+        "down":Key.down,
+        "end":Key.end,
+        "enter":Key.enter,
+        "esc":Key.esc,
+        "f1":Key.f1,
+        "home":Key.home,
+        "insert":Key.insert,
+        "left":Key.left,
+        "media_next":Key.media_next,
+        "media_play_pause":Key.media_play_pause,
+        "media_previous":Key.media_previous,
+        "media_volume_down":Key.media_volume_down,
+        "media_volume_mute":Key.media_volume_mute,
+        "media_volume_up":Key.media_volume_up,
+        "menu":Key.menu,
+        "num_lock":Key.num_lock,
+        "page_down":Key.page_down,
+        "page_up":Key.page_up,
+        "pause":Key.pause,
+        "print_screen":Key.print_screen,
+        "right":Key.right,
+        "scroll_lock":Key.scroll_lock,
+        "shift":Key.shift,
+        "shift_l":Key.shift_l,
+        "shift_r":Key.shift_r,
+        "space":Key.space,
+        "tab":Key.tab,
+        "up":Key.up
+    }
+
+    press = press.split("+")
+
+    if len(press) == 1:
+        keyboard.press(press[0])
+        keyboard.release(press[0])
+
+    elif len(press) == 2:
+        if press[0] in keys:
+            first = keys.get(press[0])
+        else:
+            first = press[0]
+
+        if press[1] in keys:
+            second = keys.get(press[1])
+        else:
+            second = press[1]
+
+        with keyboard.pressed(first):
+            keyboard.press(second)
+            keyboard.release(second)
+            
+
+
 def initialize():
     global windows
     if platform.system() == "Windows":
