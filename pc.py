@@ -34,7 +34,7 @@ keyboard_shortcuts = []
 windows = None
 
 # System functions methods
-# TODO: take the system functions from shortcuts.csv
+# TODO: unify the function
 
 def sysf1():
     """
@@ -93,180 +93,6 @@ def app(index):
     except FileNotFoundError:  # The command isn't recognized
         print("No such file or directory")
     return commands[index]
-
-
-# Keyboard shortcuts execution methods
-# TODO: avoid to hardcode. maybe parse from shortcuts.csv in some way? 
-
-def short1(keyboard):
-    """
-    Ctrl+Z
-    Undo shortcut
-    Usable everywhere
-    """
-    logging.info("Ctrl+z")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("z")
-        keyboard.release("z")
-    return "undo"
-
-
-def short2(keyboard):
-    """
-    Ctrl+c
-    Copy
-    Usable everywhere
-    """
-    logging.info("Ctrl+c")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("c")
-        keyboard.release("c")
-    return "copy"
-
-
-def short3(keyboard):
-    """
-    Ctrl+x
-    Cut
-    Usable everywhere
-    """
-    logging.info("Ctrl+x")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("x")
-        keyboard.release("x")
-    return "cut"
-
-
-def short4(keyboard):
-    """
-    Ctrl+v
-    Paste
-    Usable everywhere
-    """
-    logging.info("Ctrl+v")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("v")
-        keyboard.release("v")
-    return "paste"
-
-
-def short5(keyboard):
-    """
-    Ctrl+D
-    Activate/disactivate the microphone
-    Usable on Google Meet
-    """
-    logging.info("Ctrl+d")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("d")
-        keyboard.release("d")
-    return "webcam"
-
-
-def short6(keyboard):
-    """
-    Ctrl+E
-    Activate/disactivate the microphone
-    Usable on Google Meet
-    """
-    logging.info("Ctrl+e")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("e")
-        keyboard.release("e")
-    return "microphone"
-
-
-def short7(keyboard):
-    """
-    F11
-    Make full screen
-    Usable everywhere
-    """
-    logging.info("F11")
-    keyboard.press(Key.f11)
-    keyboard.release(Key.f11)
-    return "fullscreen"
-
-
-def short8(keyboard):
-    """
-    PRT-SC
-    Print Screen (Screenshot)
-    Usable everywhere
-    """
-    logging.info("PRT SC")
-    keyboard.press(Key.print_screen)
-    keyboard.release(Key.print_screen)
-    return "screenshot"
-
-
-def short9(keyboard):
-    """
-    ALT-F4
-    Close window
-    Usable everywhere
-    """
-    logging.info("Alt+F4")
-    with keyboard.pressed(Key.alt):
-        keyboard.press(Key.f4)
-        keyboard.release(Key.f4)
-    return "close window"
-
-
-def short10(keyboard):
-    logging.info("Blank")
-    return
-
-
-def decrypt_index(crypted_index):
-    """
-    Decrypt the index recived from rasp
-
-    Args:
-        crypted index {bytes}: the aes128 encryptrd byte string
-
-    Returns:
-        index {string}: the decrypted index
-
-    """
-    # AES encrypter / decrypter
-    #                 A casual 128bit key                A casual 128bit Initialization vector
-    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
-
-    logging.info("Decrypting the index")
-    index = crytool.decrypt(crypted_index)  # Decrypting
-    try:  # When rasp disconnect and another rasp connect, the pc component recive a strange and non-decodable "string"
-        index = index.decode("utf-8")
-    except UnicodeDecodeError:
-        index = "0"
-    index = index.replace(" ", "")  # Replacing whitespaces with blankstring
-    return index
-
-
-def parse_command(command):
-    return command.split()
-
-
-def load_json():
-    global commands
-    # Loading commands
-    try:
-        with open("shortcuts.json", "r") as shortcuts_file:
-            shortcuts_json = json.load(shortcuts_file)
-
-            for key in shortcuts_json["app"]:
-                commands.append(parse_command(shortcuts_json["app"].get(key)))
-
-            for key in shortcuts_json["system_functions"]:
-                system_functions.append(parse_command(shortcuts_json["system_functions"].get(key)))
-
-            for key in shortcuts_json["keyboard"]:
-                keyboard_shortcuts.append(shortcuts_json["keyboard"].get(key))
-                            
-    except Exception as E:
-        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
-        logging.critical("Error while reading shortcuts.json")
-        exit()
 
 
 def keyboard_shortcut(keyboard, index):
@@ -365,7 +191,57 @@ def keyboard_shortcut(keyboard, index):
             with keyboard.pressed(first):
                 keyboard.press(second)
                 keyboard.release(second)
-            
+      
+
+def decrypt_index(crypted_index):
+    """
+    Decrypt the index recived from rasp
+
+    Args:
+        crypted index {bytes}: the aes128 encryptrd byte string
+
+    Returns:
+        index {string}: the decrypted index
+
+    """
+    # AES encrypter / decrypter
+    #                 A casual 128bit key                A casual 128bit Initialization vector
+    crytool = AES.new(b"ghnmXRHOwJ2j1Qfr", AES.MODE_CBC, b"127jH6VBnm09Lkqw")
+
+    logging.info("Decrypting the index")
+    index = crytool.decrypt(crypted_index)  # Decrypting
+    try:  # When rasp disconnect and another rasp connect, the pc component recive a strange and non-decodable "string"
+        index = index.decode("utf-8")
+    except UnicodeDecodeError:
+        index = "0"
+    index = index.replace(" ", "")  # Replacing whitespaces with blankstring
+    return index
+
+
+def parse_command(command):
+    return command.split()
+
+
+def load_json():
+    global commands
+    # Loading commands
+    try:
+        with open("shortcuts.json", "r") as shortcuts_file:
+            shortcuts_json = json.load(shortcuts_file)
+
+            for key in shortcuts_json["app"]:
+                commands.append(parse_command(shortcuts_json["app"].get(key)))
+
+            for key in shortcuts_json["system_functions"]:
+                system_functions.append(parse_command(shortcuts_json["system_functions"].get(key)))
+
+            for key in shortcuts_json["keyboard"]:
+                keyboard_shortcuts.append(shortcuts_json["keyboard"].get(key))
+                            
+    except Exception as E:
+        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
+        logging.critical("Error while reading shortcuts.json")
+        exit()
 
 
 def initialize():
@@ -550,8 +426,3 @@ def initialize():
 
 if __name__ == "__main__":
     initialize()
-
-
-
-    index = int(index[1:]) - 1
-    index = int(index[1:]) - 1
