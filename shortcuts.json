@@ -24,7 +24,7 @@
         "Mic":"ctrl+d",
         "Webcam":"ctrl+e",
         "Fullscreen":"f11",
-        "Screenshot":"prt-sc",
+        "Screenshot":"print_screen",
         "Close Win":"alt+f4",
         "Blank":""
     }

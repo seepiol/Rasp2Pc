@@ -29,6 +29,7 @@ PORT = 10000  # Port
 
 commands = []
 system_functions = []
+keyboard_shortcuts = []
 
 windows = None
 
@@ -258,15 +259,17 @@ def load_json():
 
             for key in shortcuts_json["system_functions"]:
                 system_functions.append(parse_command(shortcuts_json["system_functions"].get(key)))
-                
+
+            for key in shortcuts_json["keyboard"]:
+                keyboard_shortcuts.append(shortcuts_json["keyboard"].get(key))
+                            
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
         logging.critical("Error while reading shortcuts.json")
         exit()
 
 
-def keyboard_shortcut(keyboard, press):
-
+def keyboard_shortcut(keyboard, index):
     # https://pynput.readthedocs.io/en/latest/keyboard.html#pynput.keyboard.Key
     keys = {
         "alt":Key.alt,
@@ -278,12 +281,34 @@ def keyboard_shortcut(keyboard, press):
         "cmd":Key.cmd,
         "cmd_l":Key.cmd_l,
         "cmd_r":Key.cmd_r,
+        "ctrl":Key.ctrl,
+        "ctrl_l":Key.ctrl_l,
+        "ctrl_r":Key.ctrl_r,
         "delete":Key.delete,
         "down":Key.down,
         "end":Key.end,
         "enter":Key.enter,
         "esc":Key.esc,
         "f1":Key.f1,
+        "f2":Key.f2,
+        "f3":Key.f3,
+        "f4":Key.f4,
+        "f5":Key.f5,
+        "f6":Key.f6,
+        "f7":Key.f7,
+        "f8":Key.f8,
+        "f9":Key.f9,
+        "f10":Key.f10,
+        "f11":Key.f11,
+        "f12":Key.f12,
+        "f13":Key.f13,
+        "f14":Key.f14,
+        "f15":Key.f15,
+        "f16":Key.f16,
+        "f17":Key.f17,
+        "f18":Key.f18,
+        "f19":Key.f19,
+        "f10":Key.f20,
         "home":Key.home,
         "insert":Key.insert,
         "left":Key.left,
@@ -306,29 +331,40 @@ def keyboard_shortcut(keyboard, press):
         "shift_r":Key.shift_r,
         "space":Key.space,
         "tab":Key.tab,
-        "up":Key.up
+        "up":Key.up,
     }
+
+    index = int(index[1:]) - 1
+
+    press = keyboard_shortcuts[index]
 
     press = press.split("+")
 
-    if len(press) == 1:
-        keyboard.press(press[0])
-        keyboard.release(press[0])
+    if "" in press:
+        pass
+    else:
+        if len(press) == 1:
+            if press[0] in keys:
+                keyboard.press(keys.get(press[0]))
+                keyboard.release(keys.get(press[0]))
+            else:
+                keyboard.press(press[0])
+                keyboard.release(press[0])
 
-    elif len(press) == 2:
-        if press[0] in keys:
-            first = keys.get(press[0])
-        else:
-            first = press[0]
+        elif len(press) == 2:
+            if press[0] in keys:
+                first = keys.get(press[0])
+            else:
+                first = press[0]
 
-        if press[1] in keys:
-            second = keys.get(press[1])
-        else:
-            second = press[1]
+            if press[1] in keys:
+                second = keys.get(press[1])
+            else:
+                second = press[1]
 
-        with keyboard.pressed(first):
-            keyboard.press(second)
-            keyboard.release(second)
+            with keyboard.pressed(first):
+                keyboard.press(second)
+                keyboard.release(second)
             
 
 
@@ -448,6 +484,12 @@ def initialize():
                                 data[0] == "a"
                             ):  # If the first char of the data is "a" (an application), use the unified function
                                 app(data)
+
+                            elif(
+                                data[0] == "s"
+                            ):
+                                keyboard_shortcut(keyboard, data)
+
                             elif data == "s1":
                                 action_title = short1(keyboard) # FIXME; does really make sense to pass the keyboard as argument? 
                             elif data == "s2":
@@ -508,3 +550,8 @@ def initialize():
 
 if __name__ == "__main__":
     initialize()
+
+
+
+    index = int(index[1:]) - 1
+    index = int(index[1:]) - 1
