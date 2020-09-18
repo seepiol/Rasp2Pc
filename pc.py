@@ -34,9 +34,17 @@ keyboard_shortcuts = []
 windows = None
 
 
-# System functions methods
-
 def sysf(index):
+    """
+    System Functions Launch Method
+
+    Args:
+        index (str): the index sent from rasp component
+    
+
+    # TODO: return the esit (if the execution is gone ok)
+
+    """
     index = int(index[2:]) - 1
 
     logging.info(f"Executing system function {' '.join(system_functions[index])}")
@@ -44,15 +52,21 @@ def sysf(index):
         subprocess.Popen(system_functions[index], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
-    return f"sysf{index}"
+    return f"system_function{index}"
 
-
-# App launch methods
-# It's kinda ok, but 
-# TODO: return the esit (if the execution is gone ok)
-# TODO: mantain the command running even if I close pc component
 
 def app(index):
+    """
+    Subprocess Command Launch Method
+
+    Args:
+        index (str): the index sent from rasp component
+    
+    
+    TODO: Return the esit of the command
+    TODO: Mantain the command running even if the 
+
+    """
     # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
     index = int(index[1:]) - 1
 
@@ -71,6 +85,15 @@ def app(index):
 
 
 def keyboard_shortcut(keyboard, index):
+    """
+    Keyboard Shortcut Launch Method
+
+    Args:
+        keyboard (class): pynput keyboard controller object
+        index (str): the index sent from rasp component
+    
+    """
+
     # https://pynput.readthedocs.io/en/latest/keyboard.html#pynput.keyboard.Key
     keys = {
         "alt":Key.alt,
@@ -175,7 +198,7 @@ def decrypt_index(crypted_index):
     Decrypt the index recived from rasp
 
     Args:
-        crypted index {bytes}: the aes128 encryptrd byte string
+        crypted index {bytes}: the aes128 encrypted byte string
 
     Returns:
         index {string}: the decrypted index
@@ -196,12 +219,23 @@ def decrypt_index(crypted_index):
 
 
 def parse_command(command):
+    """
+    Splits a command in order to be usable by subprocess
+
+    Args:
+        command (str): The string retrived from shortcuts file
+
+    Returns:
+        command.split() (list): the splitted string list
+
+    """
     return command.split()
 
 
 def load_json():
-    global commands
-    # Loading commands
+    """
+    Loads app, system functions and keyboard shortcuts from shortcuts file
+    """
     try:
         with open("shortcuts.json", "r") as shortcuts_file:
             shortcuts_json = json.load(shortcuts_file)
