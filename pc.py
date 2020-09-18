@@ -61,10 +61,9 @@ def app(index):
 
     Args:
         index (str): the index sent from rasp component
-    
-    
+
     TODO: Return the esit of the command
-    TODO: Mantain the command running even if the 
+    TODO: Mantain the command running even if the pc componrnt is closed
 
     """
     # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
