@@ -33,43 +33,18 @@ keyboard_shortcuts = []
 
 windows = None
 
+
 # System functions methods
-# TODO: unify the function
 
-def sysf1():
-    """
-    Reboot the system
-    """
-    logging.info(f"executing system function: {' '.join(system_functions[0])}")  # Logging
+def sysf(index):
+    index = int(index[2:]) - 1
+
+    logging.info(f"Executing system function {' '.join(system_functions[index])}")
     try:
-        subprocess.Popen(system_functions[0], shell=False)  # Run the command
+        subprocess.Popen(system_functions[index], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
-    return "sysf1"  # action name
-
-
-def sysf2():
-    """
-    Lock the session
-    """
-    logging.info(f"executing system function: {' '.join(system_functions[1])}")  # Logging
-    try:
-        subprocess.Popen(system_functions[1], shell=False)  # Run the command
-    except FileNotFoundError:
-        print("No such file or directory")
-    return "sysf2"
-
-
-def sysf3():
-    """
-    Mute the audio
-    """
-    logging.info(f"executing system function: {' '.join(system_functions[2])}")  # Logging
-    try:
-        subprocess.Popen(system_functions[2], shell=False)  # Run the command
-    except FileNotFoundError:
-        print("No such file or directory")
-    return "sysf3"
+    return f"sysf{index}"
 
 
 # App launch methods
@@ -92,7 +67,7 @@ def app(index):
             subprocess.Popen(commands[index], shell=False)
     except FileNotFoundError:  # The command isn't recognized
         print("No such file or directory")
-    return commands[index]
+    return f"app{index}"
 
 
 def keyboard_shortcut(keyboard, index):
@@ -191,6 +166,8 @@ def keyboard_shortcut(keyboard, index):
             with keyboard.pressed(first):
                 keyboard.press(second)
                 keyboard.release(second)
+    
+    return f"keyboard{index}"
       
 
 def decrypt_index(crypted_index):
@@ -355,8 +332,12 @@ def initialize():
                             logging.info(f"{client_address} has requested {data}")
 
                             # Execute the index corresponding program or shortcut
-
                             if (
+                                data[0:2] == "sf"
+                            ):
+                                sysf(data)
+
+                            elif (
                                 data[0] == "a"
                             ):  # If the first char of the data is "a" (an application), use the unified function
                                 app(data)
@@ -365,34 +346,6 @@ def initialize():
                                 data[0] == "s"
                             ):
                                 keyboard_shortcut(keyboard, data)
-
-                            elif data == "s1":
-                                action_title = short1(keyboard) # FIXME; does really make sense to pass the keyboard as argument? 
-                            elif data == "s2":
-                                action_title = short2(keyboard)
-                            elif data == "s3":
-                                action_title = short3(keyboard)
-                            elif data == "s4":
-                                action_title = short4(keyboard)
-                            elif data == "s5":
-                                action_title = short5(keyboard)
-                            elif data == "s6":
-                                action_title = short6(keyboard)
-                            elif data == "s7":
-                                action_title = short7(keyboard)
-                            elif data == "s8":
-                                action_title = short8(keyboard)
-                            elif data == "s9":
-                                action_title = short9(keyboard)
-                            elif data == "s10":
-                                action_title = short10(keyboard)
-
-                            elif data == "sf1":
-                                action_title = sysf1()
-                            elif data == "sf2":
-                                action_title = sysf2()
-                            elif data == "sf3":
-                                action_title = sysf3()
 
                             esit = "ok" # FIXME: this useless return code
 
