@@ -24,6 +24,7 @@ import json
 
 system_functions_labels = []
 labels = []
+keyboard_labels = []
 
 
 def encrypt_index(index):
@@ -55,6 +56,9 @@ def load_json():
 
             for label in shortcuts_json["system_functions"]:
                 system_functions_labels.append(label)
+
+            for label in shortcuts_json["keyboard"]:
+                keyboard_labels.append(label)
 
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
@@ -130,16 +134,16 @@ https://gitlab.com/seepiol/rasp2pc
     a9) {labels[8]}
     a10) {labels[9]}
 
-    s1) Undo
-    s2) Copy
-    s3) Cut
-    s4) Paste
-    s5) Mic
-    s6) Webcam
-    s7) Fullscreen
-    s8) Screenshot
-    s9) Close Window
-    s10) Blank
+    s1) {keyboard_labels[0]}
+    s2) {keyboard_labels[1]}
+    s3) {keyboard_labels[2]}
+    s4) {keyboard_labels[3]}
+    s5) {keyboard_labels[4]}
+    s6) {keyboard_labels[5]}
+    s7) {keyboard_labels[6]}
+    s8) {keyboard_labels[7]}
+    s9) {keyboard_labels[8]}
+    s10) {keyboard_labels[9]}
 
     sf1) {system_functions_labels[0].title()}
     sf2) {system_functions_labels[1].title()}

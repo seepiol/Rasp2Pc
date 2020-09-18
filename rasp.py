@@ -31,6 +31,7 @@ from Crypto.Cipher import AES
 
 system_functions_icons = []
 labels = []
+keyboard_labels = []
 
 
 # FIXME: the GUI code is a mess
@@ -343,34 +344,34 @@ class Ui_MainWindow(object):
         self.app10_button.setText(_translate("MainWindow", labels[9]))  # app10
         self.app10_button.setToolTip("app10")
 
-        self.short1_button.setText(_translate("MainWindow", "Undo"))  # short1
+        self.short1_button.setText(_translate("MainWindow", keyboard_labels[0]))  # short1
         self.short1_button.setToolTip("Undo - Ctrl+Z")
 
-        self.short2_button.setText(_translate("MainWindow", "Copy"))  # short2
+        self.short2_button.setText(_translate("MainWindow", keyboard_labels[1]))  # short2
         self.short2_button.setToolTip("Copy - Ctrl+C")
 
-        self.short3_button.setText(_translate("MainWindow", "Cut"))  # short3
+        self.short3_button.setText(_translate("MainWindow", keyboard_labels[2]))  # short3
         self.short3_button.setToolTip("Cut - Ctrl+X")
 
-        self.short4_button.setText(_translate("MainWindow", "Paste"))  # short4
+        self.short4_button.setText(_translate("MainWindow", keyboard_labels[3]))  # short4
         self.short4_button.setToolTip("Paste - Ctrl+V")
 
-        self.short5_button.setText(_translate("MainWindow", "Mic"))  # short5
+        self.short5_button.setText(_translate("MainWindow", keyboard_labels[4]))  # short5
         self.short5_button.setToolTip("Microphone (googlemeet) - Ctrl+D")
 
-        self.short6_button.setText(_translate("MainWindow", "Webcam"))  # short6
+        self.short6_button.setText(_translate("MainWindow", keyboard_labels[5]))  # short6
         self.short6_button.setToolTip("Webcam (googlemeet) - Ctrl+E")
 
-        self.short7_button.setText(_translate("MainWindow", "Fullscreen"))  # short7
+        self.short7_button.setText(_translate("MainWindow", keyboard_labels[6]))  # short7
         self.short7_button.setToolTip("Fullscreen - F11")
 
-        self.short8_button.setText(_translate("MainWindow", "Screenshot"))  # short8
+        self.short8_button.setText(_translate("MainWindow", keyboard_labels[7]))  # short8
         self.short8_button.setToolTip("Screenshot - PRT-SC")
 
-        self.short9_button.setText(_translate("MainWindow", "Close Win"))  # short9
+        self.short9_button.setText(_translate("MainWindow", keyboard_labels[8]))  # short9
         self.short9_button.setToolTip("Close Window - Alt+F4")
 
-        self.short10_button.setText(_translate("MainWindow", "Blank"))  # short10
+        self.short10_button.setText(_translate("MainWindow", keyboard_labels[9]))  # short10
 
     # App/keyboard shortcuts/system functions launch functions
 
@@ -421,6 +422,9 @@ def load_json():
 
             for icon in shortcuts_json["system_functions"]:
                 system_functions_icons.append(icon)
+
+            for label in shortcuts_json["keyboard"]:
+                keyboard_labels.append(label)
 
     except Exception as E:
         print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
