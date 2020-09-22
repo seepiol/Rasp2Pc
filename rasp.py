@@ -130,30 +130,29 @@ class Ui_MainWindow(object):
         self.pc_info_label.setObjectName("pc_info_label")
 
         # System Functions
-        # FIXME: variable name, tooltip, object name
-        self.reboot_icon = QtGui.QIcon()
-        self.reboot_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[0]}.png"))
-        self.reboot_button = QtWidgets.QPushButton(self.centralwidget)
-        self.reboot_button.setGeometry(QtCore.QRect(290, 10, 41, 37))
-        self.reboot_button.setIcon(self.reboot_icon)
-        self.reboot_button.setToolTip("Reboot the PC")
-        self.reboot_button.setObjectName("reboot_button")
+        self.sysf1_icon = QtGui.QIcon()
+        self.sysf1_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[0]}.png"))
+        self.sysf1_button = QtWidgets.QPushButton(self.centralwidget)
+        self.sysf1_button.setGeometry(QtCore.QRect(290, 10, 41, 37))
+        self.sysf1_button.setIcon(self.sysf1_icon)
+        self.sysf1_button.setToolTip("System Function 1")
+        self.sysf1_button.setObjectName("sysf1_button")
 
-        self.lock_icon = QtGui.QIcon()
-        self.lock_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[1]}.png"))
-        self.lock_button = QtWidgets.QPushButton(self.centralwidget)
-        self.lock_button.setGeometry(QtCore.QRect(340, 10, 41, 37))
-        self.lock_button.setIcon(self.lock_icon)
-        self.lock_button.setToolTip("Lock the session")
-        self.lock_button.setObjectName("lock_button")
+        self.sysf2_icon = QtGui.QIcon()
+        self.sysf2_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[1]}.png"))
+        self.sysf2_button = QtWidgets.QPushButton(self.centralwidget)
+        self.sysf2_button.setGeometry(QtCore.QRect(340, 10, 41, 37))
+        self.sysf2_button.setIcon(self.sysf2_icon)
+        self.sysf2_button.setToolTip("System Function 2")
+        self.sysf2_button.setObjectName("sysf2_button")
 
-        self.mute_icon = QtGui.QIcon()
-        self.mute_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[2]}.png"))
-        self.mute_button = QtWidgets.QPushButton(self.centralwidget)
-        self.mute_button.setGeometry(QtCore.QRect(390, 10, 41, 37))
-        self.mute_button.setIcon(self.mute_icon)
-        self.mute_button.setToolTip("Mute the PC audio")
-        self.mute_button.setObjectName("mute_button")
+        self.sysf3_icon = QtGui.QIcon()
+        self.sysf3_icon.addPixmap(QtGui.QPixmap(f"icons/{system_functions_icons[2]}.png"))
+        self.sysf3_button = QtWidgets.QPushButton(self.centralwidget)
+        self.sysf3_button.setGeometry(QtCore.QRect(390, 10, 41, 37))
+        self.sysf3_button.setIcon(self.sysf3_icon)
+        self.sysf3_button.setToolTip("System Function 3")
+        self.sysf3_button.setObjectName("sysf3_button")
 
         # Programs
         self.app_frame = QtWidgets.QFrame(self.centralwidget)
@@ -272,9 +271,9 @@ class Ui_MainWindow(object):
 
         # Function Connections
         # System Function
-        self.reboot_button.clicked.connect(lambda: self.send("sf1"))
-        self.lock_button.clicked.connect(lambda: self.send("sf2"))
-        self.mute_button.clicked.connect(lambda: self.send("sf3"))
+        self.sysf1_button.clicked.connect(lambda: self.send("sf1"))
+        self.sysf2_button.clicked.connect(lambda: self.send("sf2"))
+        self.sysf3_button.clicked.connect(lambda: self.send("sf3"))
         # Apps
         self.app1_button.clicked.connect(lambda: self.send("a1"))
         self.app2_button.clicked.connect(lambda: self.send("a2"))
@@ -315,63 +314,64 @@ class Ui_MainWindow(object):
         # !!!BUTTONS TEXT HERE!!!
 
         self.app1_button.setText(_translate("MainWindow", labels[0]))  # app1
-        self.app1_button.setToolTip("app1")
+        self.app1_button.setToolTip("Application 1")
 
         self.app2_button.setText(_translate("MainWindow", labels[1]))  # app2
-        self.app2_button.setToolTip("app2")
+        self.app2_button.setToolTip("Application 2")
 
         self.app3_button.setText(_translate("MainWindow", labels[2]))  # app3
-        self.app3_button.setToolTip("app3")
+        self.app3_button.setToolTip("Application 3")
 
         self.app4_button.setText(_translate("MainWindow", labels[3]))  # app4
-        self.app4_button.setToolTip("app4")
+        self.app4_button.setToolTip("Application 4")
 
         self.app5_button.setText(_translate("MainWindow", labels[4]))  # app5
-        self.app5_button.setToolTip("app5")
+        self.app5_button.setToolTip("Application 5")
 
         self.app6_button.setText(_translate("MainWindow", labels[5]))  # app6
-        self.app6_button.setToolTip("app6")
+        self.app6_button.setToolTip("Application 6")
 
         self.app7_button.setText(_translate("MainWindow", labels[6]))  # app7
-        self.app7_button.setToolTip("app7")
+        self.app7_button.setToolTip("Application 7")
 
         self.app8_button.setText(_translate("MainWindow", labels[7]))  # app8
-        self.app8_button.setToolTip("app8")
+        self.app8_button.setToolTip("Application 8")
 
         self.app9_button.setText(_translate("MainWindow", labels[8]))  # app9
-        self.app9_button.setToolTip("app9")
+        self.app9_button.setToolTip("Application 9")
 
         self.app10_button.setText(_translate("MainWindow", labels[9]))  # app10
-        self.app10_button.setToolTip("app10")
+        self.app10_button.setToolTip("Application 10")
 
         self.short1_button.setText(_translate("MainWindow", keyboard_labels[0]))  # short1
-        self.short1_button.setToolTip("Undo - Ctrl+Z")
+        self.short1_button.setToolTip("Keyboard Shortcut 1")
 
         self.short2_button.setText(_translate("MainWindow", keyboard_labels[1]))  # short2
-        self.short2_button.setToolTip("Copy - Ctrl+C")
+        self.short2_button.setToolTip("Keyboard Shortcut 2")
 
         self.short3_button.setText(_translate("MainWindow", keyboard_labels[2]))  # short3
-        self.short3_button.setToolTip("Cut - Ctrl+X")
+        self.short3_button.setToolTip("Keyboard Shortcut 3")
 
         self.short4_button.setText(_translate("MainWindow", keyboard_labels[3]))  # short4
-        self.short4_button.setToolTip("Paste - Ctrl+V")
+        self.short4_button.setToolTip("Keyboard Shortcut 4")
 
         self.short5_button.setText(_translate("MainWindow", keyboard_labels[4]))  # short5
-        self.short5_button.setToolTip("Microphone (googlemeet) - Ctrl+D")
+        self.short5_button.setToolTip("Keyboard Shortcut 5")
 
         self.short6_button.setText(_translate("MainWindow", keyboard_labels[5]))  # short6
-        self.short6_button.setToolTip("Webcam (googlemeet) - Ctrl+E")
+        self.short6_button.setToolTip("Keyboard Shortcut 6")
 
         self.short7_button.setText(_translate("MainWindow", keyboard_labels[6]))  # short7
-        self.short7_button.setToolTip("Fullscreen - F11")
+        self.short7_button.setToolTip("Keyboard Shortcut 7")
 
         self.short8_button.setText(_translate("MainWindow", keyboard_labels[7]))  # short8
-        self.short8_button.setToolTip("Screenshot - PRT-SC")
+        self.short8_button.setToolTip("Keyboard Shortcut 8")
 
         self.short9_button.setText(_translate("MainWindow", keyboard_labels[8]))  # short9
-        self.short9_button.setToolTip("Close Window - Alt+F4")
+        self.short9_button.setToolTip("Keyboard Shortcut 9")
 
         self.short10_button.setText(_translate("MainWindow", keyboard_labels[9]))  # short10
+        self.short10_button.setToolTip("Keyboard Shortcut 10")
 
     # App/keyboard shortcuts/system functions launch functions
 
