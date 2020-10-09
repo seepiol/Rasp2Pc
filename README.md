@@ -6,8 +6,6 @@
 
 A program based on socket protocol that uses a Raspberry Pi with touchscreen to control a computer via shortcuts
 
-<a href="https://gitlab.com/seepiol/rasp2pc/">Stable Branch</a> - <a href="https://gitlab.com/seepiol/rasp2pc/-/tree/features_in_dev">Developing Branch</a>
-
 </div>
 
 ## Index
@@ -70,7 +68,15 @@ The user interface may vary depending on the QT settings on your system
 
 ## Security
 
-The packets are encrypted before sending with [AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By default is hardcoded a 128 bit key and a 128 bit [initialization vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and insert it into the code [on rasp component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L398), [raspBig component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspbig.py#L398), [raspCli component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#37) and [on pc component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#231)
+The packets are encrypted before sending with
+[AES-128](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)  encryption algorithm. By
+default is hardcoded a 128 bit key and a 128 bit [initialization
+vector](https://en.wikipedia.org/wiki/Initialization_vector). Please generate a new key and
+insert it into the code [on rasp
+component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/rasp.py#L404), [raspBig
+component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspbig.py#L402), [raspCli
+component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/raspcli.py#L40) and [on pc
+component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#L208)
 
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
@@ -211,6 +217,26 @@ By default, the program has 3 system functions shortcuts, 6 shortcuts for launch
 
 ### System Functions
 
+The system functions are defined in `shortcuts.json`, and the format is `"name":"command"`.
+
+Please note that system function icons must be contained in `icons/` and must have the same name as the key inserted in the shortcuts.json file, followed by the .png extension. For example, if a system action is `"network":"ifconfig wlan0 down"`, in `icons/` there must be an icon called `network.png`
+
+You can download the icons from [material.io](https://material.io/resources/icons/?style=baseline)
+
+```
+{
+  "system_functions":{
+    <------- SEE HERE
+  },
+  "app":{
+    ...
+  },
+  "keyboard":{
+    ...
+  }
+}
+```
+
 | Function     | Command                          |
 | ------------ |:--------------------------------:|
 | Reboot PC    | `reboot`                         |
@@ -219,11 +245,25 @@ By default, the program has 3 system functions shortcuts, 6 shortcuts for launch
 
 ### Programs / Commands
 
-The labels and the commands are now defined in [shortcuts.csv file](gitlab.com/seepiol/rasp2pc/shortcuts.csv).
+The labels and the commands are defined in [shortcuts.json file](gitlab.com/seepiol/rasp2pc/shortcuts.json), app list.
 
 For the consistency between rasp(s) component and pc the shortcuts file must be identical.
 
-The file format is `Label,Subprocess Command`. Each shortcut is separated by newline. 
+The file format is `"label":"command",`, and each line is contained in the `app` section of `shortcuts.json`.
+
+```
+{
+  "system_functions":{
+    ...
+  },
+  "app":{
+    <------ SEE HERE
+  },
+  "keyboard":{
+    ...
+  }
+}
+```
 
 The default programs shortcuts are:
 
@@ -244,8 +284,82 @@ The actions marked with an asterisk (*) are system specific.
 
 ### Keyboard shortcuts
 
+The labels and the keyboard shortcut keys are defined in shortcut file.
+
+The format is `label:keys`
+
+```
+ { 
+   "system_functions":{
+     ...
+   },
+   "app":{
+     <------ SEE HERE
+   },
+   "keyboard":{
+     ...
+   }
+ }
+```
+
+Currently shortcuts can only be made up of 1 or 2 keys. You have to follow the list below:
+
+| Key | Syntax |
+|:----:|:------:|
+| Alt | alt |
+| Alt Gr | alt_gr |
+| Alt Right | alt_r |
+| Alt Left | alt_l |
+| Backspace | backspace |
+| Caps Lock | caps_lock |
+| Command | cmd |
+| Command Right | cmd_r |
+| Command Left | cmd_l |
+| Control | ctrl |
+| Control Right | ctrl_r |
+| Control Left | ctrl_l |
+| Delete | delete |
+| Arrow Down | down |
+| End | end |
+| Enter | enter |
+| Esc | esc |
+| Function Key 1-20 | f1 |
+| Home | home |
+| Insert | insert |
+| Media Next | media_next |
+| Media Play Pause | media_play_pause | 
+| Media Previous | media_previous |
+| Media Volume Up | media_volume_up |
+| Media Volume Down | media_volume_down |
+| Media Volume Mute | media_volume_mute |
+| Menu | menu |
+| Num Lock | num_lock |
+| Page Down | page_down |
+| Page Up | page_up |
+| Pause | pause |
+| Media Volume Up | media_volume_up |
+| Media Volume Down | media_volume_down |
+| Media Volume Mute | media_volume_mute |
+| Menu | menu |
+| Num Lock | num_lock |
+| Page Down | page_down |
+| Page Up | page_up |
+| Pause | pause |
+| Print Screen | print_screen |
+| Arrow Right | right |
+| Scroll Lock | scroll_lock |
+| Shift | shift |
+| Shift Right | shift_r |
+| Shift Left | shift_l |
+| Space | space |
+| Tab | tab |
+| Arrow Up | up |
+
+
+The default shortcuts are: 
+
 | Function               | Keys   | Usage       |
-|:---------------------- |:------:|:-----------:|
+| :---------------------- |:------:|:-----------:|
 | Undo                   | Ctrl+Z | Everywhere  |
 | Copy                   | Ctrl+C | Everywhere  |
 | Cut                    | Ctrl+X | Everywhere  |
@@ -256,17 +370,6 @@ The actions marked with an asterisk (*) are system specific.
 | Screenshot (spectacle) | PRTSC  | everywhere  |
 | Close Window           | Alt+F4 | everywhere  |
 | Blank                  | -      | -           |
-
-If you want to modify the keyboard shortcuts,
-
-1) Modify rasp.py and change the button text, and keep note of the name of the shortcut index (written in the comment next to it)
-2) Go on the corresponding function on pc.py and change the keys called by pynput. For example, if you want to add the `Ctrl+F` shortcut, write:
-
-```
-with keyboard.pressed(Key.ctrl):
-    keyboard.press("f")
-    keyboard.release("f")
-```
 
 If you want to know more about keyboard shortcuts, view [PyNput documentation](https://pynput.readthedocs.io/en/latest/keyboard.html).
 
@@ -304,10 +407,10 @@ Categories=Utilities;Network;Utility;Remote;Internet;
 - Python 3
 - Socket - communication between pc and raspberry
 - Subprocess - execute commands on pc
-- [pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
+- [Pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
 - [PyQt5](https://riverbankcomputing.com/software/pyqt/) - GUI for rasp component
 - amixer - mute the pc
-- [pycrypto](https://pypi.org/project/pycrypto/) - encrypt packets with AES-128 
+- [PyCryptodome](https://pypi.org/project/pycryptodome/) - encrypt packets with AES-128 
 
 ## Compatibility
 
@@ -319,6 +422,8 @@ I've succesfully tested all the components on these configs:
 * PC and RASP on Microsoft Windows 10 *
 * PC and RASP on WSL Ubuntu
 * PC and RASP (including RASPCLI) on Ubuntu 20.04 LTS (GNOME)
+* PC and RASP on Arch Linux (i3wm)
+* PC and RASP on Fedora 32 (Plasma)
 * PC on Arch Linux (Plasma)
 * RASP on Raspberry Pi 3B+ Raspbian GNU/Linux 10 (Buster) (now raspberry pi os) & 800x480 5 inch touchscreen monitor
 * RASPCLI on Termux (Android 10)
@@ -332,7 +437,7 @@ Feel free to test it on your machine and open an issue to let me know if it work
 I made this on linux, and I've tested on it all of the time. It should work on every distro without problems.
 
 ### Windows
-To make the PC component compatible with windows, it's enough to customize the shortcuts.csv.
+To make the PC component compatible with windows, it's enough to customize the shortcuts.json.
 The command should be `start <executable filename>`. If the executable is in the path, is enough to insert `start <name>`.  
 For example:<br>
 ```Firefox, start firefox```.
@@ -347,10 +452,10 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 ## ToDo
 
 - [x] Unify app execution functions
-- [ ] Unify keyboard shortcuts execution functions
-- [ ] Unify system actions execution functions
+- [x] Unify keyboard shortcuts execution functions
+- [x] Unify system actions execution functions
 - [ ] Confiration popup when reboot sysfunction
-- [ ] Shortcuts.csv for system actions and keyboard shortcuts
+- [x] Shortcuts.json for system actions and keyboard shortcuts
 - [ ] Leave applications open after shutting down pc component
 - [x] DRY on index sending functions (RASP,RASPBIG)
 - [ ] DRY on application startup functions (PC)

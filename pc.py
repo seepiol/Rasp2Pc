@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-import csv
+import json
 import socket
 import subprocess
 from pynput.keyboard import Key, Controller
@@ -28,53 +28,44 @@ HOST = ""  # Address
 PORT = 10000  # Port
 
 commands = []
+system_functions = []
+keyboard_shortcuts = []
+
 windows = None
 
-# System functions methods
-# TODO: take the system functions from shortcuts.csv
 
-def sysf1():
+def sysf(index):
     """
-    Reboot the system
+    System Functions Launch Method
+
+    Args:
+        index (str): the index sent from rasp component
+    
+
+    # TODO: return the esit (if the execution is gone ok)
+
     """
-    logging.info("rebooting system")  # Logging
+    index = int(index[2:]) - 1
+
+    logging.info(f"Executing system function {' '.join(system_functions[index])}")
     try:
-        subprocess.Popen(["reboot"], shell=False)  # Run the command
+        subprocess.Popen(system_functions[index], shell=False)  # Run the command
     except FileNotFoundError:
         print("No such file or directory")
-    return "Reboot"  # action name
+    return f"system_function{index}"
 
-
-def sysf2():
-    """
-    Lock the session
-    """
-    logging.info("Locking the session")
-    try:
-        subprocess.Popen(["loginctl", "lock-session"], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return "lock"
-
-
-def sysf3():
-    """
-    Mute the audio
-    """
-    logging.info("Turning volume to 0%")
-    try:
-        subprocess.Popen(["amixer", "-D", "pulse", "sset", "Master", "0%"], shell=False)
-    except FileNotFoundError:
-        print("No such file or directory")
-    return "mute"
-
-
-# App launch methods
-# It's kinda ok, but 
-# TODO: return the esit (if the execution is gone ok)
-# TODO: mantain the command running even if I close pc component
 
 def app(index):
+    """
+    Subprocess Command Launch Method
+
+    Args:
+        index (str): the index sent from rasp component
+
+    TODO: Return the esit of the command
+    TODO: Mantain the command running even if the pc componrnt is closed
+
+    """
     # Parsing the index: transform the app index sent from rasp ("a2") to the command list index (1)
     index = int(index[1:]) - 1
 
@@ -89,138 +80,124 @@ def app(index):
             subprocess.Popen(commands[index], shell=False)
     except FileNotFoundError:  # The command isn't recognized
         print("No such file or directory")
-    return commands[index]
+    return f"app{index}"
 
 
-# Keyboard shortcuts execution methods
-# TODO: avoid to hardcode. maybe parse from shortcuts.csv in some way? 
-
-def short1(keyboard):
+def keyboard_shortcut(keyboard, index):
     """
-    Ctrl+Z
-    Undo shortcut
-    Usable everywhere
+    Keyboard Shortcut Launch Method
+
+    Args:
+        keyboard (class): pynput keyboard controller object
+        index (str): the index sent from rasp component
+    
     """
-    logging.info("Ctrl+z")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("z")
-        keyboard.release("z")
-    return "undo"
 
+    # https://pynput.readthedocs.io/en/latest/keyboard.html#pynput.keyboard.Key
+    keys = {
+        "alt":Key.alt,
+        "alt_gr":Key.alt_gr,
+        "alt_r":Key.alt_r,
+        "alt_l":Key.alt_l,
+        "backspace":Key.backspace,
+        "caps_lock":Key.caps_lock,
+        "cmd":Key.cmd,
+        "cmd_l":Key.cmd_l,
+        "cmd_r":Key.cmd_r,
+        "ctrl":Key.ctrl,
+        "ctrl_l":Key.ctrl_l,
+        "ctrl_r":Key.ctrl_r,
+        "delete":Key.delete,
+        "down":Key.down,
+        "end":Key.end,
+        "enter":Key.enter,
+        "esc":Key.esc,
+        "f1":Key.f1,
+        "f2":Key.f2,
+        "f3":Key.f3,
+        "f4":Key.f4,
+        "f5":Key.f5,
+        "f6":Key.f6,
+        "f7":Key.f7,
+        "f8":Key.f8,
+        "f9":Key.f9,
+        "f10":Key.f10,
+        "f11":Key.f11,
+        "f12":Key.f12,
+        "f13":Key.f13,
+        "f14":Key.f14,
+        "f15":Key.f15,
+        "f16":Key.f16,
+        "f17":Key.f17,
+        "f18":Key.f18,
+        "f19":Key.f19,
+        "f10":Key.f20,
+        "home":Key.home,
+        "insert":Key.insert,
+        "left":Key.left,
+        "media_next":Key.media_next,
+        "media_play_pause":Key.media_play_pause,
+        "media_previous":Key.media_previous,
+        "media_volume_down":Key.media_volume_down,
+        "media_volume_mute":Key.media_volume_mute,
+        "media_volume_up":Key.media_volume_up,
+        "menu":Key.menu,
+        "num_lock":Key.num_lock,
+        "page_down":Key.page_down,
+        "page_up":Key.page_up,
+        "pause":Key.pause,
+        "print_screen":Key.print_screen,
+        "right":Key.right,
+        "scroll_lock":Key.scroll_lock,
+        "shift":Key.shift,
+        "shift_l":Key.shift_l,
+        "shift_r":Key.shift_r,
+        "space":Key.space,
+        "tab":Key.tab,
+        "up":Key.up,
+    }
 
-def short2(keyboard):
-    """
-    Ctrl+c
-    Copy
-    Usable everywhere
-    """
-    logging.info("Ctrl+c")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("c")
-        keyboard.release("c")
-    return "copy"
+    index = int(index[1:]) - 1
 
+    press = keyboard_shortcuts[index]
 
-def short3(keyboard):
-    """
-    Ctrl+x
-    Cut
-    Usable everywhere
-    """
-    logging.info("Ctrl+x")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("x")
-        keyboard.release("x")
-    return "cut"
+    press = press.split("+")
 
+    if "" in press:
+        pass
+    else:
+        if len(press) == 1:
+            if press[0] in keys:
+                keyboard.press(keys.get(press[0]))
+                keyboard.release(keys.get(press[0]))
+            else:
+                keyboard.press(press[0])
+                keyboard.release(press[0])
 
-def short4(keyboard):
-    """
-    Ctrl+v
-    Paste
-    Usable everywhere
-    """
-    logging.info("Ctrl+v")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("v")
-        keyboard.release("v")
-    return "paste"
+        elif len(press) == 2:
+            if press[0] in keys:
+                first = keys.get(press[0])
+            else:
+                first = press[0]
 
+            if press[1] in keys:
+                second = keys.get(press[1])
+            else:
+                second = press[1]
 
-def short5(keyboard):
-    """
-    Ctrl+D
-    Activate/disactivate the microphone
-    Usable on Google Meet
-    """
-    logging.info("Ctrl+d")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("d")
-        keyboard.release("d")
-    return "webcam"
-
-
-def short6(keyboard):
-    """
-    Ctrl+E
-    Activate/disactivate the microphone
-    Usable on Google Meet
-    """
-    logging.info("Ctrl+e")
-    with keyboard.pressed(Key.ctrl):
-        keyboard.press("e")
-        keyboard.release("e")
-    return "microphone"
-
-
-def short7(keyboard):
-    """
-    F11
-    Make full screen
-    Usable everywhere
-    """
-    logging.info("F11")
-    keyboard.press(Key.f11)
-    keyboard.release(Key.f11)
-    return "fullscreen"
-
-
-def short8(keyboard):
-    """
-    PRT-SC
-    Print Screen (Screenshot)
-    Usable everywhere
-    """
-    logging.info("PRT SC")
-    keyboard.press(Key.print_screen)
-    keyboard.release(Key.print_screen)
-    return "screenshot"
-
-
-def short9(keyboard):
-    """
-    ALT-F4
-    Close window
-    Usable everywhere
-    """
-    logging.info("Alt+F4")
-    with keyboard.pressed(Key.alt):
-        keyboard.press(Key.f4)
-        keyboard.release(Key.f4)
-    return "close window"
-
-
-def short10(keyboard):
-    logging.info("Blank")
-    return
-
+            with keyboard.pressed(first):
+                keyboard.press(second)
+                keyboard.release(second)
+    
+    return f"keyboard{index}"
+      
 
 def decrypt_index(crypted_index):
     """
     Decrypt the index recived from rasp
 
     Args:
-        crypted index {bytes}: the aes128 encryptrd byte string
+        crypted index {bytes}: the aes128 encrypted byte string
 
     Returns:
         index {string}: the decrypted index
@@ -241,21 +218,40 @@ def decrypt_index(crypted_index):
 
 
 def parse_command(command):
+    """
+    Splits a command in order to be usable by subprocess
+
+    Args:
+        command (str): The string retrived from shortcuts file
+
+    Returns:
+        command.split() (list): the splitted string list
+
+    """
     return command.split()
 
-# FIXME: why csv? it isn't really a comma separated value file, it's more like a dictionery. json would be better
-def load_csv():
-    global commands
-    # Loading commands
-    with open("shortcuts.csv", "r") as commands_file:
-        reader = csv.reader(commands_file)
 
-        for row in reader:
-            try:
-                commands.append(parse_command(row[1]))
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
+def load_json():
+    """
+    Loads app, system functions and keyboard shortcuts from shortcuts file
+    """
+    try:
+        with open("shortcuts.json", "r") as shortcuts_file:
+            shortcuts_json = json.load(shortcuts_file)
+
+            for key in shortcuts_json["app"]:
+                commands.append(parse_command(shortcuts_json["app"].get(key)))
+
+            for key in shortcuts_json["system_functions"]:
+                system_functions.append(parse_command(shortcuts_json["system_functions"].get(key)))
+
+            for key in shortcuts_json["keyboard"]:
+                keyboard_shortcuts.append(shortcuts_json["keyboard"].get(key))
+                            
+    except Exception as E:
+        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
+        logging.critical("Error while reading shortcuts.json")
+        exit()
 
 
 def initialize():
@@ -304,7 +300,7 @@ def initialize():
         )
         logging.critical("Selected a privileged port")
 
-    load_csv()
+    load_json()
 
     logging.info("PC Component started")
     try:
@@ -369,38 +365,20 @@ def initialize():
                             logging.info(f"{client_address} has requested {data}")
 
                             # Execute the index corresponding program or shortcut
-
                             if (
+                                data[0:2] == "sf"
+                            ):
+                                sysf(data)
+
+                            elif (
                                 data[0] == "a"
                             ):  # If the first char of the data is "a" (an application), use the unified function
                                 app(data)
-                            elif data == "s1":
-                                action_title = short1(keyboard) # FIXME; does really make sense to pass the keyboard as argument? 
-                            elif data == "s2":
-                                action_title = short2(keyboard)
-                            elif data == "s3":
-                                action_title = short3(keyboard)
-                            elif data == "s4":
-                                action_title = short4(keyboard)
-                            elif data == "s5":
-                                action_title = short5(keyboard)
-                            elif data == "s6":
-                                action_title = short6(keyboard)
-                            elif data == "s7":
-                                action_title = short7(keyboard)
-                            elif data == "s8":
-                                action_title = short8(keyboard)
-                            elif data == "s9":
-                                action_title = short9(keyboard)
-                            elif data == "s10":
-                                action_title = short10(keyboard)
 
-                            elif data == "sf1":
-                                action_title = sysf1()
-                            elif data == "sf2":
-                                action_title = sysf2()
-                            elif data == "sf3":
-                                action_title = sysf3()
+                            elif(
+                                data[0] == "s"
+                            ):
+                                keyboard_shortcut(keyboard, data)
 
                             esit = "ok" # FIXME: this useless return code
 

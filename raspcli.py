@@ -18,10 +18,13 @@
 import socket
 import argparse
 from Crypto.Cipher import AES
-import csv
 import os
+import json
+# TODO: add logging
 
+system_functions_labels = []
 labels = []
+keyboard_labels = []
 
 
 def encrypt_index(index):
@@ -41,18 +44,26 @@ def encrypt_index(index):
     return cipherindex
 
 
-def load_csv():
-    # Loading labels
+def load_json():
     global labels
-    with open("shortcuts.csv", "r") as labels_file:
-        reader = csv.reader(labels_file)
+    # Loading labels
+    try:
+        with open("shortcuts.json", "r") as shortcuts_file:
+            shortcuts_json = json.load(shortcuts_file)
 
-        for row in reader:
-            try:
-                labels.append(row[0])
-            except IndexError:
-                print("Error while reading shortcuts.csv file. quitting")
-                exit()
+            for label in shortcuts_json["app"]:
+                labels.append(label)
+
+            for label in shortcuts_json["system_functions"]:
+                system_functions_labels.append(label)
+
+            for label in shortcuts_json["keyboard"]:
+                keyboard_labels.append(label)
+
+    except Exception as E:
+        print(f"Error while reading shortcuts.json: {E}.\nQuitting.")
+        exit()
+
 
 
 if __name__ == "__main__":
@@ -78,7 +89,7 @@ if __name__ == "__main__":
         PC_PORT = args.port
 
         # Loading labels
-        load_csv()
+        load_json()
 
         with socket.socket(
             socket.AF_INET, socket.SOCK_STREAM
@@ -123,20 +134,20 @@ https://gitlab.com/seepiol/rasp2pc
     a9) {labels[8]}
     a10) {labels[9]}
 
-    s1) Undo
-    s2) Copy
-    s3) Cut
-    s4) Paste
-    s5) Mic
-    s6) Webcam
-    s7) Fullscreen
-    s8) Screenshot
-    s9) Close Window
-    s10) Blank
+    s1) {keyboard_labels[0]}
+    s2) {keyboard_labels[1]}
+    s3) {keyboard_labels[2]}
+    s4) {keyboard_labels[3]}
+    s5) {keyboard_labels[4]}
+    s6) {keyboard_labels[5]}
+    s7) {keyboard_labels[6]}
+    s8) {keyboard_labels[7]}
+    s9) {keyboard_labels[8]}
+    s10) {keyboard_labels[9]}
 
-    sf1) Reboot
-    sf2) Lock
-    sf3) Mute
+    sf1) {system_functions_labels[0].title()}
+    sf2) {system_functions_labels[1].title()}
+    sf3) {system_functions_labels[2].title()}
                 """
                 )
                 choice = input("What to do? :")
