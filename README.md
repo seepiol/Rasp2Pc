@@ -222,6 +222,8 @@ The system functions are defined in `shortcuts.json`, and the format is `"name":
 
 Please note that system function icons must be contained in `icons/` and must have the same name as the key inserted in the shortcuts.json file, followed by the .png extension. For example, if a system action is `"network":"ifconfig wlan0 down"`, in `icons/` there must be an icon called `network.png`
 
+You can download the icons from [material.io](https://material.io/resources/icons/?style=baseline)
+
 ```
 {
   "system_functions":{
@@ -451,10 +453,10 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 ## ToDo
 
 - [x] Unify app execution functions
-- [ ] Unify keyboard shortcuts execution functions
-- [ ] Unify system actions execution functions
+- [x] Unify keyboard shortcuts execution functions
+- [x] Unify system actions execution functions
 - [ ] Confiration popup when reboot sysfunction
-- [ ] Shortcuts.json for system actions and keyboard shortcuts
+- [x] Shortcuts.json for system actions and keyboard shortcuts
 - [ ] Leave applications open after shutting down pc component
 - [x] DRY on index sending functions (RASP,RASPBIG)
 - [ ] DRY on application startup functions (PC)
