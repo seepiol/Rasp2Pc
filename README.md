@@ -283,8 +283,82 @@ The actions marked with an asterisk (*) are system specific.
 
 ### Keyboard shortcuts
 
+The labels and the keyboard shortcut keys are defined in shortcut file.
+
+The format is `label:keys`
+
+```
+ { 
+   "system_functions":{
+     ...
+   },
+   "app":{
+     <------ SEE HERE
+   },
+   "keyboard":{
+     ...
+   }
+ }
+```
+
+Currently shortcuts can only be made up of 1 or 2 keys. You have to follow the list below:
+
+| Key | Syntax |
+|:----:|:------:|
+| Alt | alt |
+| Alt Gr | alt_gr |
+| Alt Right | alt_r |
+| Alt Left | alt_l |
+| Backspace | backspace |
+| Caps Lock | caps_lock |
+| Command | cmd |
+| Command Right | cmd_r |
+| Command Left | cmd_l |
+| Control | ctrl |
+| Control Right | ctrl_r |
+| Control Left | ctrl_l |
+| Delete | delete |
+| Arrow Down | down |
+| End | end |
+| Enter | enter |
+| Esc | esc |
+| Function Key 1-20 | f1 |
+| Home | home |
+| Insert | insert |
+| Media Next | media_next |
+| Media Play Pause | media_play_pause | 
+| Media Previous | media_previous |
+| Media Volume Up | media_volume_up |
+| Media Volume Down | media_volume_down |
+| Media Volume Mute | media_volume_mute |
+| Menu | menu |
+| Num Lock | num_lock |
+| Page Down | page_down |
+| Page Up | page_up |
+| Pause | pause |
+| Media Volume Up | media_volume_up |
+| Media Volume Down | media_volume_down |
+| Media Volume Mute | media_volume_mute |
+| Menu | menu |
+| Num Lock | num_lock |
+| Page Down | page_down |
+| Page Up | page_up |
+| Pause | pause |
+| Print Screen | print_screen |
+| Arrow Right | right |
+| Scroll Lock | scroll_lock |
+| Shift | shift |
+| Shift Right | shift_r |
+| Shift Left | shift_l |
+| Space | space |
+| Tab | tab |
+| Arrow Up | up |
+
+
+The default shortcuts are: 
+
 | Function               | Keys   | Usage       |
-|:---------------------- |:------:|:-----------:|
+| :---------------------- |:------:|:-----------:|
 | Undo                   | Ctrl+Z | Everywhere  |
 | Copy                   | Ctrl+C | Everywhere  |
 | Cut                    | Ctrl+X | Everywhere  |
@@ -295,17 +369,6 @@ The actions marked with an asterisk (*) are system specific.
 | Screenshot (spectacle) | PRTSC  | everywhere  |
 | Close Window           | Alt+F4 | everywhere  |
 | Blank                  | -      | -           |
-
-If you want to modify the keyboard shortcuts,
-
-1) Modify rasp.py and change the button text, and keep note of the name of the shortcut index (written in the comment next to it)
-2) Go on the corresponding function on pc.py and change the keys called by pynput. For example, if you want to add the `Ctrl+F` shortcut, write:
-
-```
-with keyboard.pressed(Key.ctrl):
-    keyboard.press("f")
-    keyboard.release("f")
-```
 
 If you want to know more about keyboard shortcuts, view [PyNput documentation](https://pynput.readthedocs.io/en/latest/keyboard.html).
 
@@ -343,10 +406,10 @@ Categories=Utilities;Network;Utility;Remote;Internet;
 - Python 3
 - Socket - communication between pc and raspberry
 - Subprocess - execute commands on pc
-- [pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
+- [Pynput](https://pypi.org/project/pynput) - emulates keyboard shortcuts
 - [PyQt5](https://riverbankcomputing.com/software/pyqt/) - GUI for rasp component
 - amixer - mute the pc
-- [pycrypto](https://pypi.org/project/pycrypto/) - encrypt packets with AES-128 
+- [PyCryptodome](https://pypi.org/project/pycryptodome/) - encrypt packets with AES-128 
 
 ## Compatibility
 
@@ -358,6 +421,8 @@ I've succesfully tested all the components on these configs:
 * PC and RASP on Microsoft Windows 10 *
 * PC and RASP on WSL Ubuntu
 * PC and RASP (including RASPCLI) on Ubuntu 20.04 LTS (GNOME)
+* PC and RASP on Arch Linux (i3wm)
+* PC and RASP on Fedora 32 (Plasma)
 * PC on Arch Linux (Plasma)
 * RASP on Raspberry Pi 3B+ Raspbian GNU/Linux 10 (Buster) (now raspberry pi os) & 800x480 5 inch touchscreen monitor
 * RASPCLI on Termux (Android 10)
