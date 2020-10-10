@@ -342,7 +342,7 @@ class Ui_MainWindow(object):
         self.app10_button.setToolTip("Application 10")
 
         self.short1_button.setText(_translate("MainWindow", keyboard_labels[0]))  # short1
-        self.short1_button.setToolTip("Keyboard Shortcut 1)
+        self.short1_button.setToolTip("Keyboard Shortcut 1")
 
         self.short2_button.setText(_translate("MainWindow", keyboard_labels[1]))  # short2
         self.short2_button.setToolTip("Keyboard Shortcut 2")

@@ -117,6 +117,8 @@ For security reasons, generate a cryptographic key and insert it into the code (
 
 ### PC Component
 
+> Make sure to add a firewall exception on port 10000
+
 ```
 $ cd rasp2pc
 $ python3 pc.py
