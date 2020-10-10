@@ -294,10 +294,10 @@ The format is `label:keys`
      ...
    },
    "app":{
-     <------ SEE HERE
+     ...
    },
    "keyboard":{
-     ...
+     <------ SEE HERE
    }
  }
 ```
