@@ -1,4 +1,3 @@
-
 <div align="center">
 <h1>RASP2PC</h1>
 <img widht="256" height="256" src="icons/icon.png">
@@ -36,6 +35,7 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 - [License](#license)
 
 ## Why?
+
 ![demo](https://user-images.githubusercontent.com/60071372/83892755-62cbcd80-a74f-11ea-87ab-04bca522ce64.gif)
 
 Because using the keyboard and mouse, especially while you're doing something else, like video calling, can be really unconfortable. And also, control a computer with a touch screen seems really *c o o l*.
@@ -81,16 +81,17 @@ component](https://gitlab.com/seepiol/Rasp2Pc/blob/master/pc.py#L208)
 The library used for the encryption is [PyCryptoDome](https://github.com/Legrandin/pycryptodome)
 
 ## Installation
+
 1) Clone this repository:
-
+   
     ``git clone https://gitlab.com/seepiol/rasp2pc.git``
-    
-2) Move into the folder
 
+2) Move into the folder
+   
     `` cd rasp2pc``
 
 3) Install the dependencies
-
+   
     ``python3 -m pip install --user -r requirements.txt``
 
 ### How to install PyQt5 on Raspbian (now Raspberry Pi OS)
@@ -98,6 +99,7 @@ The library used for the encryption is [PyCryptoDome](https://github.com/Legrand
 ``sudo apt update && sudo apt-get install qt5-default pyqt5-dev pyqt5-dev-tools``
 
 ## Configuration
+
 Make sure that all the dependencies are installed by typing `pip install -r requirements.txt`.
 On debian-based distros, install PyQt5 by typing in a terminal window `sudo apt install python3-pyqt5`.
 
@@ -269,14 +271,14 @@ The file format is `"label":"command",`, and each line is contained in the `app`
 
 The default programs shortcuts are:
 
-| Program/Action (label)         | Subprocess Command                       |
+| Program/Action (label)  | Subprocess Command                       |
 | ----------------------- |:----------------------------------------:|
 | Mozilla Firefox Browser | `firefox`                                |
-| Terminal*          | `gnome-terminal`                                |
+| Terminal*               | `gnome-terminal`                         |
 | Virtualbox              | `virtualbox`                             |
-| File Manager*     | `nautilus`                                |
+| File Manager*           | `nautilus`                               |
 | VS Codium               | `vscodium`                               |
-| App Store*               | `pamac-manager`                          |
+| App Store*              | `pamac-manager`                          |
 | Telegram                | `telegram-desktop`                       |
 | Libreoffice Launcher    | `libreoffice`                            |
 | Mozilla Thunderbird     | `thunderbird`                            |
@@ -306,62 +308,61 @@ The format is `label:keys`
 
 Currently shortcuts can only be made up of 1 or 2 keys. You have to follow the list below:
 
-| Key | Syntax |
-|:----:|:------:|
-| Alt | alt |
-| Alt Gr | alt_gr |
-| Alt Right | alt_r |
-| Alt Left | alt_l |
-| Backspace | backspace |
-| Caps Lock | caps_lock |
-| Command | cmd |
-| Command Right | cmd_r |
-| Command Left | cmd_l |
-| Control | ctrl |
-| Control Right | ctrl_r |
-| Control Left | ctrl_l |
-| Delete | delete |
-| Arrow Down | down |
-| End | end |
-| Enter | enter |
-| Esc | esc |
-| Function Key 1-20 | f1 |
-| Home | home |
-| Insert | insert |
-| Media Next | media_next |
-| Media Play Pause | media_play_pause | 
-| Media Previous | media_previous |
-| Media Volume Up | media_volume_up |
+| Key               | Syntax            |
+|:-----------------:|:-----------------:|
+| Alt               | alt               |
+| Alt Gr            | alt_gr            |
+| Alt Right         | alt_r             |
+| Alt Left          | alt_l             |
+| Backspace         | backspace         |
+| Caps Lock         | caps_lock         |
+| Command           | cmd               |
+| Command Right     | cmd_r             |
+| Command Left      | cmd_l             |
+| Control           | ctrl              |
+| Control Right     | ctrl_r            |
+| Control Left      | ctrl_l            |
+| Delete            | delete            |
+| Arrow Down        | down              |
+| End               | end               |
+| Enter             | enter             |
+| Esc               | esc               |
+| Function Key 1-20 | f1                |
+| Home              | home              |
+| Insert            | insert            |
+| Media Next        | media_next        |
+| Media Play Pause  | media_play_pause  |
+| Media Previous    | media_previous    |
+| Media Volume Up   | media_volume_up   |
 | Media Volume Down | media_volume_down |
 | Media Volume Mute | media_volume_mute |
-| Menu | menu |
-| Num Lock | num_lock |
-| Page Down | page_down |
-| Page Up | page_up |
-| Pause | pause |
-| Media Volume Up | media_volume_up |
+| Menu              | menu              |
+| Num Lock          | num_lock          |
+| Page Down         | page_down         |
+| Page Up           | page_up           |
+| Pause             | pause             |
+| Media Volume Up   | media_volume_up   |
 | Media Volume Down | media_volume_down |
 | Media Volume Mute | media_volume_mute |
-| Menu | menu |
-| Num Lock | num_lock |
-| Page Down | page_down |
-| Page Up | page_up |
-| Pause | pause |
-| Print Screen | print_screen |
-| Arrow Right | right |
-| Scroll Lock | scroll_lock |
-| Shift | shift |
-| Shift Right | shift_r |
-| Shift Left | shift_l |
-| Space | space |
-| Tab | tab |
-| Arrow Up | up |
-
+| Menu              | menu              |
+| Num Lock          | num_lock          |
+| Page Down         | page_down         |
+| Page Up           | page_up           |
+| Pause             | pause             |
+| Print Screen      | print_screen      |
+| Arrow Right       | right             |
+| Scroll Lock       | scroll_lock       |
+| Shift             | shift             |
+| Shift Right       | shift_r           |
+| Shift Left        | shift_l           |
+| Space             | space             |
+| Tab               | tab               |
+| Arrow Up          | up                |
 
 The default shortcuts are: 
 
 | Function               | Keys   | Usage       |
-| :---------------------- |:------:|:-----------:|
+|:---------------------- |:------:|:-----------:|
 | Undo                   | Ctrl+Z | Everywhere  |
 | Copy                   | Ctrl+C | Everywhere  |
 | Cut                    | Ctrl+X | Everywhere  |
@@ -378,13 +379,14 @@ If you want to know more about keyboard shortcuts, view [PyNput documentation](h
 ## Enhancements
 
 ### Create .desktop file
+
 If you want to launch rasp2pc components by clicking an icon instead of opening the terminal, follow the instructions below
 
 Remember to replace `<RASP2PC_PATH>` with the path of rasp2pc folder, and `<COMPONENT>` with the component name (`pc`, `rasp`, `raspbig`, `raspcli`)
 
 - Create a file named `rasp2pc-<COMPONENT>.desktop`
-(for example, `rasp2pc-rasp.py`)
-in `.local/share/applications/`
+  (for example, `rasp2pc-rasp.py`)
+  in `.local/share/applications/`
 
 - Open the .desktop file and paste the code below
 
@@ -401,6 +403,76 @@ Categories=Utilities;Network;Utility;Remote;Internet;
 
 > This procedure is available only on linux distributions
 
+### Create a systemd daemon
+
+The PC component can be executed as a systemd daemon. In order to do that you'll only need to create a systemd unit file and tweak the source code of the pc component a little bit.
+
+
+
+#### Customize the systemd unit file
+
+In the rasp2pc directory, open the file called `rasp2pcd.service` with a text editor. It will look something like this: 
+
+```ini
+[Unit]
+Description=Runs Rasp2PC PC component in daemonized mode
+
+[Service]
+ExecStart=/usr/bin/python /home/<USER>/rasp2pc/pc.py -d
+
+```
+
+Replace `<USER>` with your username.
+
+
+
+#### Add the unit file in the systemd unit folder
+
+Open a new shell, and from your user directory move into `.config/systemd/user/`
+
+```bash
+$ cd .config/systemd/user/
+```
+
+If the directory doesn't exist, create it.
+
+Link the unit file (contained in the rasp2pc folder) by typing
+
+```bash
+$ ln -s /home/<USER>/rasp2pc/rasp2pcd.service
+```
+
+Replace `<USER>` with your username.
+
+
+
+#### Tweak the source code
+
+Return back to the rasp2pc folder, and open the PC Component source code (`pc.py`). Go to the line **`239`** and replace
+
+```python
+with open("shortcuts.json", "r") as shortcuts_file:
+```
+
+with
+
+```python
+with open("/home/<USER>/rasp2pc/shortcuts.json") as shortcuts_file:
+```
+
+Replace `<USER>` with your username.
+
+
+
+#### Start the daemon
+
+To start the daemon, type in a terminal window:
+
+```bash
+$ systemctl --user start rasp2pcd
+```
+
+That's it!
 
 
 
@@ -430,15 +502,16 @@ I've succesfully tested all the components on these configs:
 * RASP on Raspberry Pi 3B+ Raspbian GNU/Linux 10 (Buster) (now raspberry pi os) & 800x480 5 inch touchscreen monitor
 * RASPCLI on Termux (Android 10)
 
-
 Feel free to test it on your machine and open an issue to let me know if it works.
 
 \* : see [Windows](#windows) for windows configuration
 
 ### Linux
+
 I made this on linux, and I've tested on it all of the time. It should work on every distro without problems.
 
 ### Windows
+
 To make the PC component compatible with windows, it's enough to customize the shortcuts.json.
 The command should be `start <executable filename>`. If the executable is in the path, is enough to insert `start <name>`.  
 For example:<br>
@@ -449,6 +522,7 @@ At the moment, the only way to make the system actions work on windows is to cha
 RASP and RASPBIG components are compatible by default.
 
 ### Mac Os
+
 It teorically works (because it uses the bash shell), both pc and rasp, but I haven't tested yet.
 
 ## ToDo

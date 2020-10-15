@@ -1,0 +1,5 @@
+[Unit]
+Description=Runs Rasp2PC PC component in daemonized mode
+
+[Service]
+ExecStart=/usr/bin/python /home/<USER>/rasp2pc/pc.py -d
