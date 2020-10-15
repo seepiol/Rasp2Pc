@@ -275,10 +275,17 @@ def initialize():
     parser = argparse.ArgumentParser(description="Rasp2Pc PC Component")
 
     parser.add_argument(
+        "-d",
+        "--daemonize",
+        help="Allow every connection from rasp without asking confirmation",
+        action="store_true",
+    )
+
+    parser.add_argument(
         "--host",
         type=str,
         default="",
-        help="the addess the where socket server will be listening (default=everyone)",
+        help="the addess where the socket server will be listening (default=everyone)",
     )
 
     parser.add_argument(
@@ -338,18 +345,22 @@ def initialize():
                         print(f"{client_address} seems to be a RASP component")
 
                     # Accept or deny the connection
-                    accept_connection = input(
-                        "Do you want to accept this connection? [Y/n]: "
-                    )
-                    if accept_connection.lower() in ["y", "yes", ""]:
-                        print(f"Connection with {client_address} accepted")
-                        logging.info(f"Connection with {client_address} accepted")
+                    if args.daemonize:
+                        logging.info(f"Connection with {client_address} accepted without user confirmation")
                         conn.send("ConnectionAccepted".encode("utf-8"))
                     else:
-                        print("Connection Denied")
-                        logging.info("Connection Denied")
-                        conn.send("ConnectionDenied".encode("utf-8"))
-                        conn.close()
+                        accept_connection = input(
+                            "Do you want to accept this connection? [Y/n]: "
+                        )
+                        if accept_connection.lower() in ["y", "yes", ""]:
+                            print(f"Connection with {client_address} accepted")
+                            logging.info(f"Connection with {client_address} accepted")
+                            conn.send("ConnectionAccepted".encode("utf-8"))
+                        else:
+                            print("Connection Denied")
+                            logging.info("Connection Denied")
+                            conn.send("ConnectionDenied".encode("utf-8"))
+                            conn.close()
 
                     try:
 
