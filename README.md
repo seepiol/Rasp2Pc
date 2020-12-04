@@ -36,13 +36,13 @@ A program based on socket protocol that uses a Raspberry Pi with touchscreen to 
 
 ## Why?
 
-![demo](https://user-images.githubusercontent.com/60071372/83892755-62cbcd80-a74f-11ea-87ab-04bca522ce64.gif)
+![demo](https://gitlab.com/seepiol/rasp2pc/uploads/5090c499ab040589af3a8c8968019a5c/rasp2pc_new.gif)
 
 Because using the keyboard and mouse, especially while you're doing something else, like video calling, can be really unconfortable. And also, control a computer with a touch screen seems really *c o o l*.
 
 ## How it Works
 
-![Rasp2Pc functioning](https://gitlab.com/seepiol/rasp2pc/uploads/5090c499ab040589af3a8c8968019a5c/rasp2pc_new.gif)
+![Rasp2Pc functioning](https://user-images.githubusercontent.com/60071372/81484790-cd6d1480-9248-11ea-8d92-9ec84f5cc686.png)
 
 The project is composed of 3 parts, called "components".
 
