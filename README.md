@@ -42,7 +42,7 @@ Because using the keyboard and mouse, especially while you're doing something el
 
 ## How it Works
 
-![Rasp2Pc functioning](https://user-images.githubusercontent.com/60071372/81484790-cd6d1480-9248-11ea-8d92-9ec84f5cc686.png)
+![Rasp2Pc functioning](https://gitlab.com/seepiol/rasp2pc/uploads/5090c499ab040589af3a8c8968019a5c/rasp2pc_new.gif)
 
 The project is composed of 3 parts, called "components".
 
