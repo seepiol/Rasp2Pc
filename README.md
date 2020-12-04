@@ -282,7 +282,7 @@ The default programs shortcuts are:
 | Telegram                | `telegram-desktop`                       |
 | Libreoffice Launcher    | `libreoffice`                            |
 | Mozilla Thunderbird     | `thunderbird`                            |
-| Screen Recording        | `simplescreenrecorder --start-recording` |
+| Screen Recording        | `obs --startrecording`                   |
 
 The actions marked with an asterisk (*) are system specific. 
 

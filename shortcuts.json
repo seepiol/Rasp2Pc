@@ -14,7 +14,7 @@
         "Telegram":"telegram-desktop",
         "Libreoffice":"libreoffice",
         "Thunderbird":"thunderbird",
-        "Screen REC":"simplescreenrecorder --start-recording"
+        "Screen REC":"obs --startrecording"
     },
     "keyboard":{
         "Undo":"ctrl+z",
