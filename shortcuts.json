@@ -6,7 +6,7 @@
     },
     "app":{
         "Firefox":"firefox",
-        "Terminal":"konsole",
+        "Terminal":"./i3-sensible-terminal",
         "VirtualBox":"virtualbox",
         "Files":"dolphin",
         "VSCode":"codium",
