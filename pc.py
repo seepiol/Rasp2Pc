@@ -228,7 +228,8 @@ def parse_command(command):
         command.split() (list): the splitted string list
 
     """
-    return command.split()
+    string = "setsid -f "+command  # setsid in order to prevent the interruption of the program if pc.py terminated
+    return string.split()
 
 
 def load_json():

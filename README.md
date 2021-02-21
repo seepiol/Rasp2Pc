@@ -274,7 +274,7 @@ The default programs shortcuts are:
 | Program/Action (label)  | Subprocess Command                       |
 | ----------------------- |:----------------------------------------:|
 | Mozilla Firefox Browser | `firefox`                                |
-| Terminal*               | `gnome-terminal`                         |
+| Terminal*               |  Default terminal                        |
 | Virtualbox              | `virtualbox`                             |
 | File Manager*           | `nautilus`                               |
 | VS Codium               | `vscodium`                               |
@@ -532,7 +532,7 @@ It teorically works (because it uses the bash shell), both pc and rasp, but I ha
 - [x] Unify system actions execution functions
 - [ ] Confiration popup when reboot sysfunction
 - [x] Shortcuts.json for system actions and keyboard shortcuts
-- [ ] Leave applications open after shutting down pc component
+- [x] Leave applications open after shutting down pc component
 - [x] DRY on index sending functions (RASP,RASPBIG)
 - [ ] DRY on application startup functions (PC)
 - [x] Update RASPCLI
